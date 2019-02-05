@@ -2,21 +2,21 @@ FROM python:3.7-alpine
 
 ENV PYTHONUNBUFFERED 1
 
-# Copy in dependencies
-ADD requirements.txt /requirements.txt
-
 # TODO: Install build deps?
 
+ARG PROJECT=confero
+ARG PROJECT_DIR=/code
+
 # Set up container directory
-RUN mkdir /code
-WORKDIR /code
+RUN mkdir -p $PROJECT_DIR
+WORKDIR $PROJECT_DIR
 
 # Install deps first, for caching
-COPY requirements.txt /code/
+COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
 # Copy in source code
-ADD . /code/
+ADD . ./
 
 # The web server will run on this port
 EXPOSE 8000
