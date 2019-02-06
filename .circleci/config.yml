@@ -2,35 +2,34 @@ version: 2
 
 jobs:
   build:
-      docker:
-        - image: python:3.7-alpine
-      steps:
-          - checkout # check out the code in the project directory
-          - setup_remote_docker
-          - run:
-              name: Build Container from Dockerfile
+    docker:
+      - image: python:3.7-alpine
+    steps:
+      - checkout # check out the code in the project directory
+      - setup_remote_docker
+      - run:
+          name: Build Container from Dockerfile
+      command: docker build -t confero . # install requirements
+      - run: echo 'Run the tests....'
+
+  test:
+    docker:
+      - image: python:3.7-alpine
+    steps:
+      - run:
+          name: Build Container from Dockerfile
           command: docker build -t confero . # install requirements
-          - run: echo 'Run the tests....'
+      - run: echo 'Run the tests....'
 
-    test:
-        docker:
-            - image: python:3.7-alpine
-        steps:
-          - run:
-              name: Build Container from Dockerfile
-              command: docker build -t confero . # install requirements
-          - run: echo 'Run the tests....'
-
-    deploy:
-      docker:
-          - image: python:3.7-alpine
-      filters:
-          branches:
-              only:
-                - master
-      name: Deploy to Elastic Beanstalk Environment
-      re
-      command: eb deploy confero-env
+  deploy:
+    docker:
+      - image: python:3.7-alpine
+    filters:
+      branches:
+        only:
+          - master
+    name: Deploy to Elastic Beanstalk Environment
+    command: eb deploy confero-env
 
 workflows:
     version: 2
