@@ -4,10 +4,9 @@ jobs:
 
   build:
     docker:
-      - image: circleci/python
+      - image: cgarretty/confero
     steps:
       - checkout
-      - setup_remote_docker
       - run:
           name: Build Container from Dockerfile
           command: docker build -t confero . # install requirements
@@ -18,6 +17,5 @@ jobs:
               only:
                 - master
           name: Deploy to Elastic Beanstalk Environment
-          command: |
-            pip install --upgrade awsebcli
+          command:
             eb deploy confero-env
