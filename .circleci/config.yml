@@ -19,5 +19,5 @@ jobs:
                 - master
           name: Deploy to Elastic Beanstalk Environment
           command:
-            eb init confero-env
+            eb init project-confero
             eb deploy confero-env
