@@ -11,6 +11,7 @@ jobs:
           filters:
             branches:
               only:
+                - chores/circleci
                 - master
           name: Deploy to Elastic Beanstalk Environment
           command: eb deploy confero-env
