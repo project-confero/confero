@@ -5,6 +5,7 @@ jobs:
       - image: python:3.7-alpine
     steps:
       - checkout # check out the code in the project directory
+      - setup_remote_docker
       - run:
           name: Build Container from Dockerfile
           command: docker build -t confero . # install requirements
