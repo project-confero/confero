@@ -4,9 +4,8 @@ jobs:
 
   build:
     docker:
-      - image: cgarretty/confero
+      - image: cgarretty/confero:latest
     steps:
-      - checkout
       - run: echo 'Run the tests....'
       - run:
           name: Setup AWS credentials
