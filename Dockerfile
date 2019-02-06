@@ -7,6 +7,11 @@ ENV PYTHONUNBUFFERED 1
 ARG PROJECT=confero
 ARG PROJECT_DIR=/code
 
+RUN apk add --update git \
+    tar \
+    gzip \
+    ca-certificates
+
 # Set up container directory
 RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
