@@ -20,12 +20,14 @@ jobs:
   deploy:
     docker:
       - image: python:3.7-alpine
-    filters:
-      branches:
-        only:
-          - master
-    name: Deploy to Elastic Beanstalk Environment
-    command: eb deploy confero-env
+    steps:
+      - run:
+          filters:
+            branches:
+              only:
+                - master
+          name: Deploy to Elastic Beanstalk Environment
+          command: eb deploy confero-env
 
 workflows:
     version: 2
@@ -38,3 +40,4 @@ workflows:
             - deploy:
                 requires:
                     - test
+d
