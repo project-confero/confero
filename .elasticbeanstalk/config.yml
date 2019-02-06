@@ -1,0 +1,8 @@
+branch-defaults:
+  master:
+    environment: confero-env
+global:
+  application_name: project-confero
+  default_platform: docker
+  default_region: us-east-2
+  sc: git
