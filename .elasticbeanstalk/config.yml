@@ -1,8 +1,21 @@
 branch-defaults:
+  chores/circleci:
+    environment: confero-env
   master:
     environment: confero-env
+environment-defaults:
+  confero-env:
+    branch: null
+    repository: null
 global:
   application_name: project-confero
+  default_ec2_keyname: null
   default_platform: docker
   default_region: us-east-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
   sc: git
+  workspace_type: Application
