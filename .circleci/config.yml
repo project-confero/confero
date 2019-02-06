@@ -10,16 +10,9 @@ jobs:
           command: docker build -t confero . # install requirements
       - run: echo 'Run the tests....'
       - run:
+          filters:
+              branches:
+                  only:
+                    - master
           name: Deploy to Elastic Beanstalk Environment
           command: eb deploy confero-env
-
-workflows:
-  version: 2
-  build:
-    jobs:
-      - deploy:
-          filters:
-            branches:
-              only:
-                - chores/circleci
-                - master
