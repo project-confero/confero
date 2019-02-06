@@ -14,5 +14,6 @@ jobs:
               only:
                 - master
           name: Deploy to Elastic Beanstalk Environment
-          command:
+          command: |
+            eb init -p docker project-confero
             eb deploy confero-env
