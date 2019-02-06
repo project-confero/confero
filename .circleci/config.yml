@@ -7,9 +7,6 @@ jobs:
       - image: cgarretty/confero
     steps:
       - checkout
-      - run:
-          name: Build Container from Dockerfile
-          command: docker build -t confero . # install requirements
       - run: echo 'Run the tests....'
       - run:
           filters:
