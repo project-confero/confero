@@ -19,5 +19,5 @@ jobs:
                 - master
           name: Deploy to Elastic Beanstalk Environment
           command: |
-          pip install --upgrade awsebcli
-          eb deploy confero-env
+            pip install --upgrade awsebcli
+            eb deploy confero-env
