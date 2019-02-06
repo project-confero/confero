@@ -40,4 +40,3 @@ workflows:
             - deploy:
                 requires:
                     - test
-d
