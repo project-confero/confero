@@ -18,4 +18,6 @@ jobs:
               only:
                 - master
           name: Deploy to Elastic Beanstalk Environment
-          command: eb deploy confero-env
+          command: |
+          pip install --upgrade awsebcli
+          eb deploy confero-env
