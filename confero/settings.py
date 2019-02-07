@@ -25,7 +25,7 @@ SECRET_KEY = 'gk0w5ry91hkl@d+79@v9i^74f3tg3z9_qn6n@2@&ras-#mu@hy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['confero-env.cvqp3jgbbb.us-east-2.elasticbeanstalk.com']
 
 
 # Application definition

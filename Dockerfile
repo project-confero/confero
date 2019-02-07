@@ -3,6 +3,8 @@ FROM python:3.7-alpine
 ENV PYTHONUNBUFFERED 1
 
 # TODO: Install build deps?
+RUN apk add git
+RUN apk add openssh
 
 ARG PROJECT=confero
 ARG PROJECT_DIR=/code

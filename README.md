@@ -35,7 +35,7 @@ docker run -p 8000:8000 confero
 ```bash
 python -m virtualenv env
 source env/bin/activate
-pip -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Run Server
