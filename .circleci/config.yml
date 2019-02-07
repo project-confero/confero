@@ -6,7 +6,7 @@ jobs:
     docker:
       - image: cgarretty/confero:latest
     steps:
-      - run: echo {AWS_ACCESS_KEY_ID}
+      - run: echo 'Run the tests....'
       - run:
           name: Initialize Elastic Beanstalk
           command:
