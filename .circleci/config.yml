@@ -4,8 +4,9 @@ jobs:
 
   build:
     docker:
-      - image: cgarretty/confero:latest
+      - image: python:3.7-alpine
     steps:
+      - checkout
       - run: echo 'Run the tests....'
       - run:
           name: Initialize Elastic Beanstalk
