@@ -6,7 +6,7 @@ Tracking FEC Contribution Data
 
 ### Prerequisites
 
-Install Docker and docker-compose: 
+Install Docker and docker-compose:
 
 ```bash
 brew cask install docker
@@ -49,4 +49,31 @@ python manage.py runserver
 ```bash
 pip install dependency-name
 pip freeze > requirements.txt
+```
+
+## Linting/Formatting
+
+Worrying about code style is lame, so let's make robots do it for us.
+
+We're using a few code quality tools:
+
+- [yapf](https://github.com/google/yapf) - Google auto-formatter
+- [prospector](https://github.com/PyCQA/prospector) - Runs a bunch of linters with reasonable defaults
+- [prettier](https://github.com/prettier/prettier) - A JavaScript formatter. Just used for .md files for this project.
+- [`pre-commit`](https://pre-commit.com) - run the quality checks on every commit
+
+### Setup
+
+To set up the pre-commit hook:
+
+```bash
+pre-commit install
+```
+
+### Run All
+
+To run the quality checks on the whole project:
+
+```bash
+pre-commit run --all-files
 ```
