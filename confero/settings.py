@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
+# flake8: noqa
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -98,8 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-1  # test
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
