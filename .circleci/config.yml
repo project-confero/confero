@@ -8,8 +8,6 @@ jobs:
     steps:
       - run: echo 'Run the tests....'
       - run:
-          name: Setup AWS credentials
-      - run:
           name: Initialize Elastic Beanstalk
           command:
               eb init -p docker project-confero
