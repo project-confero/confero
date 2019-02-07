@@ -9,8 +9,6 @@ jobs:
       - run: echo 'Run the tests....'
       - run:
           name: Setup AWS credentials
-          command: |
-            mkdir ~/.aws && printf "[profile eb-cli]\naws_access_key_id = ${AWS_ACCESS_KEY_ID}\naws_secret_access_key = ${AWS_SECRET_ACCESS_KEY}" > ~/.aws/config
       - run:
           name: Initialize Elastic Beanstalk
           command:
@@ -22,4 +20,4 @@ jobs:
                 - chores/circleci
                 - master
           name: Deploy to Elastic Beanstalk Environment
-          command: eb deploy --profile eb-cli
+          command: eb deploy
