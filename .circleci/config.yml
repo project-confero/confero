@@ -18,4 +18,4 @@ jobs:
                 - chores/circleci
                 - master
           name: Deploy to Elastic Beanstalk Environment
-          command: eb deploy confero-env
+          command: eb deploy -r us-east-2 confero-env
