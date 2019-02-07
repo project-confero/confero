@@ -6,7 +6,6 @@ jobs:
     docker:
       - image: cgarretty/confero:latest
     steps:
-      - checkout
       - run: echo 'Run the tests....'
       - run:
           name: Initialize Elastic Beanstalk
