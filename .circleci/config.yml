@@ -1,24 +1,40 @@
 version: 2
 
 jobs:
-
   build:
     docker:
-      - image: python:3.7-alpine
+      - image: circleci/python:3.7
     steps:
       - checkout
-      - run: apk add git
-      - run: pip install -r requirements.txt
-      - run: echo 'Run the tests....'
+
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+
+      - run:
+          command: |
+            sudo pip install pipenv
+            pipenv install --dev
+
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.7/site-packages"
+
+      - run: pipenv run bash ./bin/lint.sh
+      - run: pipenv run bash ./bin/coverage.sh
+      - store_artifacts:
+          path: ./htmlcov
+          destination: coverage
       - run:
           name: Initialize Elastic Beanstalk
-          command:
-              eb init -p docker project-confero
+          command: pipenv run eb init -p docker project-confero
       - deploy:
-          filters:
-            branches:
-              only:
-                - chores/circleci
-                - master
           name: Deploy to Elastic Beanstalk Environment
-          command: eb deploy --region us-east-2
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              pipenv run eb deploy --region us-east-2
+            fi

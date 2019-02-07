@@ -1,1 +1,1 @@
-lint.sh && test.sh && echo "All good!"
+bash lint.sh && bash coverage.sh && echo "All good!"

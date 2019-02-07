@@ -6,27 +6,46 @@ Tracking FEC Contribution Data
 
 ### Setup
 
-Install Python 3.6.7
+Install Python 3.7
 
-Then:
+Then install and use pipenv:
+
+Install pipenv
 
 ```bash
-python -m virtualenv env
-source env/bin/activate
-pip install -r requirements.txt
+brew install pipenv
+```
+
+or
+
+```bash
+pip install --user pipenv
+```
+
+Then setup the virtual env and install dependencies.
+
+```bash
+pipenv install --dev
+```
+
+Then enter the virtual env
+
+```bash
+pipenv shell
 ```
 
 ### Run Server
 
 ```bash
+pipenv shell
 python manage.py runserver
 ```
 
 ## Adding Dependencies
 
 ```bash
-pip install dependency-name
-pip freeze > requirements.txt
+pipenv install NAME
+pipenv install NAME --dev # for non-production dependencies
 ```
 
 ## Local Docker
