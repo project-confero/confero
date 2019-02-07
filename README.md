@@ -51,7 +51,38 @@ pip install dependency-name
 pip freeze > requirements.txt
 ```
 
-## Linting/Formatting
+## Code Quality
+
+We're using tests, linters, and formatters to make sure everything is working as it should.
+
+All these things will run in CI, and will have to pass before you can merge and deploy code.
+
+To run all the quality checks locally and ensure CI will pass, run:
+
+```bash
+./bin/quality
+```
+
+### Testing
+
+See the [Django Docs](https://docs.djangoproject.com/en/2.1/topics/testing/overview/) for info on writing tests.
+
+#### Run all tests
+
+```bash
+./bin/test
+```
+
+#### Get a code coverage report
+
+```bash
+./bin/coverage
+```
+
+After running `./bin/coverage`, you can see a detailed report by opening
+`./htmlcov/index.html` in your browser.
+
+### Linting/Formatting
 
 Worrying about code style is lame, so let's make robots do it for us.
 
@@ -62,7 +93,11 @@ We're using a few code quality tools:
 - [prettier](https://github.com/prettier/prettier) - A JavaScript formatter. Just used for .md files for this project.
 - [`pre-commit`](https://pre-commit.com) - run the quality checks on every commit
 
-### Setup
+#### Pre-Commit Hook
+
+When you're committing, the pre-commit hook will run the linter and formatters on all the staged files. If anything fails, the hook will fail.
+
+Note that if the yapf formatter fixes anything, that will cause the hook to fail. Check that the changes look good, then apply the commit again to see it pass.
 
 To set up the pre-commit hook:
 
@@ -70,10 +105,18 @@ To set up the pre-commit hook:
 pre-commit install
 ```
 
-### Run All
+#### Run All
 
 To run the quality checks on the whole project:
 
 ```bash
 pre-commit run --all-files
+```
+
+#### Auto-format
+
+If you just want to auto-format the project, run:
+
+```bash
+./bin/format
 ```

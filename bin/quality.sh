@@ -1,1 +1,1 @@
-pre-commit run --all-files
+lint.sh && test.sh && echo "All good!"
