@@ -2,9 +2,40 @@
 
 Tracking FEC Contribution Data
 
+## Development
+
+### Setup
+
+Install Python 3.6.7
+
+Then:
+
+```bash
+python -m virtualenv env
+source env/bin/activate
+pip install -r requirements.txt
+```
+
+### Run Server
+
+```bash
+python manage.py runserver
+```
+
+## Adding Dependencies
+
+```bash
+pip install dependency-name
+pip freeze > requirements.txt
+```
+
 ## Local Docker
 
-### Prerequisites
+While you'll want a local environment for your editor and quality checkers,
+you can use Docker to run the project in the same environment it'll
+be in for production.
+
+#### Prerequisites
 
 Install Docker and docker-compose:
 
@@ -26,29 +57,6 @@ docker build -t confero .
 
 ```bash
 docker run -p 8000:8000 confero
-```
-
-## Development without Docker
-
-### Setup
-
-```bash
-python -m virtualenv env
-source env/bin/activate
-pip install -r requirements.txt
-```
-
-### Run Server
-
-```bash
-python manage.py runserver
-```
-
-## Adding Dependencies
-
-```bash
-pip install dependency-name
-pip freeze > requirements.txt
 ```
 
 ## Code Quality
