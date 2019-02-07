@@ -6,6 +6,7 @@ jobs:
     docker:
       - image: cgarretty/confero:latest
     steps:
+      - checkout
       - run: echo 'Run the tests....'
       - run:
           name: Initialize Elastic Beanstalk
@@ -18,4 +19,4 @@ jobs:
                 - chores/circleci
                 - master
           name: Deploy to Elastic Beanstalk Environment
-          command: eb deploy -r us-east-2 confero-env
+          command: eb deploy --region us-east-2
