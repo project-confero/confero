@@ -2,11 +2,61 @@
 
 Tracking FEC Contribution Data
 
+## Development
+
+### Setup
+
+Install Python 3.7
+
+Then install and use pipenv:
+
+Install pipenv
+
+```bash
+brew install pipenv
+```
+
+or
+
+```bash
+pip install --user pipenv
+```
+
+Then setup the virtual env and install dependencies.
+
+```bash
+pipenv install --dev
+```
+
+Then enter the virtual env
+
+```bash
+pipenv shell
+```
+
+### Run Server
+
+```bash
+pipenv shell
+python manage.py runserver
+```
+
+## Adding Dependencies
+
+```bash
+pipenv install NAME
+pipenv install NAME --dev # for non-production dependencies
+```
+
 ## Local Docker
 
-### Prerequisites
+While you'll want a local environment for your editor and quality checkers,
+you can use Docker to run the project in the same environment it'll
+be in for production.
 
-Install Docker and docker-compose: 
+#### Prerequisites
+
+Install Docker and docker-compose:
 
 ```bash
 brew cask install docker
@@ -28,25 +78,72 @@ docker build -t confero .
 docker run -p 8000:8000 confero
 ```
 
-## Development without Docker
+## Code Quality
 
-### Setup
+We're using tests, linters, and formatters to make sure everything is working as it should.
+
+All these things will run in CI, and will have to pass before you can merge and deploy code.
+
+To run all the quality checks locally and ensure CI will pass, run:
 
 ```bash
-python -m virtualenv env
-source env/bin/activate
-pip -r requirements.txt
+./bin/quality
 ```
 
-### Run Server
+### Testing
+
+See the [Django Docs](https://docs.djangoproject.com/en/2.1/topics/testing/overview/) for info on writing tests.
+
+#### Run all tests
 
 ```bash
-python manage.py runserver
+./bin/test
 ```
 
-## Adding Dependencies
+#### Get a code coverage report
 
 ```bash
-pip install dependency-name
-pip freeze > requirements.txt
+./bin/coverage
+```
+
+After running `./bin/coverage`, you can see a detailed report by opening
+`./htmlcov/index.html` in your browser.
+
+### Linting/Formatting
+
+Worrying about code style is lame, so let's make robots do it for us.
+
+We're using a few code quality tools:
+
+- [yapf](https://github.com/google/yapf) - Google auto-formatter
+- [prospector](https://github.com/PyCQA/prospector) - Runs a bunch of linters with reasonable defaults
+- [prettier](https://github.com/prettier/prettier) - A JavaScript formatter. Just used for .md files for this project.
+- [`pre-commit`](https://pre-commit.com) - run the quality checks on every commit
+
+#### Pre-Commit Hook
+
+When you're committing, the pre-commit hook will run the linter and formatters on all the staged files. If anything fails, the hook will fail.
+
+Note that if the yapf formatter fixes anything, that will cause the hook to fail. Check that the changes look good, then apply the commit again to see it pass.
+
+To set up the pre-commit hook:
+
+```bash
+pre-commit install
+```
+
+#### Run All
+
+To run the quality checks on the whole project:
+
+```bash
+pre-commit run --all-files
+```
+
+#### Auto-format
+
+If you just want to auto-format the project, run:
+
+```bash
+./bin/format
 ```

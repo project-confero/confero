@@ -1,0 +1,40 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7
+    steps:
+      - checkout
+
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+
+      - run:
+          command: |
+            sudo pip install pipenv
+            pipenv install --dev
+
+      - save_cache:
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.7/site-packages"
+
+      - run: pipenv run bash ./bin/lint.sh
+      - run: pipenv run bash ./bin/coverage.sh
+      - store_artifacts:
+          path: ./htmlcov
+          destination: coverage
+      - run:
+          name: Initialize Elastic Beanstalk
+          command: pipenv run eb init -p docker project-confero
+      - deploy:
+          name: Deploy to Elastic Beanstalk Environment
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              pipenv run eb deploy --region us-east-2
+            fi
