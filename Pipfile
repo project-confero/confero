@@ -9,7 +9,6 @@ prospector = "*"
 awsebcli = "*"
 pre-commit = "*"
 coverage = "*"
-pyyaml = ">=4.2b1"
 
 [packages]
 Django = "*"

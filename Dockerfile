@@ -14,8 +14,7 @@ RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
 
 # Install deps first, for caching
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
+RUN pipenv shell
 
 # Copy in source code
 ADD . ./
