@@ -9,6 +9,7 @@ prospector = "*"
 awsebcli = "*"
 pre-commit = "*"
 coverage = "*"
+pipenv = "*"
 
 [packages]
 Django = "*"
