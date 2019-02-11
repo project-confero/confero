@@ -2,10 +2,6 @@ FROM python:3.7-alpine
 
 ENV PYTHONUNBUFFERED 1
 
-# TODO: Install build deps?
-RUN apk add git
-RUN apk add openssh
-
 ARG PROJECT=confero
 ARG PROJECT_DIR=/code
 
@@ -14,13 +10,26 @@ RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
 
 # Install deps first, for caching
-RUN pipenv shell
+RUN pip install pipenv 
+ADD ./Pipfile .
+ADD ./Pipfile.lock .
+
+# Install Postgres Backend
+RUN \
+  apk add --no-cache postgresql-libs && \
+  apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
+  # Actuall install dependencies, including psycopg2
+  pipenv install psycopg2-binary && \
+  apk --purge del .build-deps
+
+RUN pipenv install
 
 # Copy in source code
-ADD . ./
+ADD ./manage.py .
+ADD ./confero ./confero
 
 # The web server will run on this port
 EXPOSE 8000
 
-ENTRYPOINT ["python", "manage.py"]
+ENTRYPOINT ["pipenv", "run", "python", "manage.py"]
 CMD ["runserver", "0.0.0.0:8000"]
