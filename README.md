@@ -124,15 +124,21 @@ See the [Django Docs](https://docs.djangoproject.com/en/2.1/topics/testing/overv
 
 ```bash
 ./bin/docker-test
+
+# Or if you have postgres set up locally:
+./bin/test
 ```
 
 #### Get a code coverage report
 
 ```bash
 ./bin/docker-coverage
+
+# Or if you have postgres set up locally:
+./bin/coverage
 ```
 
-After running `./bin/coverage`, you can see a detailed report by opening
+After running `./bin/docker-coverage`, you can see a detailed report by opening
 `./htmlcov/index.html` in your browser.
 
 ### Linting/Formatting

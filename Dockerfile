@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3.7-alpine AS base
 
 ENV PYTHONUNBUFFERED 1
 
@@ -19,17 +19,32 @@ RUN \
   apk add --no-cache postgresql-libs && \
   apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
   # Actuall install dependencies, including psycopg2
-  pipenv install psycopg2-binary && \
+  pipenv install --system && \
   apk --purge del .build-deps
 
-RUN pipenv install
+# The web server will run on this port
+EXPOSE 8000
+
+ENTRYPOINT ["python", "manage.py"]
+CMD ["runserver", "0.0.0.0:8000"]
+
+# Dev setup. For running tests and other dev tools.
+FROM base AS dev
+
+RUN pipenv install --dev --system
+
+ADD ./.coveragerc .
+ADD ./bin ./bin
+
+RUN mkdir /htmlcov
 
 # Copy in source code
 ADD ./manage.py .
 ADD ./confero ./confero
 
-# The web server will run on this port
-EXPOSE 8000
+# Prod. Do this last, so by default dev dependencies are ignored.
+FROM base AS prod
 
-ENTRYPOINT ["pipenv", "run", "python", "manage.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+# Copy in source code
+ADD ./manage.py .
+ADD ./confero ./confero

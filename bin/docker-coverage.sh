@@ -1,0 +1,1 @@
+docker-compose run --entrypoint "sh ./bin/coverage.sh" django
