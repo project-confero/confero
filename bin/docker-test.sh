@@ -1,0 +1,1 @@
+docker-compose run --no-deps django test

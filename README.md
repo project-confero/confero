@@ -54,6 +54,8 @@ While you'll want a local environment for your editor and quality checkers,
 you can use Docker to run the project in the same environment it'll
 be in for production.
 
+We're also using [docker-compose](https://docs.docker.com/compose/), which allows you to spin up the whole project, with a database, in a single command.
+
 #### Prerequisites
 
 Install Docker and docker-compose:
@@ -69,13 +71,31 @@ or [Windows](https://docs.docker.com/docker-for-windows/install/).
 ### Setup
 
 ```bash
-docker build -t confero .
+docker-compose build
 ```
 
 ### Run Server
 
 ```bash
-docker run -p 8000:8000 confero
+docker-compose up
+```
+
+### Run a manage.py command
+
+```bash
+docker-compose run django COMMAND
+
+# Example: run migrations:
+docker-compose run django migrate
+```
+
+### Run a system command
+
+`docker-compose run django` passes commands to the `python manage.py` entrypoint by default. 
+To override that:
+
+```bash
+docker-compose run --entrypoint COMMAND django
 ```
 
 ## Code Quality
@@ -100,10 +120,16 @@ See the [Django Docs](https://docs.djangoproject.com/en/2.1/topics/testing/overv
 ./bin/test
 ```
 
+#### Run all tests from within docker
+
+```bash
+./bin/docker-test
+```
+
 #### Get a code coverage report
 
 ```bash
-./bin/coverage
+./bin/docker-coverage
 ```
 
 After running `./bin/coverage`, you can see a detailed report by opening
