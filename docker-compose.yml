@@ -9,11 +9,7 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./manage.py:/manage.py
       - ./confero:/confero
-      - ./htmlcov:/htmlcov
-      - ./.coveragerc:/.coveragerc
-      - ./bin:/commands
     environment:
       DB_HOST: db
     ports:

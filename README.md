@@ -2,13 +2,25 @@
 
 Tracking FEC Contribution Data
 
-## Development
+## Local Development
+
+Even if you're using docker to run the server locally, you'll want a local environment for your editor and quality checkers. So let's set that up first.
+
+### Prerequisites
+
+Install [Python 3.7](https://www.python.org/downloads/)
+
+Also, for some formatter tooling, install [Node](https://nodejs.org/en/download)
+
+You'll also need prettier:
+
+```bash
+npm install -g prettier
+```
 
 ### Setup
 
-Install Python 3.7
-
-Then install and use pipenv:
+Install and use pipenv:
 
 Install pipenv
 
@@ -56,7 +68,7 @@ be in for production.
 
 We're also using [docker-compose](https://docs.docker.com/compose/), which allows you to spin up the whole project, with a database, in a single command.
 
-#### Prerequisites
+### Prerequisites
 
 Install Docker and docker-compose:
 
@@ -91,7 +103,7 @@ docker-compose run django migrate
 
 ### Run a system command
 
-`docker-compose run django` passes commands to the `python manage.py` entrypoint by default. 
+`docker-compose run django` passes commands to the `python manage.py` entrypoint by default.
 To override that:
 
 ```bash
@@ -122,11 +134,12 @@ See the [Django Docs](https://docs.djangoproject.com/en/2.1/topics/testing/overv
 
 #### Run all tests from within docker
 
+It can be easier to just run tests inside docker, so you don't have to set up postgres locally.
+
+_Warning_: Running docker-compose commands may not work from within a virtualenv.
+
 ```bash
 ./bin/docker-test
-
-# Or if you have postgres set up locally:
-./bin/test
 ```
 
 #### Get a code coverage report

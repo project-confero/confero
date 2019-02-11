@@ -33,14 +33,14 @@ FROM base AS dev
 
 RUN pipenv install --dev --system
 
+# Copy in tools
 ADD ./.coveragerc .
 ADD ./bin ./bin
-
-RUN mkdir /htmlcov
 
 # Copy in source code
 ADD ./manage.py .
 ADD ./confero ./confero
+
 
 # Prod. Do this last, so by default dev dependencies are ignored.
 FROM base AS prod
