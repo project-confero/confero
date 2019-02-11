@@ -4,6 +4,10 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.7
+      - image: circleci/postgres
+        environment:
+          POSTGRES_DB: confero
+          POSTGRES_USER: postgres
     steps:
       - checkout
 
