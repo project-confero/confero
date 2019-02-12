@@ -73,11 +73,10 @@ python manage.py migrate
 
 ## Run Server
 
-To start the local server:
+To start the local server, with the docker db and pipenv, run:
 
 ```bash
-pipenv shell
-python manage.py runserver
+./bin/start
 ```
 
 ## Configuration
@@ -247,3 +246,9 @@ If you just want to auto-format the project, run:
 ```bash
 ./bin/format
 ```
+
+## Local Admin
+
+Django comes with a built-in admin system, that lets you create and change database records.
+
+For info on how to set up admin users, see the [Django Docs](https://docs.djangoproject.com/en/2.1/intro/tutorial02/#introducing-the-django-admin)

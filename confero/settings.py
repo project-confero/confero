@@ -27,7 +27,7 @@ SECRET_KEY = 'gk0w5ry91hkl@d+79@v9i^74f3tg3z9_qn6n@2@&ras-#mu@hy'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '0.0.0.0', 'localhost',
+    '0.0.0.0', 'localhost', "127.0.0.1",
     'confero-env.cvqp3jgbbb.us-east-2.elasticbeanstalk.com'
 ]
 
