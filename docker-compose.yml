@@ -22,8 +22,12 @@ services:
     image: postgres
     environment:
       POSTGRES_DB: confero
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5433:5432"
 
 volumes:
   postgres_data:

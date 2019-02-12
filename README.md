@@ -7,7 +7,7 @@ Tracking FEC Contribution Data
 Docker is nice for deploying, CI, and debugging issues in those two environments. But it can be a pain for local development.
 And if you're using docker to run the server locally, you'll want a local environment for your editor and quality checkers. So let's set that up first.
 
-### Prerequisites
+## Prerequisites
 
 Install [Python 3.7](https://www.python.org/downloads/)
 
@@ -19,7 +19,7 @@ You'll also need prettier for formatting:
 npm install -g prettier
 ```
 
-### Setup
+## Setup
 
 Install and use pipenv:
 
@@ -35,23 +35,67 @@ or
 pip install --user pipenv
 ```
 
-Then setup the virtual env and install dependencies.
+Then setup the virtual env and install dependencies
 
 ```bash
 pipenv install --dev
 ```
 
-Then enter the virtual env
+And enter the virtual env
 
 ```bash
 pipenv shell
 ```
 
-### Run Server
+## Setup Database
+
+Since postgres can be a little finicky to set up and upgrade, it may be easier to use the docker version.
+
+Start up the docker database
+
+```bash
+./bin/db
+```
+
+The docker DB runs on port 5433 (so it won't conflict with the local postgres port, 5432). So you also need to make sure the `DB_PORT` is set in your `.env` file:
+
+(See [Configuration](#configuration) for more info on the `.env` file.)
+
+```bash
+DB_PORT=5433
+```
+
+Finally, make sure to run migrations:
+
+```bash
+python manage.py migrate
+```
+
+## Run Server
+
+To start the local server:
 
 ```bash
 pipenv shell
 python manage.py runserver
+```
+
+## Configuration
+
+You can use environment variables to configure the application, (the database in particular). In production that generally means setting up environment variables in the server. In development, we're using [dotenv](https://github.com/theskumar/python-dotenv) to make it easier to configure the environment.
+
+First run
+
+```bash
+cp .env.example .env
+```
+
+to create your `.env` file. Then edit the values, and restart the server to see the changes.
+
+To use an environment variable in code, use
+
+```python
+os.getenv("VARIABLE_NAME", "defaultValue")
 ```
 
 ## Adding Dependencies

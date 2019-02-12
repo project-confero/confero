@@ -28,8 +28,8 @@ jobs:
             - "/usr/local/bin"
             - "/usr/local/lib/python3.7/site-packages"
 
-      - run: pipenv run bash ./bin/lint.sh
-      - run: pipenv run bash ./bin/coverage.sh
+      - run: pipenv run bash ./bin/lint
+      - run: pipenv run bash ./bin/coverage
       - store_artifacts:
           path: ./htmlcov
           destination: coverage
