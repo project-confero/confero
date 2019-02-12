@@ -1,3 +1,6 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from .models import Politician, Campaign
+
+admin.site.register(Politician)
+admin.site.register(Campaign)

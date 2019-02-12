@@ -4,7 +4,8 @@ Tracking FEC Contribution Data
 
 ## Local Development
 
-Even if you're using docker to run the server locally, you'll want a local environment for your editor and quality checkers. So let's set that up first.
+Docker is nice for deploying, CI, and debugging issues in those two environments. But it can be a pain for local development.
+And if you're using docker to run the server locally, you'll want a local environment for your editor and quality checkers. So let's set that up first.
 
 ### Prerequisites
 
@@ -12,7 +13,7 @@ Install [Python 3.7](https://www.python.org/downloads/)
 
 Also, for some formatter tooling, install [Node](https://nodejs.org/en/download)
 
-You'll also need prettier:
+You'll also need prettier for formatting:
 
 ```bash
 npm install -g prettier
@@ -62,11 +63,10 @@ pipenv install NAME --dev # for non-production dependencies
 
 ## Local Docker
 
-While you'll want a local environment for your editor and quality checkers,
-you can use Docker to run the project in the same environment it'll
-be in for production.
+You can use Docker to run the project in the same environment it'll
+be in for production. This is particularly useful for debugging weird production errors.
 
-We're also using [docker-compose](https://docs.docker.com/compose/), which allows you to spin up the whole project, with a database, in a single command.
+To help with that, we're using [docker-compose](https://docs.docker.com/compose/), which allows you to spin up the whole project, with a database, in a single command.
 
 ### Prerequisites
 
@@ -82,11 +82,15 @@ or [Windows](https://docs.docker.com/docker-for-windows/install/).
 
 ### Setup
 
+This will build the docker containers needed to run the app.
+
 ```bash
 docker-compose build
 ```
 
 ### Run Server
+
+Starts up the docker-compose cluster, and runs the app on localhost:8000.
 
 ```bash
 docker-compose up
@@ -132,9 +136,20 @@ See the [Django Docs](https://docs.djangoproject.com/en/2.1/topics/testing/overv
 ./bin/test
 ```
 
+#### Get a code coverage report
+
+This will run all the tests, and then report on which lines of code are uncovered by tests.
+
+After running `./bin/coverage`, you can see a detailed report by opening
+`./htmlcov/index.html` in your browser.
+
+```bash
+./bin/coverage
+```
+
 #### Run all tests from within docker
 
-It can be easier to just run tests inside docker, so you don't have to set up postgres locally.
+If tests are failing in CI, running the tests in docker could help figure out what's up.
 
 _Warning_: Running docker-compose commands may not work from within a virtualenv.
 
@@ -142,17 +157,11 @@ _Warning_: Running docker-compose commands may not work from within a virtualenv
 ./bin/docker-test
 ```
 
-#### Get a code coverage report
+or
 
 ```bash
 ./bin/docker-coverage
-
-# Or if you have postgres set up locally:
-./bin/coverage
 ```
-
-After running `./bin/docker-coverage`, you can see a detailed report by opening
-`./htmlcov/index.html` in your browser.
 
 ### Linting/Formatting
 
@@ -177,12 +186,14 @@ To set up the pre-commit hook:
 pre-commit install
 ```
 
+Note that once this is set up, you'll get an error if you try to commit outside of your virtualenv.
+
 #### Run All
 
 To run the quality checks on the whole project:
 
 ```bash
-pre-commit run --all-files
+./bin/lint
 ```
 
 #### Auto-format
