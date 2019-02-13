@@ -2,13 +2,26 @@
 
 Tracking FEC Contribution Data
 
-## Development
+## Local Development
 
-### Setup
+Docker is nice for deploying, CI, and debugging issues in those two environments. But it can be a pain for local development.
+And if you're using docker to run the server locally, you'll want a local environment for your editor and quality checkers. So let's set that up first.
 
-Install Python 3.7
+## Prerequisites
 
-Then install and use pipenv:
+Install [Python 3.7](https://www.python.org/downloads/)
+
+Also, for some formatter tooling, install [Node](https://nodejs.org/en/download)
+
+You'll also need prettier for formatting:
+
+```bash
+npm install -g prettier
+```
+
+## Setup
+
+Install and use pipenv:
 
 Install pipenv
 
@@ -22,23 +35,66 @@ or
 pip install --user pipenv
 ```
 
-Then setup the virtual env and install dependencies.
+Then setup the virtual env and install dependencies
 
 ```bash
 pipenv install --dev
 ```
 
-Then enter the virtual env
+And enter the virtual env
 
 ```bash
 pipenv shell
 ```
 
-### Run Server
+## Setup Database
+
+Since postgres can be a little finicky to set up and upgrade, it may be easier to use the docker version.
+
+Start up the docker database
 
 ```bash
-pipenv shell
-python manage.py runserver
+./bin/db
+```
+
+The docker DB runs on port 5429 (so it won't conflict with the local postgres port, 5432). So you also need to make sure the `DB_PORT` is set in your `.env` file:
+
+(See [Configuration](#configuration) for more info on the `.env` file.)
+
+```bash
+DB_PORT=5429
+```
+
+Finally, make sure to run migrations:
+
+```bash
+python manage.py migrate
+```
+
+## Run Server
+
+To start the local server, with the docker db and pipenv, run:
+
+```bash
+./bin/start
+```
+
+## Configuration
+
+You can use environment variables to configure the application, (the database in particular). In production that generally means setting up environment variables in the server. In development, we're using [dotenv](https://github.com/theskumar/python-dotenv) to make it easier to configure the environment.
+
+First run
+
+```bash
+cp .env.example .env
+```
+
+to create your `.env` file. Then edit the values, and restart the server to see the changes.
+
+To use an environment variable in code, use
+
+```python
+os.getenv("VARIABLE_NAME", "defaultValue")
 ```
 
 ## Adding Dependencies
@@ -50,11 +106,12 @@ pipenv install NAME --dev # for non-production dependencies
 
 ## Local Docker
 
-While you'll want a local environment for your editor and quality checkers,
-you can use Docker to run the project in the same environment it'll
-be in for production.
+You can use Docker to run the project in the same environment it'll
+be in for production. This is particularly useful for debugging weird production errors.
 
-#### Prerequisites
+To help with that, we're using [docker-compose](https://docs.docker.com/compose/), which allows you to spin up the whole project, with a database, in a single command.
+
+### Prerequisites
 
 Install Docker and docker-compose:
 
@@ -68,14 +125,36 @@ or [Windows](https://docs.docker.com/docker-for-windows/install/).
 
 ### Setup
 
+This will build the docker containers needed to run the app.
+
 ```bash
-docker build -t confero .
+docker-compose build
 ```
 
 ### Run Server
 
+Starts up the docker-compose cluster, and runs the app on localhost:8000.
+
 ```bash
-docker run -p 8000:8000 confero
+docker-compose up
+```
+
+### Run a manage.py command
+
+```bash
+docker-compose run django COMMAND
+
+# Example: run migrations:
+docker-compose run django migrate
+```
+
+### Run a system command
+
+`docker-compose run django` passes commands to the `python manage.py` entrypoint by default.
+To override that:
+
+```bash
+docker-compose run --entrypoint COMMAND django
 ```
 
 ## Code Quality
@@ -102,12 +181,30 @@ See the [Django Docs](https://docs.djangoproject.com/en/2.1/topics/testing/overv
 
 #### Get a code coverage report
 
+This will run all the tests, and then report on which lines of code are uncovered by tests.
+
+After running `./bin/coverage`, you can see a detailed report by opening
+`./htmlcov/index.html` in your browser.
+
 ```bash
 ./bin/coverage
 ```
 
-After running `./bin/coverage`, you can see a detailed report by opening
-`./htmlcov/index.html` in your browser.
+#### Run all tests from within docker
+
+If tests are failing in CI, running the tests in docker could help figure out what's up.
+
+_Warning_: Running docker-compose commands may not work from within a virtualenv.
+
+```bash
+./bin/docker-test
+```
+
+or
+
+```bash
+./bin/docker-coverage
+```
 
 ### Linting/Formatting
 
@@ -132,12 +229,14 @@ To set up the pre-commit hook:
 pre-commit install
 ```
 
+Note that once this is set up, you'll get an error if you try to commit outside of your virtualenv.
+
 #### Run All
 
 To run the quality checks on the whole project:
 
 ```bash
-pre-commit run --all-files
+./bin/lint
 ```
 
 #### Auto-format
@@ -147,3 +246,9 @@ If you just want to auto-format the project, run:
 ```bash
 ./bin/format
 ```
+
+## Local Admin
+
+Django comes with a built-in admin system, that lets you create and change database records.
+
+For info on how to set up admin users, see the [Django Docs](https://docs.djangoproject.com/en/2.1/intro/tutorial02/#introducing-the-django-admin)

@@ -1,14 +1,33 @@
-version: "2"
+version: "3.7"
 services:
   django:
-    container_name: django_server
+    container_name: django
     build:
-      context: .
+      context: ./
       dockerfile: Dockerfile
-    image: docker_tutorial_django
+      target: dev
     stdin_open: true
     tty: true
     volumes:
-      - .:/code
+      - ./confero:/code/confero
+      - ./fec:/code/fec
+      - ./htmlcov:/code/htmlcov
+    environment:
+      DB_HOST: db
     ports:
       - "8000:8000"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: confero
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5429:5432"
+
+volumes:
+  postgres_data:

@@ -1,0 +1,1 @@
+bash lint && bash coverage && echo "All good!"

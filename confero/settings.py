@@ -26,11 +26,15 @@ SECRET_KEY = 'gk0w5ry91hkl@d+79@v9i^74f3tg3z9_qn6n@2@&ras-#mu@hy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['confero-env.cvqp3jgbbb.us-east-2.elasticbeanstalk.com']
+ALLOWED_HOSTS = [
+    '0.0.0.0', 'localhost', "127.0.0.1",
+    'confero-env.cvqp3jgbbb.us-east-2.elasticbeanstalk.com'
+]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'fec.apps.FecConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,8 +78,12 @@ WSGI_APPLICATION = 'confero.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("DB_NAME", "confero"),
+        'USER': os.getenv("DB_USER", "postgres"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "postgres"),
+        'HOST': os.getenv("DB_HOST", "localhost"),
+        'PORT': os.getenv("DB_PORT", "5432"),
     }
 }
 

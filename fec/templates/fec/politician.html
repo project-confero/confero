@@ -1,0 +1,11 @@
+<h1>
+  {{ politician.name }}
+</h1>
+
+<h2>Campaigns</h2>
+
+{%for campaign in campaigns%}
+<h3>{{ campaign.name }}</h3>
+<p>Office: {{ campaign.office }}</p>
+<hr />
+{%endfor%}
