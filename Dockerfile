@@ -10,7 +10,7 @@ RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
 
 # Install deps first, for caching
-RUN pip install pipenv 
+RUN pip install pipenv
 ADD ./Pipfile .
 ADD ./Pipfile.lock .
 
@@ -25,8 +25,7 @@ RUN \
 # The web server will run on this port
 EXPOSE 8000
 
-ENTRYPOINT ["python", "manage.py"]
-CMD ["runserver", "0.0.0.0:8000"]
+CMD ["sh", "./bin/deploy"]
 
 # Dev setup. For running tests and other dev tools.
 FROM base AS dev
