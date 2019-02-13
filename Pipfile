@@ -14,6 +14,7 @@ coverage = "*"
 Django = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
+pyyaml = "==4.2b1"
 
 [requires]
 python_version = "3.7"
