@@ -25,8 +25,8 @@ RUN \
 # The web server will run on this port
 EXPOSE 8000
 
-ADD ./bin ./bin
-CMD ["sh", "./bin/deploy"]
+ENTRYPOINT ["python", "manage.py"]
+CMD ["runserver", "0.0.0.0:8000"]
 
 # Dev setup. For running tests and other dev tools.
 FROM base AS dev
@@ -48,3 +48,6 @@ FROM base AS prod
 ADD ./manage.py .
 ADD ./confero ./confero
 ADD ./fec ./fec
+
+# migrate postgressql files
+RUN python manage.py migrate
