@@ -25,6 +25,7 @@ RUN \
 # The web server will run on this port
 EXPOSE 8000
 
+ADD ./bin ./bin
 CMD ["sh", "./bin/deploy"]
 
 # Dev setup. For running tests and other dev tools.
