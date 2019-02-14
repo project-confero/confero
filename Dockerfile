@@ -48,6 +48,3 @@ FROM base AS prod
 ADD ./manage.py .
 ADD ./confero ./confero
 ADD ./fec ./fec
-
-# migrate postgressql files
-RUN python manage.py migrate
