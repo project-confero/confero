@@ -57,12 +57,12 @@ Start up the docker database
 ./bin/db
 ```
 
-The docker DB runs on port 5433 (so it won't conflict with the local postgres port, 5432). So you also need to make sure the `DB_PORT` is set in your `.env` file:
+The docker DB runs on port 5429 (so it won't conflict with the local postgres port, 5432). So you also need to make sure the `DB_PORT` is set in your `.env` file:
 
 (See [Configuration](#configuration) for more info on the `.env` file.)
 
 ```bash
-DB_PORT=5433
+DB_PORT=5429
 ```
 
 Finally, make sure to run migrations:
