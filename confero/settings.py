@@ -78,29 +78,17 @@ WSGI_APPLICATION = 'confero.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-if 'RDS_DB_NAME' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.environ['RDS_DB_NAME'],
-            'USER': os.environ['RDS_USERNAME'],
-            'PASSWORD': os.environ['RDS_PASSWORD'],
-            'HOST': os.environ['RDS_HOSTNAME'],
-            'PORT': os.environ['RDS_PORT'],
-        }
+db_prefix = 'RDS_DB_' if 'RDS_DB_NAME' in os.environ else 'DB_'
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ[db_prefix + 'NAME'],
+        'USER': os.environ[db_prefix + 'USERNAME'],
+        'PASSWORD': os.environ[db_prefix + 'PASSWORD'],
+        'HOST': os.environ[db_prefix + 'HOSTNAME'],
+        'PORT': os.environ[db_prefix + 'PORT'],
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv("DB_NAME", "confero"),
-            'USER': os.getenv("DB_USER", "postgres"),
-            'PASSWORD': os.getenv("DB_PASSWORD", "postgres"),
-            'HOST': os.getenv("DB_HOST", "localhost"),
-            'PORT': os.getenv("DB_PORT", "5432"),
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
