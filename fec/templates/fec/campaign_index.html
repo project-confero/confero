@@ -1,3 +1,8 @@
+{% extends "confero/base.html" %}
+
+<!-- Content -->
+{% block content %}
+
 <h1>Who's your fave?</h1>
 
 <h2>Search</h2>
@@ -18,3 +23,5 @@
 
 {% include "fec/pagination.html" with collection=campaigns search=search %}
 
+<!-- /Content -->
+{% endblock content %}
