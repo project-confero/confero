@@ -1,6 +1,9 @@
 import csv
+from datetime import datetime
+from decimal import Decimal
+
 from django.core.management.base import BaseCommand
-from fec.models import Campaign
+from fec.models import Campaign, Committee, Contribution
 
 
 class Command(BaseCommand):
@@ -16,18 +19,23 @@ class Command(BaseCommand):
 
         self.stdout.write("importing from '%s'" % filename)
 
-        try:
-            record_creator = self._record_creator(fec_type)
-            headers = self._lookup_headers(fec_type)
+        # try:
+        record_creator = self._record_creator(fec_type)
+        headers = self._lookup_headers(fec_type)
 
-            with open(filename, newline='') as bulkfile:
-                reader = csv.DictReader(
-                    bulkfile, headers, delimiter='|', quotechar='"')
+        with open(filename, newline='') as bulkfile:
+            reader = csv.DictReader(
+                bulkfile, headers, delimiter='|', quotechar='"')
 
-                for row in reader:
-                    record_creator(row)
-        except Exception as exception:
-            self.stderr.write(str(exception))
+            i = 0
+
+            for row in reader:
+                i += 1
+                record_creator(row)
+
+            print("loaded %d %s record" % i, fec_type)
+        # except Exception as exception:
+        #     self.stderr.write(str(exception))
 
     def _record_creator(self, fec_type):
         if fec_type == "candidates":
@@ -43,17 +51,37 @@ class Command(BaseCommand):
             office=row['CAND_OFFICE'],
             party=row['CAND_PTY_AFFILIATION'],
             state=row['CAND_ST'],
-            district=row['CAND_OFFICE_DISTRICT'])
+            district=row['CAND_OFFICE_DISTRICT'] or None)
         record.save()
+        print('.', end='', flush=True)
 
     def _save_committee(self, row):
-        record = Campaign(
-            id=row['CAND_ID'],
-            name=row['CAND_NAME'],
-            office=row['CAND_OFFICE'],
-            party=row['CAND_PTY_AFFILIATION'],
-            state=row['CAND_ST'],
-            district=row['CAND_OFFICE_DISTRICT'])
+        campaign_id = row['CAND_ID']
+
+        campaign = Campaign.objects.get(pk=campaign_id)
+
+        record = Committee(
+            id=row['CMTE_ID'], name=row['CMTE_NM'], campaign=campaign)
+        record.save()
+
+    def _save_contribution(self, row):
+        date = datetime.strptime(row['TRANSACTION_DT'], '%m%d%Y')
+        amount = Decimal(row['AMOUNT'])
+
+        committee_id = row['CMTE_ID']
+        committee = Committee.objects.get(pk=committee_id)
+
+        record = Contribution(
+            id=row['SUB_ID'],
+            committee=committee,
+            date=date,
+            amount=amount,
+            contributor_name=row['NAME'],
+            contributor_city=row['CITY'],
+            contributor_state=row['STATE'],
+            contributor_zip=row['ZIP_CODE'],
+            contributor_employer=row['EMPLOYER'],
+            contributor_occupation=row['OCCUPATION'])
         record.save()
 
     def _lookup_headers(self, table):
