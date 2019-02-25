@@ -10,7 +10,7 @@ RUN mkdir -p $PROJECT_DIR
 WORKDIR $PROJECT_DIR
 
 # Install deps first, for caching
-RUN pip install pipenv 
+RUN pip install pipenv
 ADD ./Pipfile .
 ADD ./Pipfile.lock .
 

@@ -6,8 +6,11 @@ jobs:
       - image: circleci/python:3.7
       - image: circleci/postgres
         environment:
-          POSTGRES_DB: confero
-          POSTGRES_USER: postgres
+          DB_DB_NAME: confero
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          DB_HOSTNAME: localhost
+          DB_PORT: 5439
     steps:
       - checkout
 
