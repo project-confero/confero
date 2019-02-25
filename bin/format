@@ -1,1 +1,6 @@
-yapf -ri confero
+#!/bin/bash
+
+set -euxo pipefail
+
+prettier --write **/*.{json,js,css,html,md,yml}
+yapf -ri .

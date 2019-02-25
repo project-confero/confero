@@ -23,8 +23,8 @@
 {%for contribution in contributions%}
 <h3>{{ contribution.contributor_name }}</h3>
 <p>
-  ${{ contribution.amount }} | {{ contribution.date }} |
-  {{ contribution.committee.name }}
+  ${{ contribution.amount }} | {{ contribution.date }} | {{
+  contribution.committee.name }}
 </p>
 {%endfor%}
 
