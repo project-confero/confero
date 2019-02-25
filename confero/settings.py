@@ -24,7 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'gk0w5ry91hkl@d+79@v9i^74f3tg3z9_qn6n@2@&ras-#mu@hy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if 'RDS_DB_NAME' in os.environ:
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = [
     '0.0.0.0', 'localhost', "127.0.0.1",
@@ -75,15 +78,15 @@ WSGI_APPLICATION = 'confero.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+db_prefix = 'RDS_DB_' if 'RDS_DB_NAME' in os.environ else 'DB_'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DB_NAME", "confero"),
-        'USER': os.getenv("DB_USER", "postgres"),
-        'PASSWORD': os.getenv("DB_PASSWORD", "postgres"),
-        'HOST': os.getenv("DB_HOST", "localhost"),
-        'PORT': os.getenv("DB_PORT", "5432"),
+        'NAME': os.getenv(db_prefix + 'NAME', 'confero'),
+        'USER': os.getenv(db_prefix + 'USERNAME', 'postgres'),
+        'PASSWORD': os.getenv(db_prefix + 'PASSWORD', 'postgres'),
+        'HOST': os.getenv(db_prefix + 'HOSTNAME', 'localhost'),
+        'PORT': os.getenv(db_prefix + 'PORT', '5439'),
     }
 }
 
@@ -125,4 +128,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "..", "www", "static")
 STATIC_URL = '/static/'
