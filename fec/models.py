@@ -35,7 +35,7 @@ class Committee(models.Model):
 
 
 class Contribution(models.Model):
-    id = models.IntegerField(primary_key=True)  # FEC SUB_ID
+    id = models.BigIntegerField(primary_key=True)  # FEC SUB_ID
 
     committee = models.ForeignKey(
         Committee, on_delete=models.PROTECT, blank=True, null=True)  # CMTE_ID
