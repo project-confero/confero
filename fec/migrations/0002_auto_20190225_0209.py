@@ -14,7 +14,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Committee',
             fields=[
-                ('id', models.CharField(max_length=9, primary_key=True, serialize=False)),
+                ('id',
+                 models.CharField(
+                     max_length=9, primary_key=True, serialize=False)),
                 ('name', models.CharField(max_length=200)),
             ],
         ),
@@ -23,14 +25,20 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.IntegerField(primary_key=True, serialize=False)),
                 ('date', models.DateField()),
-                ('amount', models.DecimalField(decimal_places=2, max_digits=16)),
+                ('amount', models.DecimalField(
+                    decimal_places=2, max_digits=16)),
                 ('contributor_name', models.CharField(max_length=200)),
                 ('contributor_city', models.CharField(max_length=30)),
                 ('contributor_state', models.CharField(max_length=2)),
                 ('contributor_zip', models.CharField(max_length=9)),
                 ('contributor_employer', models.CharField(max_length=38)),
                 ('contributor_occupation', models.CharField(max_length=38)),
-                ('committee', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='fec.Committee')),
+                ('committee',
+                 models.ForeignKey(
+                     blank=True,
+                     null=True,
+                     on_delete=django.db.models.deletion.PROTECT,
+                     to='fec.Committee')),
             ],
         ),
         migrations.RemoveField(
@@ -42,12 +50,14 @@ class Migration(migrations.Migration):
             name='district',
             field=models.IntegerField(blank=True, null=True),
         ),
-        migrations.DeleteModel(
-            name='Politician',
-        ),
+        migrations.DeleteModel(name='Politician', ),
         migrations.AddField(
             model_name='committee',
             name='campaign',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='fec.Campaign'),
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.PROTECT,
+                to='fec.Campaign'),
         ),
     ]
