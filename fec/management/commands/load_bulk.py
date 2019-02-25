@@ -32,8 +32,9 @@ class Command(BaseCommand):
             for row in reader:
                 i += 1
                 record_creator(row)
+                print('.', end='', flush=True)
 
-            print("loaded %d %s record" % i, fec_type)
+            print("loaded %d '%s' records" % (i, fec_type))
         # except Exception as exception:
         #     self.stderr.write(str(exception))
 
@@ -42,6 +43,8 @@ class Command(BaseCommand):
             return self._save_candidate
         if fec_type == "committees":
             return self._save_committee
+        if fec_type == "contributions":
+            return self._save_contribution
         raise Exception("Invalid FEC type")
 
     def _save_candidate(self, row):
@@ -53,12 +56,14 @@ class Command(BaseCommand):
             state=row['CAND_ST'],
             district=row['CAND_OFFICE_DISTRICT'] or None)
         record.save()
-        print('.', end='', flush=True)
 
     def _save_committee(self, row):
         campaign_id = row['CAND_ID']
 
-        campaign = Campaign.objects.get(pk=campaign_id)
+        try:
+            campaign = Campaign.objects.get(pk=campaign_id)
+        except Campaign.DoesNotExist:
+            campaign = None
 
         record = Committee(
             id=row['CMTE_ID'], name=row['CMTE_NM'], campaign=campaign)
@@ -66,7 +71,7 @@ class Command(BaseCommand):
 
     def _save_contribution(self, row):
         date = datetime.strptime(row['TRANSACTION_DT'], '%m%d%Y')
-        amount = Decimal(row['AMOUNT'])
+        amount = Decimal(row['TRANSACTION_AMT'])
 
         committee_id = row['CMTE_ID']
         committee = Committee.objects.get(pk=committee_id)
