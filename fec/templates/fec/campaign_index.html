@@ -1,0 +1,11 @@
+<h1>Who's your fave?</h1>
+
+<ul>
+  {%for campaign in campaigns%}
+  <li>
+    <a href="{% url 'campaign' campaign.id %}">
+      {{ campaign.name }} ({{ campaign.party_abbreviation }})
+    </a>
+  </li>
+  {%endfor%}
+</ul>

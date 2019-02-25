@@ -1,0 +1,13 @@
+<h1>
+  {{ campaign.name }}
+</h1>
+
+<p>Party: {{ campaign.party_full }}</p>
+<p>Office: {{ campaign.get_office_display }}</p>
+
+<h2>Committees</h2>
+
+{%for committee in comittees%}
+<h3>{{ committee.name }}</h3>
+<hr />
+{%endfor%}
