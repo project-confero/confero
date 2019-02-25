@@ -1,0 +1,23 @@
+<div class="pagination">
+  <span class="step-links">
+    {% if collection.has_previous %}
+    <a href="?page=1&search={{ search }}">&laquo; first</a>
+    <a href="?page={{ collection.previous_page_number }}&search={{ search }}"
+      >previous</a
+    >
+    {% endif %}
+
+    <span class="current">
+      Page {{ collection.number }} of {{ collection.paginator.num_pages }}.
+    </span>
+
+    {% if collection.has_next %}
+    <a href="?page={{ collection.next_page_number }}&search={{ search }}"
+      >next</a
+    >
+    <a href="?page={{ collection.paginator.num_pages }}&search={{ search }}"
+      >last &raquo;</a
+    >
+    {% endif %}
+  </span>
+</div>
