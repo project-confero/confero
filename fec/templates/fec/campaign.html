@@ -7,7 +7,18 @@
 
 <h2>Committees</h2>
 
-{%for committee in committees%}
-<h3>{{ committee.name }}</h3>
-<hr />
+<ul>
+  {%for committee in committees%}
+  <li>{{ committee.name }}</li>
+  {%endfor%}
+</ul>
+
+<h2>Contributions</h2>
+
+{%for contribution in contributions%}
+<h3>{{ contribution.contributor_name }}</h3>
+<p>
+  ${{ contribution.amount }} | {{ contribution.date }} |
+  {{ contribution.committee.name }}
+</p>
 {%endfor%}

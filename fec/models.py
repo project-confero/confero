@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 
 
 class Campaign(models.Model):
@@ -24,6 +25,16 @@ class Campaign(models.Model):
     def party_full(self):
         return self.PARTIES.get(self.party, self.party)
 
+    @staticmethod
+    def search(data):
+        """Search by name, id, or comittee id."""
+
+        # Note the distinct(), because the many-to-many committee__id
+        # check returns duplicates.
+        return Campaign.objects.filter(
+            Q(id=data) | Q(name__icontains=data)
+            | Q(committee__id=data)).distinct()
+
 
 class Committee(models.Model):
     id = models.CharField(max_length=9, primary_key=True)
@@ -48,3 +59,9 @@ class Contribution(models.Model):
     contributor_zip = models.CharField(max_length=9)
     contributor_employer = models.CharField(max_length=38)
     contributor_occupation = models.CharField(max_length=38)
+
+    @staticmethod
+    def for_campaign(campaign):
+        """Get all contributions to a Campaign"""
+
+        return Contribution.objects.filter(committee__campaign=campaign)
