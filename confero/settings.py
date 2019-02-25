@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'confero.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-db_prefix = 'RDS_DB_' if 'RDS_DB_NAME' in os.environ else 'DB_'
+db_prefix = 'RDS_' if 'RDS_DB_NAME' in os.environ else 'DB_'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv(db_prefix + 'NAME', 'confero'),
+        'NAME': os.getenv(db_prefix + 'DB_NAME', 'confero'),
         'USER': os.getenv(db_prefix + 'USERNAME', 'postgres'),
         'PASSWORD': os.getenv(db_prefix + 'PASSWORD', 'postgres'),
         'HOST': os.getenv(db_prefix + 'HOSTNAME', 'localhost'),
