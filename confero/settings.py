@@ -82,11 +82,11 @@ db_prefix = 'RDS_DB_' if 'RDS_DB_NAME' in os.environ else 'DB_'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ[db_prefix + 'NAME'],
-        'USER': os.environ[db_prefix + 'USERNAME'],
-        'PASSWORD': os.environ[db_prefix + 'PASSWORD'],
-        'HOST': os.environ[db_prefix + 'HOSTNAME'],
-        'PORT': os.environ[db_prefix + 'PORT'],
+        'NAME': os.getenv(db_prefix + 'NAME', 'confero'),
+        'USER': os.getenv(db_prefix + 'USERNAME', 'postgres'),
+        'PASSWORD': os.getenv(db_prefix + 'PASSWORD', 'postgres'),
+        'HOST': os.getenv(db_prefix + 'HOSTNAME', 'localhost'),
+        'PORT': os.getenv(db_prefix + 'PORT', '5439'),
     }
 }
 
