@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'confero',
     'fec.apps.FecConfig',
     'django.contrib.admin',
     'django.contrib.auth',

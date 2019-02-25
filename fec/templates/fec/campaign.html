@@ -1,3 +1,8 @@
+{% extends "confero/base.html" %}
+
+<!-- Content -->
+{% block content %}
+
 <h1>
   {{ campaign.name }}
 </h1>
@@ -22,3 +27,6 @@
   {{ contribution.committee.name }}
 </p>
 {%endfor%}
+
+<!-- /Content -->
+{% endblock content %}
