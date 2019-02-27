@@ -1,0 +1,27 @@
+{% extends "confero/base.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<h1>Who's your fave?</h1>
+
+<h2>Search</h2>
+<form action="/" method="get">
+  <input type="text" name="search" value="{{ search }}" />
+  <input type="submit" value="Search" />
+</form>
+
+<ul>
+  {%for campaign in campaigns%}
+  <li>
+    <a href="{% url 'campaign' campaign.id %}">
+      {{ campaign.name }} ({{ campaign.party_abbreviation }})
+    </a>
+  </li>
+  {%endfor%}
+</ul>
+
+{% include "fec/pagination.html" with collection=campaigns search=search %}
+
+<!-- /Content -->
+{% endblock content %}

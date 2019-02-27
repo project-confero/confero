@@ -1,0 +1,32 @@
+{% extends "confero/base.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<h1>
+  {{ campaign.name }}
+</h1>
+
+<p>Party: {{ campaign.party_full }}</p>
+<p>Office: {{ campaign.get_office_display }}</p>
+
+<h2>Committees</h2>
+
+<ul>
+  {%for committee in committees%}
+  <li>{{ committee.name }}</li>
+  {%endfor%}
+</ul>
+
+<h2>Contributions</h2>
+
+{%for contribution in contributions%}
+<h3>{{ contribution.contributor_name }}</h3>
+<p>
+  ${{ contribution.amount }} | {{ contribution.date }} | {{
+  contribution.committee.name }}
+</p>
+{%endfor%}
+
+<!-- /Content -->
+{% endblock content %}

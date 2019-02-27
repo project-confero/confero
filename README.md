@@ -252,3 +252,21 @@ If you just want to auto-format the project, run:
 Django comes with a built-in admin system, that lets you create and change database records.
 
 For info on how to set up admin users, see the [Django Docs](https://docs.djangoproject.com/en/2.1/intro/tutorial02/#introducing-the-django-admin)
+
+## Loading Data
+
+A script for loading FEC bulk data files into the database lives in `/fec/management/commands/load_bulk.py`.
+To use it, download Bulk Data for `Candidates Master`, `Committee Master`, or `Contributions by individuals`.
+
+To get started, there is some starter data under `/fec/data`.
+
+Once you have data downloaded, you can load data with:
+
+```bash
+pipenv shell
+./manage.py load_bulk candidates fec/data/candidates_2018.txt
+./manage.py load_bulk committees fec/data/committees_2018.txt
+./manage.py load_bulk contributions fec/data/contributions_samples_2018.txt
+```
+
+To add the ability to handle a new bulk report type, save its header file under `fec/headers`, and edit the `LoadBulk._record_creator` function to support the new report.
