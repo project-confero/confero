@@ -1,19 +1,37 @@
 from django.shortcuts import get_object_or_404, render
+from django.core.paginator import Paginator
 
-from .models import Politician
+from .models import Campaign, Contribution
 
 
 def index(request):
-    politicians = Politician.objects.all()
-    return render(request, 'fec/politician_index.html',
-                  {'politicians': politicians})
+    search = request.GET.get('search')
 
+    if search:
+        all_campaigns = Campaign.search(search)
+    else:
+        all_campaigns = Campaign.objects.all()
 
-def politician(request, politician_id):
-    politician = get_object_or_404(Politician, pk=politician_id)
-    campaigns = politician.campaign_set.all()
+    # Paginate the campaigns
+    paginator = Paginator(all_campaigns, 25)
+    page = request.GET.get('page')
+    campaigns = paginator.get_page(page)
 
-    return render(request, 'fec/politician.html', {
-        'politician': politician,
-        'campaigns': campaigns
+    return render(request, 'fec/campaign_index.html', {
+        'campaigns': campaigns,
+        'search': search or ''
     })
+
+
+def campaign(request, campaign_id):
+    campaign = get_object_or_404(Campaign, pk=campaign_id)
+
+    committees = campaign.committee_set.all()
+    contributions = Contribution.for_campaign(campaign)
+
+    return render(
+        request, 'fec/campaign.html', {
+            'campaign': campaign,
+            'committees': committees,
+            'contributions': contributions
+        })
