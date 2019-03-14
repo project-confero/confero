@@ -3,7 +3,7 @@ from datetime import datetime
 from decimal import Decimal
 
 from django.core.management.base import BaseCommand
-from fec.models import Campaign, Committee, Contribution
+from fec.models import Campaign, Committee, Contribution, Contributor
 
 
 class Command(BaseCommand):
@@ -76,18 +76,33 @@ class Command(BaseCommand):
         committee_id = row['CMTE_ID']
         committee = Committee.objects.get(pk=committee_id)
 
+        contributor = self._save_contributor(row)
+
         record = Contribution(
+            contributor=contributor,
             id=row['SUB_ID'],
             committee=committee,
             date=date,
             amount=amount,
+        )
+        record.save()
+
+    def _save_contributor(self, row):
+
+        record = Contributor(
             contributor_name=row['NAME'],
             contributor_city=row['CITY'],
             contributor_state=row['STATE'],
             contributor_zip=row['ZIP_CODE'],
             contributor_employer=row['EMPLOYER'],
             contributor_occupation=row['OCCUPATION'])
+
+        search = Contributor.search(record)
+        if len(search) == 1:
+            return Contributor.objects.get(id=search.first().id)
+
         record.save()
+        return record
 
     def _lookup_headers(self, table):
         header_filename = "./fec/headers/%s.csv" % table

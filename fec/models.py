@@ -45,20 +45,137 @@ class Committee(models.Model):
     name = models.CharField(max_length=200)
 
 
-class Contribution(models.Model):
-    id = models.BigIntegerField(primary_key=True)  # FEC SUB_ID
-
-    committee = models.ForeignKey(
-        Committee, on_delete=models.PROTECT, blank=True, null=True)  # CMTE_ID
-    date = models.DateField()
-    amount = models.DecimalField(max_digits=16, decimal_places=2)
-
+class Contributor(models.Model):
     contributor_name = models.CharField(max_length=200)
     contributor_city = models.CharField(max_length=30)
     contributor_state = models.CharField(max_length=2)
     contributor_zip = models.CharField(max_length=9)
     contributor_employer = models.CharField(max_length=38)
     contributor_occupation = models.CharField(max_length=38)
+
+    def fixes(self, string_to_fix):
+        fixes = [
+            '.',
+            ' DR',
+            ' SR',
+            ' JR',
+            ' II',
+            ' III',
+            ' IV',
+            ' MD',
+            ' MR',
+            ' MRS',
+            ' MS',
+        ]
+        for fix in fixes:
+            string_to_fix = string_to_fix.replace(fix, '')
+
+        return string_to_fix
+
+    def get_nicknames(self):
+        """Returns regex string for a common name"""
+
+        # Make 2 data structures - "lines" is a dictionary with given name as key,
+        # and "names" which is all names as a list of lists with name and index number
+        names, lines = self.get_names_data('./fec/data/names.txt')
+
+        # Search for all names that match first_name
+        all_names = self.nickname_search(self.first_names()[0], names)
+
+        if all_names is None:
+            return [self.first_names()[0]]
+
+        names = [
+            lines[all_names[index][1]][0] for index, _ in enumerate(all_names)
+        ]
+        return names
+
+    def first_names(self):
+
+        return self.fixes(self.contributor_name.split(',')[1]).split()
+
+    def last_name(self):
+
+        return self.fixes(self.contributor_name.split(',')[0])
+
+    def regex_name(self):
+        f = [
+            '.',
+            ' DR',
+            ' SR',
+            ' JR',
+            ' II',
+            ' III',
+            ' IV',
+            ' MD',
+            ' MR',
+            ' MRS',
+            ' MS',
+        ]
+        regex_fixes = '(' + '|'.join(f) + ')?'
+
+        try:
+            return regex_fixes + self.last_name() + regex_fixes + \
+                ', (' + '|'.join(self.get_nicknames()) + ')' + \
+                '(' + '|'.join(self.first_names()[1:]) + ')?' + regex_fixes
+        except IndexError:
+            return self.contributor_name
+
+    @staticmethod
+    def get_names_data(file_path):
+        lines = []
+        with open(file_path) as file:
+            for index, line in enumerate(file.readlines()):
+                lines.append(line.strip('\n').split(','))
+                names = [[name, index] for name in line.split(',')]
+                names.sort()
+            names.sort()
+            return names, lines
+
+    @staticmethod
+    def nickname_search(first_name, names):
+        """ Find and return the index of key in sequence names """
+        lb = 0
+        ub = len(names)
+
+        while True:
+            if lb == ub:  # If region of interest (ROI) becomes empty
+                return None
+            # Next probe should be in the middle of the ROI
+            mid_index = (lb + ub) // 2
+            # Fetch the item at that position
+            item_at_mid = names[mid_index][0]
+            # How does the probed item compare to the target?
+            if item_at_mid == first_name:
+                upper_mid_index = mid_index
+                lower_mid_index = mid_index
+                while names[upper_mid_index + 1][0] == first_name:
+                    upper_mid_index = upper_mid_index + 1
+                while names[lower_mid_index - 1][0] == first_name:
+                    lower_mid_index = lower_mid_index - 1
+                return names[lower_mid_index:upper_mid_index + 1]  # Found it!
+            if item_at_mid < first_name:
+                lb = mid_index + 1  # Use upper half of ROI next time
+            else:
+                ub = mid_index  # Use lower half of ROI next time
+
+    @staticmethod
+    def search(contributor):
+        return Contributor.objects.\
+            filter(
+                Q(contributor_name__regex=contributor.regex_name())
+                & Q(contributor_zip=contributor.contributor_zip))
+
+
+class Contribution(models.Model):
+    id = models.BigIntegerField(primary_key=True)  # FEC SUB_ID
+
+    contributor = models.ForeignKey(
+        Contributor, on_delete=models.PROTECT, blank=True, null=True)
+    committee = models.ForeignKey(
+        Committee, on_delete=models.PROTECT, blank=True, null=True)  # CMTE_ID
+    date = models.DateField()
+    amount = models.DecimalField(max_digits=16, decimal_places=2)
 
     @staticmethod
     def for_campaign(campaign):
