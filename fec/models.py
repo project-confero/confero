@@ -141,8 +141,8 @@ class Contributor(models.Model):
     def regex_name(self):
 
         regex_fixes = '({0})?'.format('|'.join([f + '(.)?' for f in self.f]))
-        first_name, *rest_of_first = self.first_names()
         try:
+            first_name, *rest_of_first = self.first_names()
             return regex_fixes + self.last_name() + regex_fixes + \
                 ', ({0})'.format('|'.join(self.get_nicknames(first_name))) + \
                 '({0})?'.format('|'.join(rest_of_first)) + regex_fixes
