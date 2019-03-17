@@ -53,42 +53,19 @@ class Contributor(models.Model):
     contributor_employer = models.CharField(max_length=38)
     contributor_occupation = models.CharField(max_length=38)
 
-    def fixes(self, string_to_fix):
-        fixes = [
-            '.',
-            ' DR',
-            ' SR',
-            ' JR',
-            ' II',
-            ' III',
-            ' IV',
-            ' MD',
-            ' MR',
-            ' MRS',
-            ' MS',
-        ]
-        for fix in fixes:
-            string_to_fix = string_to_fix.replace(fix, '')
-
-        return string_to_fix
-
-    def get_nicknames(self):
-        """Returns regex string for a common name"""
-
-        # Make 2 data structures - "lines" is a dictionary with given name as key,
-        # and "names" which is all names as a list of lists with name and index number
-        names, lines = self.get_names_data('./fec/data/names.txt')
-
-        # Search for all names that match first_name
-        all_names = self.nickname_search(self.first_names()[0], names)
-
-        if all_names is None:
-            return [self.first_names()[0]]
-
-        names = [
-            lines[all_names[index][1]][0] for index, _ in enumerate(all_names)
-        ]
-        return names
+    f = [
+        '.',
+        ' DR',
+        ' SR',
+        ' JR',
+        ' II',
+        ' III',
+        ' IV',
+        ' MD',
+        ' MR',
+        ' MRS',
+        ' MS',
+    ]
 
     def first_names(self):
 
@@ -98,28 +75,30 @@ class Contributor(models.Model):
 
         return self.fixes(self.contributor_name.split(',')[0])
 
-    def regex_name(self):
-        f = [
-            '.',
-            ' DR',
-            ' SR',
-            ' JR',
-            ' II',
-            ' III',
-            ' IV',
-            ' MD',
-            ' MR',
-            ' MRS',
-            ' MS',
-        ]
-        regex_fixes = '(' + '|'.join(f) + ')?'
+    def fixes(self, string_to_fix):
 
-        try:
-            return regex_fixes + self.last_name() + regex_fixes + \
-                ', (' + '|'.join(self.get_nicknames()) + ')' + \
-                '(' + '|'.join(self.first_names()[1:]) + ')?' + regex_fixes
-        except IndexError:
-            return self.contributor_name
+        for fix in self.f:
+            string_to_fix = string_to_fix.replace(fix, '')
+
+        return string_to_fix
+
+    def get_nicknames(self, name):
+        """Returns regex string for a common name"""
+
+        # Make 2 data structures - "lines" is a dictionary with given name as key,
+        # and "names" which is all names as a list of lists with name and index number
+        names, lines = self.get_names_data('./fec/data/names.txt')
+
+        # Search for all names that match first_name
+        all_names = self.nickname_search(name, names)
+
+        if all_names is None:
+            return [name]
+
+        names = [
+            lines[all_names[index][1]][0] for index, _ in enumerate(all_names)
+        ]
+        return names
 
     @staticmethod
     def get_names_data(file_path):
@@ -158,6 +137,17 @@ class Contributor(models.Model):
                 lb = mid_index + 1  # Use upper half of ROI next time
             else:
                 ub = mid_index  # Use lower half of ROI next time
+
+    def regex_name(self):
+
+        regex_fixes = '({0})?'.format('|'.join([f + '(.)?' for f in self.f]))
+        first_name, *rest_of_first = self.first_names()
+        try:
+            return regex_fixes + self.last_name() + regex_fixes + \
+                ', ({0})'.format('|'.join(self.get_nicknames(first_name))) + \
+                '({0})?'.format('|'.join(rest_of_first)) + regex_fixes
+        except IndexError:
+            return self.contributor_name
 
     @staticmethod
     def search(contributor):
