@@ -83,10 +83,10 @@ class Contributor(models.Model):
         return string_to_fix
 
     def get_nicknames(self, name):
-        """Returns regex string for a common name"""
-
-        # Make 2 data structures - "lines" is a dictionary with given name as key,
-        # and "names" which is all names as a list of lists with name and index number
+        '''
+        Make 2 data structures - "lines" is a dictionary with given name as key,
+        and "names" which is all names as a list of lists with name and index number
+        '''
         names, lines = self.get_names_data('./fec/data/names.txt')
 
         # Search for all names that match first_name
@@ -113,7 +113,7 @@ class Contributor(models.Model):
 
     @staticmethod
     def nickname_search(first_name, names):
-        """ Find and return the index of key in sequence names """
+        """ Find and return the index of key in sequence names  for first_name"""
         lb = 0
         ub = len(names)
 
