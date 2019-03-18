@@ -76,7 +76,6 @@ class Contributor(models.Model):
         return self.fixes(self.contributor_name.split(',')[0])
 
     def fixes(self, string_to_fix):
-
         for fix in self.f:
             string_to_fix = string_to_fix.replace(fix, '')
 
@@ -103,17 +102,19 @@ class Contributor(models.Model):
     @staticmethod
     def get_names_data(file_path):
         lines = []
+        names = []
         with open(file_path) as file:
             for index, line in enumerate(file.readlines()):
                 lines.append(line.strip('\n').split(','))
-                names = [[name, index] for name in line.split(',')]
-                names.sort()
+                for name in line.split(','):
+                    names.append([name.strip('\n'), index])
             names.sort()
             return names, lines
 
     @staticmethod
     def nickname_search(first_name, names):
         """ Find and return the index of key in sequence names  for first_name"""
+        first_name = first_name.lower()
         lb = 0
         ub = len(names)
 
@@ -139,12 +140,11 @@ class Contributor(models.Model):
                 ub = mid_index  # Use lower half of ROI next time
 
     def regex_name(self):
-
         regex_fixes = '({0})?'.format('|'.join([f + '(.)?' for f in self.f]))
         try:
             first_name, *rest_of_first = self.first_names()
             return regex_fixes + self.last_name() + regex_fixes + \
-                ', ({0})'.format('|'.join(self.get_nicknames(first_name))) + \
+                ', ({0})'.format('|'.join(self.get_nicknames(first_name))).upper() + \
                 '({0})?'.format('|'.join(rest_of_first)) + regex_fixes
         except IndexError:
             return self.contributor_name
