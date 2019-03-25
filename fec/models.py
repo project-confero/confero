@@ -53,39 +53,39 @@ class Contributor(models.Model):
     contributor_employer = models.CharField(max_length=38)
     contributor_occupation = models.CharField(max_length=38)
 
-    f = [
-        '.',
-        ' DR',
+    suffixes = [
         ' SR',
         ' JR',
         ' II',
         ' III',
         ' IV',
         ' MD',
+    ]
+    prefixes = [
+        ' DR',
         ' MR',
         ' MRS',
         ' MS',
     ]
+    puncuation = [
+        '.',
+    ]
 
-    def first_names(self):
-
-        return self.fixes(self.contributor_name.split(',')[1]).split()
-
-    def last_name(self):
-
-        return self.fixes(self.contributor_name.split(',')[0])
-
-    def fixes(self, string_to_fix):
-        for fix in self.f:
+    def string_clean(self, string_to_fix):
+        for fix in self.prefixes + self.suffixes + self.puncuation:
             string_to_fix = string_to_fix.replace(fix, '')
 
         return string_to_fix
 
+    def first_names(self):
+
+        return self.string_clean(self.contributor_name.split(',')[1]).split()
+
+    def last_name(self):
+
+        return self.string_clean(self.contributor_name.split(',')[0])
+
     def get_nicknames(self, name):
-        '''
-        Make 2 data structures - "lines" is a dictionary with given name as key,
-        and "names" which is all names as a list of lists with name and index number
-        '''
         names, lines = self.get_names_data('./fec/data/names.txt')
 
         # Search for all names that match first_name
@@ -97,6 +97,7 @@ class Contributor(models.Model):
         names = [
             lines[all_names[index][1]][0] for index, _ in enumerate(all_names)
         ]
+
         return names
 
     @staticmethod
@@ -109,6 +110,7 @@ class Contributor(models.Model):
                 for name in line.split(','):
                     names.append([name.strip('\n'), index])
             names.sort()
+
             return names, lines
 
     @staticmethod
@@ -139,15 +141,38 @@ class Contributor(models.Model):
             else:
                 ub = mid_index  # Use lower half of ROI next time
 
+    @staticmethod
+    def regex_list(list_of_elements, optional=False, puncuation=None):
+        q_mark = ''
+        if optional:
+            q_mark = '?'
+        if puncuation:
+            all_ps = ''.join(['(%s)?' % p for p in puncuation])
+            for index, element in enumerate(list_of_elements):
+                list_of_elements[index] = element + all_ps
+
+        return '(%s)%s' % ('|'.join(list_of_elements), q_mark)
+
+    def regex_affixes(self):
+        regex_suffixes = self.regex_list(
+            self.suffixes.copy(), optional=True, puncuation=self.puncuation)
+        regex_prefixes = self.regex_list(
+            self.prefixes.copy(), optional=True, puncuation=self.puncuation)
+
+        return regex_prefixes, regex_suffixes
+
     def regex_name(self):
-        regex_fixes = '({0})?'.format('|'.join([f + '(.)?' for f in self.f]))
+        prefixes, suffixes = self.regex_affixes()
+        affixes = prefixes + suffixes
+
         try:
             first_name, *rest_of_first = self.first_names()
-            return regex_fixes + self.last_name() + regex_fixes + \
-                ', ({0})'.format('|'.join(self.get_nicknames(first_name))).upper() + \
-                '({0})?'.format('|'.join(rest_of_first)) + regex_fixes
         except IndexError:
             return self.contributor_name
+
+        return prefixes + self.last_name() + affixes + ', ' + \
+            self.regex_list(self.get_nicknames(first_name)).upper() + \
+            self.regex_list(rest_of_first, optional=True) + affixes
 
     @staticmethod
     def search(contributor):

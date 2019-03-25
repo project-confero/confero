@@ -52,7 +52,6 @@ class ContributersTest(TestCase):
             contributor_zip='03104',
             contributor_employer='Self',
             contributor_occupation='PHYSICIAN')
-
         self.assertEqual(self.nickname.id,
                          Contributor.search(self.givenname)[0].id)
 
