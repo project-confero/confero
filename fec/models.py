@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from fec.lib.similar_names import regex_name
 
 
 class Campaign(models.Model):
@@ -53,132 +54,14 @@ class Contributor(models.Model):
     contributor_employer = models.CharField(max_length=38)
     contributor_occupation = models.CharField(max_length=38)
 
-    suffixes = [
-        ' SR',
-        ' JR',
-        ' II',
-        ' III',
-        ' IV',
-        ' MD',
-    ]
-    prefixes = [
-        ' DR',
-        ' MR',
-        ' MRS',
-        ' MS',
-    ]
-    puncuation = [
-        '.',
-    ]
-
-    def string_clean(self, string_to_fix):
-        for fix in self.prefixes + self.suffixes + self.puncuation:
-            string_to_fix = string_to_fix.replace(fix, '')
-
-        return string_to_fix
-
-    def first_names(self):
-
-        return self.string_clean(self.contributor_name.split(',')[1]).split()
-
-    def last_name(self):
-
-        return self.string_clean(self.contributor_name.split(',')[0])
-
-    def get_nicknames(self, name):
-        names, lines = self.get_names_data('./fec/data/names.txt')
-
-        # Search for all names that match first_name
-        all_names = self.nickname_search(name, names)
-
-        if all_names is None:
-            return [name]
-
-        names = [
-            lines[all_names[index][1]][0] for index, _ in enumerate(all_names)
-        ]
-
-        return names
-
-    @staticmethod
-    def get_names_data(file_path):
-        lines = []
-        names = []
-        with open(file_path) as file:
-            for index, line in enumerate(file.readlines()):
-                lines.append(line.strip('\n').split(','))
-                for name in line.split(','):
-                    names.append([name.strip('\n'), index])
-            names.sort()
-
-            return names, lines
-
-    @staticmethod
-    def nickname_search(first_name, names):
-        """ Find and return the index of key in sequence names  for first_name"""
-        first_name = first_name.lower()
-        lb = 0
-        ub = len(names)
-
-        while True:
-            if lb == ub:  # If region of interest (ROI) becomes empty
-                return None
-            # Next probe should be in the middle of the ROI
-            mid_index = (lb + ub) // 2
-            # Fetch the item at that position
-            item_at_mid = names[mid_index][0]
-            # How does the probed item compare to the target?
-            if item_at_mid == first_name:
-                upper_mid_index = mid_index
-                lower_mid_index = mid_index
-                while names[upper_mid_index + 1][0] == first_name:
-                    upper_mid_index = upper_mid_index + 1
-                while names[lower_mid_index - 1][0] == first_name:
-                    lower_mid_index = lower_mid_index - 1
-                return names[lower_mid_index:upper_mid_index + 1]  # Found it!
-            if item_at_mid < first_name:
-                lb = mid_index + 1  # Use upper half of ROI next time
-            else:
-                ub = mid_index  # Use lower half of ROI next time
-
-    @staticmethod
-    def regex_list(list_of_elements, optional=False, puncuation=None):
-        q_mark = ''
-        if optional:
-            q_mark = '?'
-        if puncuation:
-            all_ps = ''.join(['(%s)?' % p for p in puncuation])
-            for index, element in enumerate(list_of_elements):
-                list_of_elements[index] = element + all_ps
-
-        return '(%s)%s' % ('|'.join(list_of_elements), q_mark)
-
-    def regex_affixes(self):
-        regex_suffixes = self.regex_list(
-            self.suffixes.copy(), optional=True, puncuation=self.puncuation)
-        regex_prefixes = self.regex_list(
-            self.prefixes.copy(), optional=True, puncuation=self.puncuation)
-
-        return regex_prefixes, regex_suffixes
-
-    def regex_name(self):
-        prefixes, suffixes = self.regex_affixes()
-        affixes = prefixes + suffixes
-
-        try:
-            first_name, *rest_of_first = self.first_names()
-        except IndexError:
-            return self.contributor_name
-
-        return prefixes + self.last_name() + affixes + ', ' + \
-            self.regex_list(self.get_nicknames(first_name)).upper() + \
-            self.regex_list(rest_of_first, optional=True) + affixes
-
     @staticmethod
     def search(contributor):
+        name_regex = regex_name(contributor.contributor_name)
+
+
         return Contributor.objects.\
             filter(
-                Q(contributor_name__regex=contributor.regex_name())
+                Q(contributor_name__regex=name_regex)
                 & Q(contributor_zip=contributor.contributor_zip))
 
 
