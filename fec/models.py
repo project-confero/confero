@@ -36,6 +36,12 @@ class Campaign(models.Model):
             Q(id=data) | Q(name__icontains=data)
             | Q(committee__id=data)).distinct()
 
+    def similar_campaigns(self, data):
+        contributors = Contributor.for_campaign(self)
+
+        # TODO: Get a list of every comittee every contributor has
+        # donated to, and count em up
+
 
 class Committee(models.Model):
     id = models.CharField(max_length=9, primary_key=True)
@@ -63,6 +69,13 @@ class Contributor(models.Model):
             filter(
                 Q(contributor_name__regex=name_regex)
                 & Q(contributor_zip=contributor.contributor_zip))
+
+    @staticmethod
+    def for_campaign(campaign):
+        """Get all contributors to a Campaign"""
+
+        return Contributor.objects.filter(
+            contribution__committee__campaign=campaign)
 
 
 class Contribution(models.Model):
