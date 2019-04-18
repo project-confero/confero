@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Count
 from fec.lib.similar_names import regex_name
 
 
@@ -26,6 +26,19 @@ class Campaign(models.Model):
     def party_full(self):
         return self.PARTIES.get(self.party, self.party)
 
+    def similar_campaigns(self):
+        shared_contributors = Count(
+            'committee__contribution__contributor',
+            distinct=True,
+            filter=Q(
+                committee__contribution__contributor__contribution__committee__campaign__id
+                =self.id))
+
+        campaigns = Campaign.objects.exclude(pk=self.pk).annotate(
+            contributor_count=shared_contributors).exclude(
+                contributor_count=0).order_by("-contributor_count")
+        return campaigns[:10]
+
     @staticmethod
     def search(data):
         """Search by name, id, or comittee id."""
@@ -35,12 +48,6 @@ class Campaign(models.Model):
         return Campaign.objects.filter(
             Q(id=data) | Q(name__icontains=data)
             | Q(committee__id=data)).distinct()
-
-    def similar_campaigns(self, data):
-        contributors = Contributor.for_campaign(self)
-
-        # TODO: Get a list of every comittee every contributor has
-        # donated to, and count em up
 
 
 class Committee(models.Model):
@@ -60,6 +67,12 @@ class Contributor(models.Model):
     contributor_employer = models.CharField(max_length=38)
     contributor_occupation = models.CharField(max_length=38)
 
+    def campaign_count(self):
+        """How many campaigns did they contribute to?"""
+
+        return self.aggregate(
+            Count('contribution__committee__campaign', distinct=True))
+
     @staticmethod
     def search(contributor):
         name_regex = regex_name(contributor.contributor_name)
@@ -76,6 +89,15 @@ class Contributor(models.Model):
 
         return Contributor.objects.filter(
             contribution__committee__campaign=campaign)
+
+    @staticmethod
+    def shared_contributors():
+        contributors = Contributor.objects.annotate(
+            campaign_count=Count(
+                'contribution__committee__campaign', distinct=True)).order_by(
+                    '-campaign_count')[0:10]
+
+        return contributors
 
 
 class Contribution(models.Model):

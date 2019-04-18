@@ -28,10 +28,12 @@ def campaign(request, campaign_id):
 
     committees = campaign.committee_set.all()
     contributions = Contribution.for_campaign(campaign)
+    similar_campaigns = campaign.similar_campaigns()
 
     return render(
         request, 'fec/campaign.html', {
             'campaign': campaign,
             'committees': committees,
-            'contributions': contributions
+            'contributions': contributions,
+            'similar_campaigns': similar_campaigns
         })
