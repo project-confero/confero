@@ -4,8 +4,10 @@ branch-defaults:
   chores/circleci:
     environment: confero-env
     group_suffix: null
+  indiv_match:
+    environment: ProjectConfero-env
   master:
-    environment: confero-env
+    environment: ProjectConfero-env
 environment-defaults:
   confero-env:
     branch: null
