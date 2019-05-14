@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q
+from fec.lib.similar_names import regex_name
 
 
 class Campaign(models.Model):
@@ -45,20 +46,34 @@ class Committee(models.Model):
     name = models.CharField(max_length=200)
 
 
-class Contribution(models.Model):
-    id = models.BigIntegerField(primary_key=True)  # FEC SUB_ID
-
-    committee = models.ForeignKey(
-        Committee, on_delete=models.PROTECT, blank=True, null=True)  # CMTE_ID
-    date = models.DateField()
-    amount = models.DecimalField(max_digits=16, decimal_places=2)
-
+class Contributor(models.Model):
     contributor_name = models.CharField(max_length=200)
     contributor_city = models.CharField(max_length=30)
     contributor_state = models.CharField(max_length=2)
     contributor_zip = models.CharField(max_length=9)
     contributor_employer = models.CharField(max_length=38)
     contributor_occupation = models.CharField(max_length=38)
+
+    @staticmethod
+    def search(contributor):
+        name_regex = regex_name(contributor.contributor_name)
+
+
+        return Contributor.objects.\
+            filter(
+                Q(contributor_name__regex=name_regex)
+                & Q(contributor_zip=contributor.contributor_zip))
+
+
+class Contribution(models.Model):
+    id = models.BigIntegerField(primary_key=True)  # FEC SUB_ID
+
+    contributor = models.ForeignKey(
+        Contributor, on_delete=models.PROTECT, blank=True, null=True)
+    committee = models.ForeignKey(
+        Committee, on_delete=models.PROTECT, blank=True, null=True)  # CMTE_ID
+    date = models.DateField()
+    amount = models.DecimalField(max_digits=16, decimal_places=2)
 
     @staticmethod
     def for_campaign(campaign):
