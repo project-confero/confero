@@ -10,7 +10,6 @@ awsebcli = "*"
 pre-commit = "*"
 coverage = "*"
 ipython = "*"
-pandas = "*"
 
 [packages]
 Django = "*"
