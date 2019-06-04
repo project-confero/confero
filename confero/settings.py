@@ -30,7 +30,8 @@ else:
     DEBUG = True
 
 ALLOWED_HOSTS = [
-    '0.0.0.0', 'localhost', "127.0.0.1", 'us-east-2.elasticbeanstalk.com'
+    '0.0.0.0', 'localhost', "127.0.0.1",
+    'confero.us-east-2.elasticbeanstalk.com'
 ]
 
 # Application definition

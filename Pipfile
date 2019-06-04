@@ -10,7 +10,8 @@ awsebcli = "*"
 pre-commit = "*"
 coverage = "*"
 ipython = "*"
-pandas = "*"
+faker = "*"
+factory-boy = "*"
 
 [packages]
 Django = "*"
