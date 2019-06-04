@@ -1,6 +1,7 @@
 import csv
 from datetime import datetime
 from decimal import Decimal
+import os
 
 from django.core.management.base import BaseCommand
 from fec.models import Campaign, Committee, Contribution, Contributor
@@ -28,15 +29,25 @@ class Command(BaseCommand):
                 bulkfile, headers, delimiter='|', quotechar='"')
 
             i = 0
-
             for row in reader:
                 i += 1
-                record_creator(row)
-                print('.', end='', flush=True)
+                try:
+                    record_creator(row)
+                    print(
+                        "\rloaded %d '%s' records" % (i, fec_type),
+                        flush=True,
+                        end='')
+                except Exception as exception:
+                    bad_rows_path = '{}_bad_rows.txt'.format(
+                        os.path.splitext(filename)[0])
+                    with open(bad_rows_path, 'a+') as f:
+                        f.write('|'.join([row[i] for i in row]))
 
-            print("loaded %d '%s' records" % (i, fec_type))
-        # except Exception as exception:
-        #     self.stderr.write(str(exception))
+                    print('\n_______________________________________________')
+                    self.stderr.write(str(exception))
+                    print('added row # {} to {}'.format(i, bad_rows_path))
+                    print(*['{}: {}'.format(k, v) for k, v in row.items()])
+                    print('_______________________________________________')
 
     def _record_creator(self, fec_type):
         if fec_type == "candidates":
