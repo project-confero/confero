@@ -97,34 +97,31 @@ class ContributersTest(TestCase):
             contributor_occupation='PHYSICIAN')
 
     def test_nickname_matches_given(self):
-        self.givenname = Contributor(
+        givenname = Contributor(
             contributor_name='SMITH MD., JUDITH R',
             contributor_city='Manchester',
             contributor_state='NH',
             contributor_zip='03104',
             contributor_employer='Self',
             contributor_occupation='PHYSICIAN')
-        self.assertEqual(self.nickname.id,
-                         Contributor.search(self.givenname)[0].id)
+        self.assertEqual(self.nickname.id, Contributor.search(givenname)[0].id)
 
     def test_nickname_matches_short(self):
-        self.short = Contributor(
+        short = Contributor(
             contributor_name='SMITH, JUDY',
             contributor_city='Manchester',
             contributor_state='NH',
             contributor_zip='03104',
             contributor_employer='Self',
             contributor_occupation='PHYSICIAN')
-        self.assertEqual(self.nickname.id,
-                         Contributor.search(self.short)[0].id)
+        self.assertEqual(self.nickname.id, Contributor.search(short)[0].id)
 
     def test_nickname_matches_nickname(self):
-        self.nickname2 = Contributor(
+        nickname2 = Contributor(
             contributor_name='SMITH, JUDY MD.',
             contributor_city='Manchester',
             contributor_state='NH',
             contributor_zip='03104',
             contributor_employer='Self',
             contributor_occupation='PHYSICIAN')
-        self.assertEqual(self.nickname.id,
-                         Contributor.search(self.nickname2)[0].id)
+        self.assertEqual(self.nickname.id, Contributor.search(nickname2)[0].id)

@@ -17,10 +17,10 @@
   {%for campaign in similar_campaigns%}
   <li>
     <a href="{% url 'campaign' campaign.id %}">
-      {{ campaign.name }} ({{ campaign.party_abbreviation }}) {{ campaign.state
-      }}
+      {{ campaign.name }}
+      ({{ campaign.party_abbreviation }})
+      {{ campaign.state }}
     </a>
-    {{ campaign.contributor_count }}
   </li>
   {%endfor%}
 </ul>
@@ -38,8 +38,9 @@
 {%for contribution in contributions%}
 <p>{{ contribution.contributor.contributor_name }}</p>
 <p>
-  ${{ contribution.amount }} | {{ contribution.date }} | {{
-  contribution.committee.name }}
+  ${{ contribution.amount }} |
+  {{ contribution.date }} |
+  {{ contribution.committee.name }}
 </p>
 {%endfor%}
 
