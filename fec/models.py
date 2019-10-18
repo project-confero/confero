@@ -27,17 +27,16 @@ class Campaign(models.Model):
         return self.PARTIES.get(self.party, self.party)
 
     def similar_campaigns(self):
-        shared_contributors = Count(
-            'committee__contribution__contributor',
-            distinct=True,
-            filter=Q(
-                committee__contribution__contributor__contribution__committee__campaign__id
-                =self.id))
+        connections = self.source_connections.order_by("-score").select_related(
+            "target")[:10]
 
-        campaigns = Campaign.objects.exclude(pk=self.pk).annotate(
-            contributor_count=shared_contributors).exclude(
-                contributor_count=0).order_by("-contributor_count")
-        return campaigns[:10]
+        campaigns = []
+        for connection in connections:
+            target = connection.target
+            target.contributor_count = connection.score
+            campaigns.append(target)
+        
+        return campaigns
 
     @staticmethod
     def search(data):
@@ -53,8 +52,10 @@ class Campaign(models.Model):
 class Committee(models.Model):
     id = models.CharField(max_length=9, primary_key=True)
 
-    campaign = models.ForeignKey(
-        Campaign, on_delete=models.PROTECT, blank=True, null=True)
+    campaign = models.ForeignKey(Campaign,
+                                 on_delete=models.PROTECT,
+                                 blank=True,
+                                 null=True)
 
     name = models.CharField(max_length=200)
 
@@ -92,10 +93,9 @@ class Contributor(models.Model):
 
     @staticmethod
     def shared_contributors():
-        contributors = Contributor.objects.annotate(
-            campaign_count=Count(
-                'contribution__committee__campaign', distinct=True)).order_by(
-                    '-campaign_count')[0:10]
+        contributors = Contributor.objects.annotate(campaign_count=Count(
+            'contribution__committee__campaign', distinct=True)).order_by(
+                '-campaign_count')[0:10]
 
         return contributors
 
@@ -103,10 +103,14 @@ class Contributor(models.Model):
 class Contribution(models.Model):
     id = models.BigIntegerField(primary_key=True)  # FEC SUB_ID
 
-    contributor = models.ForeignKey(
-        Contributor, on_delete=models.PROTECT, blank=True, null=True)
-    committee = models.ForeignKey(
-        Committee, on_delete=models.PROTECT, blank=True, null=True)  # CMTE_ID
+    contributor = models.ForeignKey(Contributor,
+                                    on_delete=models.PROTECT,
+                                    blank=True,
+                                    null=True)
+    committee = models.ForeignKey(Committee,
+                                  on_delete=models.PROTECT,
+                                  blank=True,
+                                  null=True)  # CMTE_ID
     date = models.DateField()
     amount = models.DecimalField(max_digits=16, decimal_places=2)
 
@@ -115,3 +119,13 @@ class Contribution(models.Model):
         """Get all contributions to a Campaign"""
 
         return Contribution.objects.filter(committee__campaign=campaign)
+
+
+class Connection(models.Model):
+    source = models.ForeignKey(Campaign,
+                               on_delete=models.PROTECT,
+                               related_name='source_connections')
+    target = models.ForeignKey(Campaign,
+                               on_delete=models.PROTECT,
+                               related_name='target_connections')
+    score = models.IntegerField()
