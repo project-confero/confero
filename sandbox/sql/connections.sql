@@ -1,16 +1,16 @@
--- Create a connections table with the connections between candidates
-CREATE TABLE connections AS
+-- Create a connection table with the connections between candidates
+CREATE TABLE connection AS
 SELECT source_committee_id, target_committee_id, COUNT(*) AS score
 FROM (
   SELECT DISTINCT
-    source.contributor_name,
+    source.name,
     source.zip,
     source.committee_id AS source_committee_id,
     target.committee_id AS target_committee_id
-  FROM contributions AS source
-  LEFT JOIN contributions AS target
+  FROM contribution AS source
+  LEFT JOIN contribution AS target
   ON (
-    source.contributor_name = target.contributor_name
+    source.name = target.name
     AND source.zip = target.zip
   )
   WHERE source.committee_id != target.committee_id

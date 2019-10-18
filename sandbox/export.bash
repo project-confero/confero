@@ -1,5 +1,8 @@
-# Calculate connections table
-psql confero_sandbox -f ./sql/connections.sql
+# Calculate connection table
+psql -d confero_sandbox < ./sql/connections.sql
+
+# Sanity check
+psql -d confero_sandbox < ./sql/strong_connections.sql
 
 # Export candidate connections for Gephi
 psql -d confero_sandbox -A -F"," -P"footer=off" -f ./sql/nodes.sql > nodes.csv

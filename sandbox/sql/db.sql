@@ -27,16 +27,17 @@ SET default_with_oids = false;
 -- Name: candidates; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.candidates (
-    id character varying(9) NOT NULL,
-    candidate_name character varying(200),
+CREATE TABLE public.candidate (
+    id character varying(10) NOT NULL,
+    name character varying(200),
     party character varying(3),
-    candidate_office character varying(1),
-    committee_id character varying(9)
+    office character varying(1),
+    state character varying(2),
+    district character varying(2)
 );
 
 
-ALTER TABLE public.candidates OWNER TO postgres;
+ALTER TABLE public.candidate OWNER TO postgres;
 
 --
 -- TOC entry 198 (class 1259 OID 5155360)
@@ -46,7 +47,7 @@ ALTER TABLE public.candidates OWNER TO postgres;
 CREATE TABLE public.committee (
     candidate_id character varying(9) NOT NULL,
     committee_id character varying(9) NOT NULL,
-    id numeric NOT NULL
+    linkage_id numeric NOT NULL
 );
 
 
@@ -54,39 +55,39 @@ ALTER TABLE public.committee OWNER TO postgres;
 
 --
 -- TOC entry 199 (class 1259 OID 5155387)
--- Name: connections; Type: TABLE; Schema: public; Owner: postgres
+-- Name: connection; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.connections (
+CREATE TABLE public.connection (
     source_committee_id character varying(9),
     target_committee_id character varying(9),
     score bigint
 );
 
 
-ALTER TABLE public.connections OWNER TO postgres;
+ALTER TABLE public.connection OWNER TO postgres;
 
 --
 -- TOC entry 196 (class 1259 OID 5155347)
--- Name: contributions; Type: TABLE; Schema: public; Owner: postgres
+-- Name: contribution; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.contributions (
+CREATE TABLE public.contribution (
     committee_id character varying(9),
-    contributor_name character varying(200),
+    name character varying(200),
     zip character varying(9),
     id numeric(19,0) NOT NULL
 );
 
 
-ALTER TABLE public.contributions OWNER TO postgres;
+ALTER TABLE public.contribution OWNER TO postgres;
 
 --
 -- TOC entry 3051 (class 2606 OID 5155354)
 -- Name: candidates campaigns_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.candidates
+ALTER TABLE ONLY public.candidate
     ADD CONSTRAINT campaigns_pkey PRIMARY KEY (id);
 
 
@@ -96,7 +97,7 @@ ALTER TABLE ONLY public.candidates
 --
 
 ALTER TABLE ONLY public.committee
-    ADD CONSTRAINT committee_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT committee_pkey PRIMARY KEY (linkage_id);
 
 
 --
@@ -104,7 +105,7 @@ ALTER TABLE ONLY public.committee
 -- Name: contributions contributions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.contributions
+ALTER TABLE ONLY public.contribution
     ADD CONSTRAINT contributions_pkey PRIMARY KEY (id);
 
 

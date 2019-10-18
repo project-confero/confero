@@ -8,7 +8,19 @@
    wget https://www.fec.gov/files/bulk-downloads/2020/ccl20.zip
    wget https://www.fec.gov/files/bulk-downloads/2020/indiv20.zip
    ```
-1. Unzip
+
+1. Unzip Data
+
+    ```bash
+    unzip cn20.zip
+    unzip ccl20.zip
+    unzip itcont.txt
+
+    mv cn.txt candidates.txt
+    mv ccl.txt committees.txt
+    mv by_date/itcont_2020_20190629_20190930.txt contributions.txt
+    ```
+
 1. Add the headers from [./headers](./headers) to the tip of the files
 1. Install xsv
    ```bash
