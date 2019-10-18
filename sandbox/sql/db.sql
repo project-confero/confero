@@ -46,8 +46,7 @@ ALTER TABLE public.candidate OWNER TO postgres;
 
 CREATE TABLE public.committee (
     candidate_id character varying(9) NOT NULL,
-    committee_id character varying(9) NOT NULL,
-    linkage_id numeric NOT NULL
+    committee_id character varying(9) NOT NULL
 );
 
 
@@ -76,7 +75,9 @@ CREATE TABLE public.contribution (
     committee_id character varying(9),
     name character varying(200),
     zip character varying(9),
-    id numeric(19,0) NOT NULL
+    id numeric(19,0) NOT NULL,
+    employer character varying(38),
+    occupation character varying(38)
 );
 
 
@@ -89,15 +90,6 @@ ALTER TABLE public.contribution OWNER TO postgres;
 
 ALTER TABLE ONLY public.candidate
     ADD CONSTRAINT campaigns_pkey PRIMARY KEY (id);
-
-
---
--- TOC entry 3053 (class 2606 OID 5155370)
--- Name: committee committee_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.committee
-    ADD CONSTRAINT committee_pkey PRIMARY KEY (linkage_id);
 
 
 --

@@ -12,6 +12,8 @@ FROM (
   ON (
     source.name = target.name
     AND source.zip = target.zip
+    AND source.employer = target.employer
+    AND source.occupation = target.occupation
   )
   WHERE source.committee_id != target.committee_id
   AND source.committee_id != 'C00401224'
