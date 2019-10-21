@@ -12,6 +12,7 @@ coverage = "*"
 ipython = "*"
 faker = "*"
 factory-boy = "*"
+pylint-django = "*"
 
 [packages]
 Django = "*"
