@@ -8,4 +8,5 @@ disable=missing-docstring,
         redefined-outer-name,
         invalid-name,
         no-self-use,
-        wrong-import-order
+        wrong-import-order,
+        broad-except
