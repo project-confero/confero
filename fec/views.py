@@ -1,7 +1,10 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
+from django.core import serializers
+from django.http import JsonResponse
+import json
 
-from .models import Campaign, Contribution
+from .models import Campaign, Contribution, Connection
 
 
 def index(request):
@@ -37,3 +40,17 @@ def campaign(request, campaign_id):
             'contributions': contributions,
             'similar_campaigns': similar_campaigns
         })
+
+
+def graph_campaigns(request):
+    campaigns = Campaign.connected_campaigns().values()
+    data = list(campaigns)
+
+    return JsonResponse(data, safe=False)
+
+
+def graph_connections(request):
+    connections = Connection.objects.select_related('source').values()
+    data = list(connections)
+
+    return JsonResponse(data, safe=False)

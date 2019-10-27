@@ -27,16 +27,20 @@ class Campaign(models.Model):
         return self.PARTIES.get(self.party, self.party)
 
     def similar_campaigns(self):
-        connections = self.source_connections.order_by("-score").select_related(
-            "target")[:10]
+        connections = self.source_connections.order_by(
+            "-score").select_related("target")[:10]
 
         campaigns = []
         for connection in connections:
             target = connection.target
             target.contributor_count = connection.score
             campaigns.append(target)
-        
+
         return campaigns
+
+    @staticmethod
+    def connected_campaigns():
+        return Campaign.objects.exclude(source_connections=None)
 
     @staticmethod
     def search(data):
