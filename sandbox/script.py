@@ -139,29 +139,25 @@ def save_csv_to_load(csv, config):
 
 
 def clear_table(table):
-    conn = get_conn()
-    cursor = conn.cursor()
-
-    cursor.execute(f"TRUNCATE {table};")
+    with get_conn() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(f"TRUNCATE {table};")
 
 
 def load_csv_to_table(config):
-    conn = get_conn()
-    cursor = conn.cursor()
+    with get_conn() as conn:
+        with conn.cursor() as cursor:
+            table = config["table"]
+            columns = config["table_columns"]
 
-    table = config["table"]
-    columns = config["table_columns"]
-
-    file = open(TEMP_FILE, "r")
-    # Clear table
-    cursor.execute(f"TRUNCATE {table};")
-    # Load new data
-    column_string = ",".join(columns)
-    cursor.copy_expert(
-        f"copy {table} ({column_string}) from STDIN CSV QUOTE '\"'", file)
-    cursor.execute("commit;")
-
-    conn.close()
+            file = open(TEMP_FILE, "r")
+            # Clear table
+            cursor.execute(f"TRUNCATE {table};")
+            # Load new data
+            column_string = ",".join(columns)
+            cursor.copy_expert(
+                f"copy {table} ({column_string}) from STDIN CSV QUOTE '\"'",
+                file)
 
 
 def send_to_db(csv, config):
@@ -171,29 +167,34 @@ def send_to_db(csv, config):
 
 
 def run_sql_file(filename):
-    conn = get_conn()
-    cursor = conn.cursor()
-
-    sql = open(f"{DIR}/sql/{filename}", "r").read()
-    print(sql)
-    cursor.execute(sql)
-
-    conn.close()
+    with get_conn() as conn:
+        with conn.cursor() as cursor:
+            sql = open(f"{DIR}/sql/{filename}", "r").read()
+            cursor.execute(sql)
 
 
 def run_sql_query(filename):
-    conn = get_conn()
-    cursor = conn.cursor()
+    with get_conn() as conn:
+        with conn.cursor() as cursor:
+            sql = open(f"{DIR}/sql/{filename}", "r").read()
+            cursor.execute(sql)
 
-    sql = open(f"{DIR}/sql/{filename}", "r").read()
-    cursor.execute(sql)
+            print(f"===records from {filename}===")
 
-    print(f"===records from {filename}===")
+            for record in cursor:
+                print(record)
 
-    for record in cursor:
-        print(record)
 
-    conn.close()
+def download_sql_query(sql_file, save_file):
+    with get_conn() as conn:
+        with conn.cursor() as cursor:
+            sql = open(f"{DIR}/sql/{sql_file}", "r").read()
+            file = open(f"{DIR}/data/{save_file}", "w")
+
+            cursor.copy_expert(
+                f"copy ({sql}) TO STDOUT WITH CSV HEADER",
+                file,
+            )
 
 
 def clean_field(data, field):
@@ -224,9 +225,18 @@ send_to_db(contributions, CONTRIBUTION_CONFIG)
 
 #%%
 clear_table("connection")
+#%%
 run_sql_file("make_connections.sql")
 
 #%%
+# Check that the data loaded
 run_sql_query("strong_connections.sql")
+
+# Download the tables for import into gephi
+
+#%%
+download_sql_query("edges.sql", "edges.csv")
+#%%
+download_sql_query("nodes.sql", "nodes.csv")
 
 #%%
