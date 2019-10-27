@@ -8,8 +8,11 @@ class Campaign(models.Model):
     SENATE = 'S'
     PRESIDENT = 'P'
 
-    OFFICE_CHOICES = ((HOUSE, 'House'), (SENATE, 'Senate'), (PRESIDENT,
-                                                             'President'))
+    OFFICE_CHOICES = (
+        (HOUSE, 'House'),
+        (SENATE, 'Senate'),
+        (PRESIDENT, 'President'),
+    )
 
     PARTIES = {'DEM': 'Democrat', 'REP': 'Repbulican'}
 
@@ -126,10 +129,27 @@ class Contribution(models.Model):
 
 
 class Connection(models.Model):
-    source = models.ForeignKey(Campaign,
-                               on_delete=models.PROTECT,
-                               related_name='source_connections')
-    target = models.ForeignKey(Campaign,
-                               on_delete=models.PROTECT,
-                               related_name='target_connections')
+    source = models.ForeignKey(
+        Campaign,
+        on_delete=models.PROTECT,
+        related_name='source_connections',
+    )
+    target = models.ForeignKey(
+        Campaign,
+        on_delete=models.PROTECT,
+        related_name='target_connections',
+    )
     score = models.IntegerField()
+
+    def to_edge(self):
+        return {
+            "target": self.target_id,
+            "source": self.source_id,
+            "score": self.score,
+        }
+
+    @staticmethod
+    def edges():
+        connections = Connection.objects.all()
+        m = map(lambda connection: connection.to_edge(), connections)
+        return list(m)

@@ -42,15 +42,17 @@ def campaign(request, campaign_id):
         })
 
 
+def graph(request):
+    return render(request, "fec/graph.html")
+
+
 def graph_campaigns(request):
-    campaigns = Campaign.connected_campaigns().values()
-    data = list(campaigns)
+    campaigns = Campaign.connected_campaigns()
+    data = list(campaigns.values())
 
     return JsonResponse(data, safe=False)
-
 
 def graph_connections(request):
-    connections = Connection.objects.select_related('source').values()
-    data = list(connections)
+    connections = Connection.edges()
 
-    return JsonResponse(data, safe=False)
+    return JsonResponse(connections, safe=False)
