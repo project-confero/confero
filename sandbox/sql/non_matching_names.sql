@@ -7,8 +7,8 @@ SELECT DISTINCT
   source.occupation,
   target.employer,
   target.occupation
-FROM contribution AS source
-LEFT JOIN contribution AS target
+FROM fec_contribution AS source
+LEFT JOIN fec_contribution AS target
 ON (
   source.name = target.name
   AND source.zip = target.zip

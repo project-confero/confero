@@ -8,11 +8,11 @@
     IND: "yellow",
     default: "black"
   };
-  const nodeColor = campaign =>
-    PARTY_COLORS[campaign.party] || PARTY_COLORS.default;
+  const nodeColor = candidate =>
+    PARTY_COLORS[candidate.party] || PARTY_COLORS.default;
 
-  const nodeSize = campaign =>
-    campaign.party === "IND" ? 20 : campaign.office === "P" ? 15 : 5;
+  const nodeSize = candidate =>
+    candidate.party === "IND" ? 20 : candidate.office === "P" ? 15 : 5;
 
   const main = async () => {
     const svg = d3.select("svg");
@@ -20,13 +20,13 @@
     const width = 960;
     const height = 600;
 
-    const [campaigns, connections] = await Promise.all([
-      fetchData("campaigns"),
+    const [candidates, connections] = await Promise.all([
+      fetchData("candidates"),
       fetchData("connections")
     ]);
 
     const simulation = d3
-      .forceSimulation(campaigns)
+      .forceSimulation(candidates)
       .force("link", d3.forceLink(connections).id(node => node.id))
       .force("charge", d3.forceManyBody().strength(() => -4))
       .force("center", d3.forceCenter(width / 2, height / 2));
@@ -45,7 +45,7 @@
       .attr("stroke", "#fff")
       .attr("stroke-width", 1.5)
       .selectAll("circle")
-      .data(campaigns)
+      .data(candidates)
       .join("circle")
       .attr("r", nodeSize)
       .attr("fill", nodeColor);
@@ -53,7 +53,7 @@
     node
       .append("title")
       .text(
-        campaign => `${campaign.name} | ${campaign.office} | ${campaign.state}`
+        candidate => `${candidate.name} | ${candidate.office} | ${candidate.state}`
       );
 
     simulation.on("tick", () => {

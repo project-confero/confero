@@ -12,7 +12,7 @@ DIR = f"{os.getcwd()}/sandbox"
 CONFIG = {
     "candidates": {
         "table":
-        "candidate",
+        "fec_candidate",
         "filename":
         "cn.txt",
         "csv_columns": [
@@ -29,7 +29,7 @@ CONFIG = {
     },
     "committees": {
         "table":
-        "committee",
+        "fec_committee",
         "filename":
         "ccl.txt",
         "csv_columns": [
@@ -41,7 +41,7 @@ CONFIG = {
     },
     "contributions": {
         "table":
-        "contribution",
+        "fec_contribution",
         "filename":
         "by_date/itcont_2020_20190629_20190930.txt",
         "csv_columns": [
@@ -88,7 +88,7 @@ def get_conn():
     db_prefix = 'RDS_' if 'RDS_DB_NAME' in os.environ else 'DB_'
 
     return psycopg2.connect(
-        dbname=os.getenv(db_prefix + 'DB_SANDBOX_DB_NAME', 'confero_sandbox'),
+        dbname=os.getenv(db_prefix + 'DB_DB_NAME', 'confero'),
         user=os.getenv(db_prefix + 'USERNAME', 'postgres'),
         password=os.getenv(db_prefix + 'PASSWORD', 'postgres'),
         host=os.getenv(db_prefix + 'HOSTNAME', 'localhost'),
@@ -141,7 +141,7 @@ def save_csv_to_load(csv, config):
 def clear_table(table):
     with get_conn() as conn:
         with conn.cursor() as cursor:
-            cursor.execute(f"TRUNCATE {table};")
+            cursor.execute(f"TRUNCATE {table} CASCADE;")
 
 
 def load_csv_to_table(config):
@@ -152,7 +152,7 @@ def load_csv_to_table(config):
 
             file = open(TEMP_FILE, "r")
             # Clear table
-            cursor.execute(f"TRUNCATE {table};")
+            cursor.execute(f"TRUNCATE {table} CASCADE;")
             # Load new data
             column_string = ",".join(columns)
             cursor.copy_expert(
@@ -206,6 +206,7 @@ def clean_field(data, field):
 candidates = read_csv(CANDIDATE_CONFIG)
 #%%
 committees = read_csv(COMMITTEE_CONFIG)
+committees = committees.drop_duplicates(subset="committee_id")
 #%%
 contributions = read_csv(CONTRIBUTION_CONFIG)
 clean_field(contributions, "employer")
@@ -224,19 +225,12 @@ send_to_db(committees, COMMITTEE_CONFIG)
 send_to_db(contributions, CONTRIBUTION_CONFIG)
 
 #%%
-clear_table("connection")
+clear_table("fec_connection")
 #%%
 run_sql_file("make_connections.sql")
 
 #%%
 # Check that the data loaded
 run_sql_query("strong_connections.sql")
-
-# Download the tables for import into gephi
-
-#%%
-download_sql_query("edges.sql", "edges.csv")
-#%%
-download_sql_query("nodes.sql", "nodes.csv")
 
 #%%

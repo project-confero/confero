@@ -4,47 +4,28 @@
 {% block content %}
 
 <h1>
-  {{ campaign.name }}
+  {{ candidate.name }}
 </h1>
 
-<p>Party: {{ campaign.party_full }}</p>
-<p>State: {{ campaign.state }}</p>
-<p>Office: {{ campaign.get_office_display }}</p>
+<p>Party: {{ candidate.party_full }}</p>
+<p>State: {{ candidate.state }}</p>
+<p>Office: {{ candidate.get_office_display }}</p>
 
 <h2>Similar:</h2>
 
 <ul>
-  {%for campaign in similar_campaigns%}
+  {%for candidate in similar_candidates%}
   <li>
-    <a href="{% url 'campaign' campaign.id %}">
-      {{ campaign.name }}
-      ({{ campaign.party_abbreviation }})
-      {{ campaign.state }}
+    <a href="{% url 'candidate' candidate.id %}">
+      {{ candidate.name }}
+      ({{ candidate.party_abbreviation }})
+      {{ candidate.state }}
     </a>
     
-    (score: {{ campaign.contributor_count }})
+    (score: {{ candidate.contributor_count }})
   </li>
   {%endfor%}
 </ul>
-
-<h2>Committees</h2>
-
-<ul>
-  {%for committee in committees%}
-  <li>{{ committee.name }}</li>
-  {%endfor%}
-</ul>
-
-<h2>Contributions</h2>
-
-{%for contribution in contributions%}
-<p>{{ contribution.contributor.contributor_name }}</p>
-<p>
-  ${{ contribution.amount }} |
-  {{ contribution.date }} |
-  {{ contribution.committee.name }}
-</p>
-{%endfor%}
 
 <!-- /Content -->
 {% endblock content %}

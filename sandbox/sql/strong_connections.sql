@@ -10,9 +10,9 @@ SELECT
   t.party AS t_party,
   t.office AS t_office,
   SUM(con.score) AS score
-FROM connection AS con
-LEFT JOIN candidate AS s ON con.source = s.id
-LEFT JOIN candidate AS t ON con.target = t.id
+FROM fec_connection AS con
+LEFT JOIN fec_candidate AS s ON con.source_id = s.id
+LEFT JOIN fec_candidate AS t ON con.target_id = t.id
 WHERE s.office = 'P' AND t.office = 'P'
 -- AND s.name ILIKE '%BIDEN%'
 GROUP BY (s.id, t.id)

@@ -1,11 +1,11 @@
 import factory
 import factory.fuzzy
-from fec.models import Campaign, Committee, Contribution, Contributor
+from fec.models import Candidate, Committee, Contribution, Contributor
 
 
-class CampaignFactory(factory.django.DjangoModelFactory):
+class CandidateFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = Campaign
+        model = Candidate
 
     id = factory.Faker('uuid4')
     name = factory.Faker('first_name')
@@ -13,9 +13,9 @@ class CampaignFactory(factory.django.DjangoModelFactory):
     district = factory.Faker('pyint')
 
     office = factory.fuzzy.FuzzyChoice(
-        [Campaign.HOUSE, Campaign.SENATE, Campaign.PRESIDENT])
+        [Candidate.HOUSE, Candidate.SENATE, Candidate.PRESIDENT])
 
-    party = factory.fuzzy.FuzzyChoice(Campaign.PARTIES)
+    party = factory.fuzzy.FuzzyChoice(Candidate.PARTIES)
 
 
 class CommitteeFactory(factory.django.DjangoModelFactory):

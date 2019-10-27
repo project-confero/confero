@@ -1,50 +1,50 @@
 from django.test import TestCase
 
-from .models import Campaign, Contributor
-from .factories import CampaignFactory, ContributorFactory, CommitteeFactory, ContributionFactory
+from .models import Candidate, Contributor
+from .factories import CandidateFactory, ContributorFactory, CommitteeFactory, ContributionFactory
 
 
-class CampaignTests(TestCase):
+class CandidateTests(TestCase):
     def setUp(self):
-        self.campaign = Campaign.objects.create(
+        self.candidate = Candidate.objects.create(
             id="abc123", name="Bob 4 Prez", office="P", party="DEM")
 
-    def test_create_campaigns(self):
-        campaign = Campaign.objects.get(pk=self.campaign.id)
+    def test_create_candidates(self):
+        candidate = Candidate.objects.get(pk=self.candidate.id)
 
-        self.assertEqual(campaign.name, "Bob 4 Prez")
+        self.assertEqual(candidate.name, "Bob 4 Prez")
 
     def test_party_abbreviation(self):
-        self.assertEqual(self.campaign.party_abbreviation(), "D")
+        self.assertEqual(self.candidate.party_abbreviation(), "D")
 
     def test_full_party(self):
-        self.assertEqual(self.campaign.party_abbreviation(), "D")
+        self.assertEqual(self.candidate.party_abbreviation(), "D")
 
     def test_search_empty(self):
-        campaigns = Campaign.search("Nobody")
-        assert not campaigns
+        candidates = Candidate.search("Nobody")
+        assert not candidates
 
     def test_search_by_name(self):
-        campaigns = Campaign.search("Bob")
+        candidates = Candidate.search("Bob")
 
-        self.assertEqual(campaigns[0], self.campaign)
+        self.assertEqual(candidates[0], self.candidate)
 
     def test_search_by_id(self):
-        campaigns = Campaign.search(self.campaign.id)
+        candidates = Candidate.search(self.candidate.id)
 
-        self.assertEqual(campaigns[0], self.campaign)
+        self.assertEqual(candidates[0], self.candidate)
 
-    def test_similar_campaigns(self):
-        alice = CampaignFactory.create(name="Alice")
-        alex = CampaignFactory.create(name="Alex")
-        bob = CampaignFactory.create(name="Bob")
+    def test_similar_candidates(self):
+        alice = CandidateFactory.create(name="Alice")
+        alex = CandidateFactory.create(name="Alex")
+        bob = CandidateFactory.create(name="Bob")
 
         alice_committee = CommitteeFactory.create(
-            name="alice 4 prez", campaign=alice)
+            name="alice 4 prez", candidate=alice)
         alex_committee = CommitteeFactory.create(
-            name="alex 4 prez", campaign=alex)
+            name="alex 4 prez", candidate=alex)
         bob_committee = CommitteeFactory.create(
-            name="bob 4 prez", campaign=bob)
+            name="bob 4 prez", candidate=bob)
 
         a_contributor_1 = ContributorFactory.create()
         a_contributor_2 = ContributorFactory.create()
@@ -77,13 +77,13 @@ class CampaignTests(TestCase):
             committee=bob_committee, contributor=anti_alex_contributor)
 
         alice_committee.refresh_from_db()
-        similar_campaigns = alice.similar_campaigns()
+        similar_candidates = alice.similar_candidates()
 
-        self.assertEqual(similar_campaigns[0].name, alex.name)
-        self.assertEqual(similar_campaigns[1].name, bob.name)
+        self.assertEqual(similar_candidates[0].name, alex.name)
+        self.assertEqual(similar_candidates[1].name, bob.name)
 
-        self.assertEqual(similar_campaigns[0].contributor_count, 2)
-        self.assertEqual(similar_campaigns[1].contributor_count, 1)
+        self.assertEqual(similar_candidates[0].contributor_count, 2)
+        self.assertEqual(similar_candidates[1].contributor_count, 1)
 
 
 class ContributersTest(TestCase):
