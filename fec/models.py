@@ -52,7 +52,7 @@ class Candidate(models.Model):
         # check returns duplicates.
         return Candidate.objects.filter(
             Q(id=data) | Q(name__icontains=data)
-            | Q(committee__id=data)).distinct()
+            | Q(committee__committee_id=data)).distinct()
 
 
 class Committee(models.Model):

@@ -1,13 +1,17 @@
 from django.test import TestCase
 
-from .models import Candidate, Contributor
-from .factories import CandidateFactory, ContributorFactory, CommitteeFactory, ContributionFactory
+from .models import Candidate
+from .factories import CandidateFactory, ConnectionFactory
 
 
 class CandidateTests(TestCase):
     def setUp(self):
         self.candidate = Candidate.objects.create(
-            id="abc123", name="Bob 4 Prez", office="P", party="DEM")
+            id="abc123",
+            name="Bob 4 Prez",
+            office="P",
+            party="DEM",
+        )
 
     def test_create_candidates(self):
         candidate = Candidate.objects.get(pk=self.candidate.id)
@@ -39,44 +43,9 @@ class CandidateTests(TestCase):
         alex = CandidateFactory.create(name="Alex")
         bob = CandidateFactory.create(name="Bob")
 
-        alice_committee = CommitteeFactory.create(
-            name="alice 4 prez", candidate=alice)
-        alex_committee = CommitteeFactory.create(
-            name="alex 4 prez", candidate=alex)
-        bob_committee = CommitteeFactory.create(
-            name="bob 4 prez", candidate=bob)
+        ConnectionFactory.create(source=alice, target=bob, score=1)
+        ConnectionFactory.create(source=alice, target=alex, score=2)
 
-        a_contributor_1 = ContributorFactory.create()
-        a_contributor_2 = ContributorFactory.create()
-        b_contributor_1 = ContributorFactory.create()
-        b_contributor_2 = ContributorFactory.create()
-        anti_alex_contributor = ContributorFactory.create()
-
-        ContributionFactory.create(
-            committee=alice_committee, contributor=a_contributor_1)
-
-        ContributionFactory.create(
-            committee=alex_committee, contributor=a_contributor_1)
-
-        ContributionFactory.create(
-            committee=alice_committee, contributor=a_contributor_2)
-
-        ContributionFactory.create(
-            committee=alex_committee, contributor=a_contributor_2)
-
-        ContributionFactory.create(
-            committee=bob_committee, contributor=b_contributor_1)
-
-        ContributionFactory.create(
-            committee=bob_committee, contributor=b_contributor_2)
-
-        ContributionFactory.create(
-            committee=alice_committee, contributor=anti_alex_contributor)
-
-        ContributionFactory.create(
-            committee=bob_committee, contributor=anti_alex_contributor)
-
-        alice_committee.refresh_from_db()
         similar_candidates = alice.similar_candidates()
 
         self.assertEqual(similar_candidates[0].name, alex.name)
@@ -85,43 +54,3 @@ class CandidateTests(TestCase):
         self.assertEqual(similar_candidates[0].contributor_count, 2)
         self.assertEqual(similar_candidates[1].contributor_count, 1)
 
-
-class ContributersTest(TestCase):
-    def setUp(self):
-        self.nickname = Contributor.objects.create(
-            contributor_name='SMITH, JUDY MD.',
-            contributor_city='Manchester',
-            contributor_state='NH',
-            contributor_zip='03104',
-            contributor_employer='Self',
-            contributor_occupation='PHYSICIAN')
-
-    def test_nickname_matches_given(self):
-        givenname = Contributor(
-            contributor_name='SMITH MD., JUDITH R',
-            contributor_city='Manchester',
-            contributor_state='NH',
-            contributor_zip='03104',
-            contributor_employer='Self',
-            contributor_occupation='PHYSICIAN')
-        self.assertEqual(self.nickname.id, Contributor.search(givenname)[0].id)
-
-    def test_nickname_matches_short(self):
-        short = Contributor(
-            contributor_name='SMITH, JUDY',
-            contributor_city='Manchester',
-            contributor_state='NH',
-            contributor_zip='03104',
-            contributor_employer='Self',
-            contributor_occupation='PHYSICIAN')
-        self.assertEqual(self.nickname.id, Contributor.search(short)[0].id)
-
-    def test_nickname_matches_nickname(self):
-        nickname2 = Contributor(
-            contributor_name='SMITH, JUDY MD.',
-            contributor_city='Manchester',
-            contributor_state='NH',
-            contributor_zip='03104',
-            contributor_employer='Self',
-            contributor_occupation='PHYSICIAN')
-        self.assertEqual(self.nickname.id, Contributor.search(nickname2)[0].id)

@@ -1,6 +1,6 @@
 import factory
 import factory.fuzzy
-from fec.models import Candidate, Committee, Contribution, Contributor
+from fec.models import Candidate, Committee, Contribution, Connection
 
 
 class CandidateFactory(factory.django.DjangoModelFactory):
@@ -26,18 +26,6 @@ class CommitteeFactory(factory.django.DjangoModelFactory):
     name = factory.Faker('company')
 
 
-class ContributorFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = Contributor
-
-    contributor_name = factory.Faker('first_name')
-    contributor_city = factory.Faker('city')
-    contributor_state = factory.Faker('state_abbr')
-    contributor_zip = factory.Faker('postcode')
-    contributor_employer = factory.Faker('company')
-    contributor_occupation = factory.Faker('job')
-
-
 class ContributionFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Contribution
@@ -45,4 +33,14 @@ class ContributionFactory(factory.django.DjangoModelFactory):
     id = factory.Faker('pyint')
     amount = factory.Faker('pyint')
     date = factory.Faker(
-        'date_this_year', before_today=True, after_today=False)
+        'date_this_year',
+        before_today=True,
+        after_today=False,
+    )
+
+
+class ConnectionFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Connection
+
+    score = factory.Faker('pyint')
