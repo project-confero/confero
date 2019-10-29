@@ -53,4 +53,3 @@ class CandidateTests(TestCase):
 
         self.assertEqual(similar_candidates[0].contributor_count, 2)
         self.assertEqual(similar_candidates[1].contributor_count, 1)
-

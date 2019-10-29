@@ -53,7 +53,8 @@
     node
       .append("title")
       .text(
-        candidate => `${candidate.name} | ${candidate.office} | ${candidate.state}`
+        candidate =>
+          `${candidate.name} | ${candidate.office} | ${candidate.state}`
       );
 
     simulation.on("tick", () => {

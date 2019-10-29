@@ -211,11 +211,11 @@ committees = committees.drop_duplicates(subset="committee_id")
 contributions = read_csv(CONTRIBUTION_CONFIG)
 clean_field(contributions, "employer")
 clean_field(contributions, "occupation")
-# TODO: Other valid types?
+# FUTURE WORK: Other valid types?
 # See: https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions
 contributions = contributions[(contributions.transaction_type == "15")
                               | (contributions.transaction_type == "15E")]
-# TODO: ActBlue earmarks
+# FUTURE WORK: ActBlue earmarks
 
 #%%
 send_to_db(candidates, CANDIDATE_CONFIG)
