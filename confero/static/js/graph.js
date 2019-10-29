@@ -12,7 +12,7 @@
     PARTY_COLORS[candidate.party] || PARTY_COLORS.default;
 
   const nodeSize = candidate =>
-    candidate.party === "IND" ? 20 : candidate.office === "P" ? 15 : 5;
+    candidate.party === "IND" ? 20 : candidate.office === "P" ? 10 : 5;
 
   const main = async () => {
     const svg = d3.select("svg");
