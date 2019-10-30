@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # Download
-wget https://www.fec.gov/files/bulk-downloads/2020/cn20.zip data/
-wget https://www.fec.gov/files/bulk-downloads/2020/ccl20.zip data/
-wget https://www.fec.gov/files/bulk-downloads/2020/indiv20.zip data/
+wget -P ./data/ https://www.fec.gov/files/bulk-downloads/2020/cn20.zip
+wget -P ./data/ https://www.fec.gov/files/bulk-downloads/2020/ccl20.zip
+wget -P ./data/ https://www.fec.gov/files/bulk-downloads/2020/indiv20.zip
 
 # Unzip
 unzip data/cn20.zip -d data

@@ -1,4 +1,4 @@
-#%%
+# %%
 import pandas as pd
 import psycopg2
 import os
@@ -6,8 +6,8 @@ import os
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
-TEMP_FILE = "/tmp/sql.csv"
-DIR = f"{os.getcwd()}/sandbox"
+TEMP_FILE = '/tmp/sql.csv'
+DIR = f'{os.getcwd()}/sandbox'
 
 CONFIG = {
     "candidates": {
@@ -43,7 +43,7 @@ CONFIG = {
         "table":
         "fec_contribution",
         "filename":
-        "by_date/itcont_2020_20190629_20190930.txt",
+        "by_date/itcont_2020_20190629_20191030.txt",
         "csv_columns": [
             "committee_id", "amendment_indicator", "report_type",
             "primary_general_indicator", "image_number", "transaction_type",
@@ -202,12 +202,12 @@ def clean_field(data, field):
     return data
 
 
-#%%
+# %%
 candidates = read_csv(CANDIDATE_CONFIG)
-#%%
+# %%
 committees = read_csv(COMMITTEE_CONFIG)
 committees = committees.drop_duplicates(subset="committee_id")
-#%%
+# %%
 contributions = read_csv(CONTRIBUTION_CONFIG)
 clean_field(contributions, "employer")
 clean_field(contributions, "occupation")
@@ -217,20 +217,20 @@ contributions = contributions[(contributions.transaction_type == "15")
                               | (contributions.transaction_type == "15E")]
 # FUTURE WORK: ActBlue earmarks
 
-#%%
+# %%
 send_to_db(candidates, CANDIDATE_CONFIG)
-#%%
+# %%
 send_to_db(committees, COMMITTEE_CONFIG)
-#%%
+# %%
 send_to_db(contributions, CONTRIBUTION_CONFIG)
 
-#%%
+# %%
 clear_table("fec_connection")
-#%%
+# %%
 run_sql_file("make_connections.sql")
 
-#%%
+# %%
 # Check that the data loaded
 run_sql_query("strong_connections.sql")
 
-#%%
+# %%
