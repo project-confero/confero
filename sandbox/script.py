@@ -203,34 +203,44 @@ def clean_field(data, field):
 
 
 # %%
-candidates = read_csv(CANDIDATE_CONFIG)
-# %%
-committees = read_csv(COMMITTEE_CONFIG)
-committees = committees.drop_duplicates(subset="committee_id")
-# %%
-contributions = read_csv(CONTRIBUTION_CONFIG)
-clean_field(contributions, "employer")
-clean_field(contributions, "occupation")
-# FUTURE WORK: Other valid types?
-# See: https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions
-contributions = contributions[(contributions.transaction_type == "15")
-                              | (contributions.transaction_type == "15E")]
-# FUTURE WORK: ActBlue earmarks
+if __name__ == '__main__':
+    # %%
+    candidates = read_csv(CANDIDATE_CONFIG)
+    # %%
+    committees = read_csv(COMMITTEE_CONFIG)
+    committees = committees.drop_duplicates(subset="committee_id")
+    # %%
+    contributions = read_csv(CONTRIBUTION_CONFIG)
+    clean_field(contributions, "employer")
+    clean_field(contributions, "occupation")
 
-# %%
-send_to_db(candidates, CANDIDATE_CONFIG)
-# %%
-send_to_db(committees, COMMITTEE_CONFIG)
-# %%
-send_to_db(contributions, CONTRIBUTION_CONFIG)
+    # FUTURE WORK: Other valid types?
+    # See: https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions
+    contributions = contributions[(contributions.transaction_type == "15")
+                                  | (contributions.transaction_type == "15E")]
 
-# %%
-clear_table("fec_connection")
-# %%
-run_sql_file("make_connections.sql")
+    # FUTURE WORK: ActBlue earmarks
+    actblue = contributions[contributions['committee_id'] == 'C00401224']
+    actblue_clean = actblue[actblue['memo_text'].str.find('REFUND') == -1]
+    actblue_clean['committee_id'] = actblue_clean['memo_text'].str.extract(
+        r'(C[0-9]{8})')
 
-# %%
-# Check that the data loaded
-run_sql_query("strong_connections.sql")
+    contributions = contributions[contributions['committee_id'] != 'C00401224']
+    contributions = contributions.append(actblue)
 
-# %%
+    # %%
+    send_to_db(candidates, CANDIDATE_CONFIG)
+    # %%
+    send_to_db(committees, COMMITTEE_CONFIG)
+    # %%
+    send_to_db(contributions, CONTRIBUTION_CONFIG)
+
+    # %%
+    clear_table("fec_connection")
+
+    # %%
+    run_sql_file("make_connections.sql")
+
+    # %%
+    # Check that the data loaded
+    run_sql_query("strong_connections.sql")
