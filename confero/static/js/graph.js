@@ -11,8 +11,7 @@
   const nodeColor = candidate =>
     PARTY_COLORS[candidate.party] || PARTY_COLORS.default;
 
-  const nodeSize = candidate =>
-    candidate.party === "IND" ? 20 : candidate.office === "P" ? 10 : 5;
+  const nodeSize = candidate => (candidate.office === "P" ? 10 : 5);
 
   const main = async () => {
     const svg = d3.select("svg");
@@ -49,6 +48,8 @@
       .join("circle")
       .attr("r", nodeSize)
       .attr("fill", nodeColor);
+
+    link.append("title").text(connection => connection.score);
 
     node
       .append("title")

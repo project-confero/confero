@@ -1,6 +1,9 @@
 from django.db import models
 from django.db.models import Q
 
+# The minimum score that counts as a valid connection. Filters out one-off connections.
+MIN_SCORE = 2
+
 
 class Candidate(models.Model):
     HOUSE = 'H'
@@ -42,7 +45,8 @@ class Candidate(models.Model):
 
     @staticmethod
     def connected_candidates():
-        return Candidate.objects.exclude(source_connections=None)
+        return Candidate.objects.filter(
+            source_connections__score__gte=MIN_SCORE).distinct()
 
     @staticmethod
     def search(data):
@@ -112,6 +116,6 @@ class Connection(models.Model):
 
     @staticmethod
     def edges():
-        connections = Connection.objects.all()
+        connections = Connection.objects.filter(score__gte=MIN_SCORE).all()
         m = map(lambda connection: connection.to_edge(), connections)
         return list(m)
