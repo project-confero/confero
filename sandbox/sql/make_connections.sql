@@ -9,8 +9,6 @@ FROM (
       source.zip,
       source.employer,
       source.occupation,
-      target.employer,
-      target.occupation,
       source.committee_id AS source_committee_id,
       target.committee_id AS target_committee_id
     FROM fec_contribution AS source
