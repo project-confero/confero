@@ -1,23 +1,28 @@
 from django.db import models
-from django.db.models import Q, Count
-from fec.lib.similar_names import regex_name
+from django.db.models import Q
+
+# The minimum score that counts as a valid connection. Filters out one-off connections.
+MIN_SCORE = 2
 
 
-class Campaign(models.Model):
+class Candidate(models.Model):
     HOUSE = 'H'
     SENATE = 'S'
     PRESIDENT = 'P'
 
-    OFFICE_CHOICES = ((HOUSE, 'House'), (SENATE, 'Senate'), (PRESIDENT,
-                                                             'President'))
+    OFFICE_CHOICES = (
+        (HOUSE, 'House'),
+        (SENATE, 'Senate'),
+        (PRESIDENT, 'President'),
+    )
 
     PARTIES = {'DEM': 'Democrat', 'REP': 'Repbulican'}
 
     id = models.CharField(max_length=200, primary_key=True)
     name = models.CharField(max_length=200)
-    office = models.CharField(max_length=1, choices=OFFICE_CHOICES)
-    party = models.CharField(max_length=3)
-    state = models.CharField(max_length=2)
+    office = models.CharField(max_length=1, choices=OFFICE_CHOICES, null=True)
+    party = models.CharField(max_length=3, null=True)
+    state = models.CharField(max_length=2, null=True)
     district = models.IntegerField(blank=True, null=True)
 
     def party_abbreviation(self):
@@ -26,18 +31,22 @@ class Campaign(models.Model):
     def party_full(self):
         return self.PARTIES.get(self.party, self.party)
 
-    def similar_campaigns(self):
-        shared_contributors = Count(
-            'committee__contribution__contributor',
-            distinct=True,
-            filter=Q(
-                committee__contribution__contributor__contribution__committee__campaign__id
-                =self.id))
+    def similar_candidates(self):
+        connections = self.source_connections.order_by(
+            "-score").select_related("target")[:10]
 
-        campaigns = Campaign.objects.exclude(pk=self.pk).annotate(
-            contributor_count=shared_contributors).exclude(
-                contributor_count=0).order_by("-contributor_count")
-        return campaigns[:10]
+        candidates = []
+        for connection in connections:
+            target = connection.target
+            target.contributor_count = connection.score
+            candidates.append(target)
+
+        return candidates
+
+    @staticmethod
+    def connected_candidates():
+        return Candidate.objects.filter(
+            source_connections__score__gte=MIN_SCORE).distinct()
 
     @staticmethod
     def search(data):
@@ -45,73 +54,68 @@ class Campaign(models.Model):
 
         # Note the distinct(), because the many-to-many committee__id
         # check returns duplicates.
-        return Campaign.objects.filter(
+        return Candidate.objects.filter(
             Q(id=data) | Q(name__icontains=data)
-            | Q(committee__id=data)).distinct()
+            | Q(committee__committee_id=data)).distinct()
 
 
 class Committee(models.Model):
-    id = models.CharField(max_length=9, primary_key=True)
+    committee_id = models.CharField(max_length=9, primary_key=True)
 
-    campaign = models.ForeignKey(
-        Campaign, on_delete=models.PROTECT, blank=True, null=True)
-
-    name = models.CharField(max_length=200)
-
-
-class Contributor(models.Model):
-    contributor_name = models.CharField(max_length=200)
-    contributor_city = models.CharField(max_length=30)
-    contributor_state = models.CharField(max_length=2)
-    contributor_zip = models.CharField(max_length=9)
-    contributor_employer = models.CharField(max_length=38)
-    contributor_occupation = models.CharField(max_length=38)
-
-    def campaign_count(self):
-        """How many campaigns did they contribute to?"""
-
-        return self.aggregate(
-            Count('contribution__committee__campaign', distinct=True))
-
-    @staticmethod
-    def search(contributor):
-        name_regex = regex_name(contributor.contributor_name)
-
-
-        return Contributor.objects.\
-            filter(
-                Q(contributor_name__regex=name_regex)
-                & Q(contributor_zip=contributor.contributor_zip))
-
-    @staticmethod
-    def for_campaign(campaign):
-        """Get all contributors to a Campaign"""
-
-        return Contributor.objects.filter(
-            contribution__committee__campaign=campaign)
-
-    @staticmethod
-    def shared_contributors():
-        contributors = Contributor.objects.annotate(
-            campaign_count=Count(
-                'contribution__committee__campaign', distinct=True)).order_by(
-                    '-campaign_count')[0:10]
-
-        return contributors
+    candidate = models.ForeignKey(
+        Candidate,
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True,
+        # Allow mis-matched data
+        db_constraint=False,
+    )
 
 
 class Contribution(models.Model):
     id = models.BigIntegerField(primary_key=True)  # FEC SUB_ID
 
-    contributor = models.ForeignKey(
-        Contributor, on_delete=models.PROTECT, blank=True, null=True)
     committee = models.ForeignKey(
-        Committee, on_delete=models.PROTECT, blank=True, null=True)  # CMTE_ID
-    date = models.DateField()
-    amount = models.DecimalField(max_digits=16, decimal_places=2)
+        Committee,
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True,
+        # Allow mis-matched data
+        db_constraint=False,
+    )
+    name = models.CharField(max_length=200, null=True)
+    zip = models.CharField(max_length=9, null=True)
+    employer = models.CharField(max_length=38, null=True)
+    occupation = models.CharField(max_length=38, null=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['name', 'zip', 'employer', 'occupation'])
+        ]
+
+
+class Connection(models.Model):
+    source = models.ForeignKey(
+        Candidate,
+        on_delete=models.PROTECT,
+        related_name='source_connections',
+    )
+    target = models.ForeignKey(
+        Candidate,
+        on_delete=models.PROTECT,
+        related_name='target_connections',
+    )
+    score = models.IntegerField()
+
+    def to_edge(self):
+        return {
+            "target": self.target_id,
+            "source": self.source_id,
+            "score": self.score,
+        }
 
     @staticmethod
-    def for_campaign(campaign):
-        """Get all contributions to a Campaign"""
-
-        return Contribution.objects.filter(committee__campaign=campaign)
+    def edges():
+        connections = Connection.objects.filter(score__gte=MIN_SCORE).all()
+        m = map(lambda connection: connection.to_edge(), connections)
+        return list(m)

@@ -13,6 +13,8 @@ ipython = "*"
 faker = "*"
 factory-boy = "*"
 pylint-django = "*"
+pandas = "*"
+jupyter = "*"
 
 [packages]
 Django = "*"
