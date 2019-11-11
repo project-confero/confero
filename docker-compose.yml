@@ -13,7 +13,7 @@ services:
       - ./fec:/code/fec
       - ./htmlcov:/code/htmlcov
     environment:
-      DB_HOST: db
+      DB_HOSTNAME: db
     ports:
       - "8000:8000"
     depends_on:

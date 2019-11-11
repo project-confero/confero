@@ -1,4 +1,4 @@
-FROM python:3.7-alpine AS base
+FROM python:3.7-slim-buster AS base
 
 ENV PYTHONUNBUFFERED 1
 
@@ -13,14 +13,6 @@ WORKDIR $PROJECT_DIR
 RUN pip install pipenv
 ADD ./Pipfile .
 ADD ./Pipfile.lock .
-
-# Install Postgres Backend
-RUN \
-  apk add --no-cache postgresql-libs && \
-  apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
-  # Actuall install dependencies, including psycopg2
-  pipenv install --system && \
-  apk --purge del .build-deps
 
 # The web server will run on this port
 EXPOSE 8000
