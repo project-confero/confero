@@ -36,6 +36,8 @@ ADD ./ .
 # Prod. Do this last, so by default dev dependencies are ignored.
 FROM base AS prod
 
+RUN pipenv install --system
+
 # Copy in source code
 ADD ./manage.py .
 ADD ./confero ./confero
