@@ -9,9 +9,11 @@ urlpatterns = [
     path(
         'api/graph/candidates/',
         views.graph_candidates,
-        name='graph_candidates'),
+        name='graph_candidates',
+    ),
     path(
         'api/graph/connections/',
         views.graph_connections,
-        name='graph_connections'),
+        name='graph_connections',
+    ),
 ]
