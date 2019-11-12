@@ -42,3 +42,5 @@ RUN pipenv install --system
 ADD ./manage.py .
 ADD ./confero ./confero
 ADD ./fec ./fec
+
+RUN ./manage.py collectstatic --noinput
