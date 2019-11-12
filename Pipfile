@@ -20,6 +20,7 @@ jupyter = "*"
 Django = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.7"
