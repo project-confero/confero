@@ -52,11 +52,7 @@ class Candidate(models.Model):
     def search(data):
         """Search by name, id, or comittee id."""
 
-        # Note the distinct(), because the many-to-many committee__id
-        # check returns duplicates.
-        return Candidate.objects.filter(
-            Q(id=data) | Q(name__icontains=data)
-            | Q(committee__committee_id=data)).distinct()
+        return Candidate.objects.filter(Q(id=data) | Q(name__icontains=data))
 
 
 class Committee(models.Model):

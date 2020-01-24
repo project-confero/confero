@@ -237,9 +237,15 @@ if __name__ == '__main__':
 
     # %%
     clear_table("fec_connection")
+    run_sql_file("make_connections.sql")
 
     # %%
-    run_sql_file("make_connections.sql")
+    # Clean up unused data
+    run_sql_file("delete_solo_candidates.sql")
+
+    # %%
+    clear_table("fec_committee")
+    clear_table("fec_contribution")
 
     # %%
     # Check that the data loaded

@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 yapf = "*"
 prospector = "*"
-awsebcli = "*"
 pre-commit = "*"
 coverage = "*"
 ipython = "*"
@@ -21,6 +20,8 @@ Django = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
 whitenoise = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
