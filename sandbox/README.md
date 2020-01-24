@@ -15,8 +15,13 @@
 
    ```bash
    pipenv shell
-   cd sandbox
-   python script.pys
+   python script.py
    ```
 
    Or use Juypter to run it piece-by-piece
+
+1. Download a DB snapshot
+
+   ```bash
+   ./bin/download.sh
+   ```

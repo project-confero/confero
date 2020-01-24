@@ -21,6 +21,7 @@ psycopg2-binary = "*"
 python-dotenv = "*"
 whitenoise = "*"
 gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"

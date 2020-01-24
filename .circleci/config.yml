@@ -36,12 +36,3 @@ jobs:
       - store_artifacts:
           path: ./htmlcov
           destination: coverage
-      - run:
-          name: Initialize Elastic Beanstalk
-          command: eb init -p docker project-confero
-      - deploy:
-          name: Deploy to Elastic Beanstalk Environment
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              eb deploy --region us-east-2
-            fi
