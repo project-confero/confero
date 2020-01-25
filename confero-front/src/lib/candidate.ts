@@ -4,7 +4,12 @@ export interface Candidate {
   party: string | null;
   office: string;
   state: string;
-  district: string | null;
+  district: number;
+}
+
+export interface CandidateNode extends Candidate {
+  x: number;
+  y: number;
 }
 
 export const candidateName = (candidate: Candidate): string => {

@@ -4,11 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import theme from "./theme";
 import Candidates from "./Candidates";
-import Graph from "./Graph";
+import Connections from "./connections/Connections";
 import Home from "./Home";
 import Navbar from "./nav/Navbar";
-
-console.log(theme);
 
 const App: React.FC = () => {
   return (
@@ -21,7 +19,7 @@ const App: React.FC = () => {
           </Route>
 
           <Route path="/connections">
-            <Graph />
+            <Connections />
           </Route>
 
           <Route path="/">
