@@ -8,6 +8,7 @@ load_dotenv(find_dotenv())
 
 TEMP_FILE = '/tmp/sql.csv'
 DIR = f'{os.getcwd()}/sandbox'
+JSON_DIR = f'{os.getcwd()}/confero-front/src/data'
 
 CONFIG = {
     "candidates": {
@@ -138,6 +139,11 @@ def save_csv_to_load(csv, config):
     csv.to_csv(TEMP_FILE, header=False, index=index)
 
 
+def table_to_pandas(table):
+    with get_conn() as conn:
+        return pd.read_sql_query(f'select * from {table}', con=conn)
+
+
 def clear_table(table):
     with get_conn() as conn:
         with conn.cursor() as cursor:
@@ -202,10 +208,24 @@ def clean_field(data, field):
     return data
 
 
+def candidates_to_json(candidates):
+    with open(f"{JSON_DIR}/candidates.json", "w+") as file:
+        columns = without_id(CONFIG["candidates"]["table_columns"])
+        candidates[columns].to_json(file, "records")
+
+
+def connections_to_json():
+    with open(f"{JSON_DIR}/connections.json", "w+") as file:
+        connections = table_to_pandas("fec_connection")
+        connections.to_json(file, "records")
+
+
 # %%
 if __name__ == '__main__':
     # %%
     candidates = read_csv(CANDIDATE_CONFIG)
+    candidates_to_json(candidates)
+
     # %%
     committees = read_csv(COMMITTEE_CONFIG)
     committees = committees.drop_duplicates(subset="committee_id")
@@ -243,9 +263,8 @@ if __name__ == '__main__':
     # Clean up unused data
     run_sql_file("delete_solo_candidates.sql")
 
-    # %%
-    clear_table("fec_committee")
-    clear_table("fec_contribution")
+    # Output connections for frontent
+    connections_to_json()
 
     # %%
     # Check that the data loaded
