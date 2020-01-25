@@ -210,8 +210,8 @@ def clean_field(data, field):
 
 def candidates_to_json(candidates):
     with open(f"{JSON_DIR}/candidates.json", "w+") as file:
-        columns = without_id(CONFIG["candidates"]["table_columns"])
-        candidates[columns].to_json(file, "records")
+        columns = CONFIG["candidates"]["table_columns"]
+        candidates.reset_index()[columns].to_json(file, "records")
 
 
 def connections_to_json():
