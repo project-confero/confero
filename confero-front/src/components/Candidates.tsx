@@ -38,5 +38,5 @@ const Candidates = () => {
     </Container>
   );
 };
-  
+
 export default Candidates;

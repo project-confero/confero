@@ -208,10 +208,10 @@ def clean_field(data, field):
     return data
 
 
-def candidates_to_json(candidates):
+def candidates_to_json():
     with open(f"{JSON_DIR}/candidates.json", "w+") as file:
-        columns = CONFIG["candidates"]["table_columns"]
-        candidates.reset_index()[columns].to_json(file, "records")
+        candidates = table_to_pandas("fec_candidate")
+        candidates.to_json(file, "records")
 
 
 def connections_to_json():
@@ -224,7 +224,6 @@ def connections_to_json():
 if __name__ == '__main__':
     # %%
     candidates = read_csv(CANDIDATE_CONFIG)
-    candidates_to_json(candidates)
 
     # %%
     committees = read_csv(COMMITTEE_CONFIG)
@@ -265,7 +264,8 @@ if __name__ == '__main__':
 
     # Output connections for frontent
     connections_to_json()
+    candidates_to_json()
 
     # %%
-    # Check that the data loaded
+    Check that the data loaded
     run_sql_query("strong_connections.sql")
