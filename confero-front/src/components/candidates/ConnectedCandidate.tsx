@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text } from "@theme-ui/components";
+import { Text } from "@theme-ui/components";
 
 import { Candidate, candidateName } from "lib/candidate";
 import TextButton from "components/basic/TextButton";
