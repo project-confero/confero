@@ -13,9 +13,6 @@ type ConnectionLink = ConnectionEdge & SimulationLinkDatum<CandidateNode>;
 
 const edges: ConnectionLink[] = convertConnections(connections);
 
-console.log({ ...edges[0] }, edges[0]);
-console.log(candidates[0]);
-
 const PARTY_COLORS: Record<string, string> = {
   DEM: "blue",
   REP: "red",
@@ -188,8 +185,6 @@ const Graph = () => {
   //     .attr("stroke-width", 3);
   //   connectedLinks.style("opacity", 1).attr("stroke", "black");
   // });
-
-  console.log("render");
 
   return (
     <Container>
