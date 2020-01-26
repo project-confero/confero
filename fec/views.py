@@ -1,39 +1,51 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
+from django.http import JsonResponse
 
-from .models import Campaign, Contribution
+from .models import Candidate, Connection
 
 
 def index(request):
     search = request.GET.get('search')
 
     if search:
-        all_campaigns = Campaign.search(search)
+        all_candidates = Candidate.search(search)
     else:
-        all_campaigns = Campaign.objects.all()
+        all_candidates = Candidate.objects.all()
 
-    # Paginate the campaigns
-    paginator = Paginator(all_campaigns, 25)
+    # Paginate the candidates
+    paginator = Paginator(all_candidates, 25)
     page = request.GET.get('page')
-    campaigns = paginator.get_page(page)
+    candidates = paginator.get_page(page)
 
-    return render(request, 'fec/campaign_index.html', {
-        'campaigns': campaigns,
+    return render(request, 'fec/candidate_index.html', {
+        'candidates': candidates,
         'search': search or ''
     })
 
 
-def campaign(request, campaign_id):
-    campaign = get_object_or_404(Campaign, pk=campaign_id)
+def candidate(request, candidate_id):
+    candidate = get_object_or_404(Candidate, pk=candidate_id)
+    similar_candidates = candidate.similar_candidates()
 
-    committees = campaign.committee_set.all()
-    contributions = Contribution.for_campaign(campaign)
-    similar_campaigns = campaign.similar_campaigns()
+    return render(request, 'fec/candidate.html', {
+        'candidate': candidate,
+        'similar_candidates': similar_candidates
+    })
 
-    return render(
-        request, 'fec/campaign.html', {
-            'campaign': campaign,
-            'committees': committees,
-            'contributions': contributions,
-            'similar_campaigns': similar_campaigns
-        })
+
+def graph(request):
+    return render(request, "fec/graph.html")
+
+
+def graph_candidates(request):
+    candidates = Candidate.connected_candidates()
+    data = list(candidates.values())
+
+    return JsonResponse(data, safe=False)
+
+
+def graph_connections(request):
+    connections = Connection.edges()
+
+    return JsonResponse(connections, safe=False)

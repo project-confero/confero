@@ -3,29 +3,30 @@
 ## Steps:
 
 1. Download Data
+
    ```bash
-   wget https://www.fec.gov/files/bulk-downloads/2020/cn20.zip
-   wget https://www.fec.gov/files/bulk-downloads/2020/ccl20.zip
-   wget https://www.fec.gov/files/bulk-downloads/2020/indiv20.zip
+   ./sandbox/bin/download
    ```
 
-1. Unzip Data
+1. Add data to DB
 
-    ```bash
-    unzip cn20.zip
-    unzip ccl20.zip
-    unzip itcont.txt
+   Run the script:
 
-    mv cn.txt candidates.txt
-    mv ccl.txt committees.txt
-    mv by_date/itcont_2020_20190629_20190930.txt contributions.txt
-    ```
-
-1. Add the headers from [./headers](./headers) to the tip of the files
-1. Install xsv
    ```bash
-   brew install xsv
+   pipenv shell
+   python sandbox/script.py
    ```
-1. Install [Gephi](https://gephi.org/users/download) (if you want to generate network graphs)
-1. Run commands in [./import.bash](./import.bash) (probably one at a time to make sure they work) to create a DB and format and import the data.
-1. Run commands in [./export.bash](./export.bash)
+
+   Or use Juypter to run it piece-by-piece
+
+1. Download a DB snapshot
+
+   ```bash
+   ./sandbox/bin/download.sh
+   ```
+
+1. Upload the DB snapshot somewhere like dropbox
+
+   ```bash
+   heroku pg:backups:restore 'https://dl.dropboxusercontent.com/s/FILE_ID/confero.dump?dl=0' DATABASE_URL -a project-confero --confirm project-confero
+   ```

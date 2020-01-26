@@ -15,7 +15,11 @@
       crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+      crossorigin="anonymous"
+    />
 
     <title>
       {% block title %} Project Confero {% endblock title %}
@@ -37,8 +41,7 @@
     </div>
 
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
       crossorigin="anonymous"
     ></script>
     <script
@@ -51,5 +54,10 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="{% static 'js/graph.js' %}"></script>
   </body>
 </html>

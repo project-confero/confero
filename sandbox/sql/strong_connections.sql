@@ -1,11 +1,20 @@
 -- Generate a list of strong connections between candidates
 
-SELECT s_can.name, s_can.party, t_can.name, t_can.party, con.score
-FROM connection AS con
-LEFT JOIN committee AS s_com ON con.source_committee_id = s_com.committee_id
-LEFT JOIN committee AS t_com ON con.target_committee_id = t_com.committee_id
-LEFT JOIN candidate AS s_can ON s_com.candidate_id = s_can.id
-LEFT JOIN candidate AS t_can ON t_com.candidate_id = t_can.id
-WHERE s_com.candidate_id IS NOT NULL AND t_com.candidate_id IS NOT NULL
-ORDER BY score DESC
+SELECT 
+  s.id AS s_name,
+  s.name AS s_name,
+  s.party AS s_party,
+  s.office AS s_office,
+  t.id AS t_name,
+  t.name AS t_name,
+  t.party AS t_party,
+  t.office AS t_office,
+  SUM(con.score) AS score
+FROM fec_connection AS con
+LEFT JOIN fec_candidate AS s ON con.source_id = s.id
+LEFT JOIN fec_candidate AS t ON con.target_id = t.id
+WHERE s.office = 'P' AND t.office = 'P'
+-- AND s.name ILIKE '%BIDEN%'
+GROUP BY (s.id, t.id)
+ORDER BY SUM(score) DESC
 LIMIT 100;

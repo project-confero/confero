@@ -12,16 +12,16 @@
 </form>
 
 <ul>
-  {%for campaign in campaigns%}
+  {%for candidate in candidates%}
   <li>
-    <a href="{% url 'campaign' campaign.id %}">
-      {{ campaign.name }} ({{ campaign.party_abbreviation }})
+    <a href="{% url 'candidate' candidate.id %}">
+      {{ candidate.name }} ({{ candidate.party_abbreviation }})
     </a>
   </li>
   {%endfor%}
 </ul>
 
-{% include "fec/pagination.html" with collection=campaigns search=search %}
+{% include "fec/pagination.html" with collection=candidates search=search %}
 
 <!-- /Content -->
 {% endblock content %}

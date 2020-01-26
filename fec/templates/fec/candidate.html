@@ -1,0 +1,31 @@
+{% extends "confero/base.html" %}
+
+<!-- Content -->
+{% block content %}
+
+<h1>
+  {{ candidate.name }}
+</h1>
+
+<p>Party: {{ candidate.party_full }}</p>
+<p>State: {{ candidate.state }}</p>
+<p>Office: {{ candidate.get_office_display }}</p>
+
+<h2>Similar:</h2>
+
+<ul>
+  {%for candidate in similar_candidates%}
+  <li>
+    <a href="{% url 'candidate' candidate.id %}">
+      {{ candidate.name }}
+      ({{ candidate.party_abbreviation }})
+      {{ candidate.state }}
+    </a>
+    
+    (score: {{ candidate.contributor_count }})
+  </li>
+  {%endfor%}
+</ul>
+
+<!-- /Content -->
+{% endblock content %}
