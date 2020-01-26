@@ -1,10 +1,13 @@
 import React from "react";
-import { Box, Flex, Heading, Text, Divider } from "@theme-ui/components";
+import { Box, Typography, Paper, List, Divider } from "@material-ui/core";
 
-import { Candidate, findConnectedCandidates } from "lib/candidate";
+import {
+  Candidate,
+  findConnectedCandidates,
+  candidateName
+} from "lib/candidate";
 import { Connection } from "lib/connection";
 import ConnectedCandidate from "./ConnectedCandidate";
-import { lookupOffice } from "lib/lookups";
 
 export interface CandidateDetailsProps {
   candidate: Candidate;
@@ -26,18 +29,22 @@ const CandidateDetails: React.FunctionComponent<CandidateDetailsProps> = ({
   );
 
   return (
-    <Flex sx={{ flexDirection: "column" }}>
-      <Heading>{candidate.name}</Heading>
-      <Text>Running For: {lookupOffice(candidate.office)}</Text>
+    <Paper>
+      <Box flexDirection="column" p={3}>
+        <Typography variant="h3">{candidateName(candidate)}</Typography>
 
-      <Heading as="h3">Connected Campaigns:</Heading>
-      {connectedCandidates.map(props => (
-        <Box key={props.candidate.id}>
-          <ConnectedCandidate {...props} onSelect={onSelect} />
-          <Divider />
-        </Box>
-      ))}
-    </Flex>
+        <Typography variant="h5">Connected Campaigns:</Typography>
+        <List>
+          {connectedCandidates.map(props => (
+            <ConnectedCandidate
+              key={props.candidate.id}
+              {...props}
+              onSelect={onSelect}
+            />
+          ))}
+        </List>
+      </Box>
+    </Paper>
   );
 };
 

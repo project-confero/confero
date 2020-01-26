@@ -1,5 +1,4 @@
 import React from "react";
-import { Box, Container } from "theme-ui";
 import * as d3 from "d3";
 import { SimulationNodeDatum, SimulationLinkDatum } from "d3-force";
 
@@ -186,12 +185,7 @@ const Graph = () => {
   //   connectedLinks.style("opacity", 1).attr("stroke", "black");
   // });
 
-  return (
-    <Container>
-      <Box>Confero Graph</Box>
-      <svg ref={ref} width={width} height={height}></svg>
-    </Container>
-  );
+  return <svg ref={ref} width={width} height={height}></svg>;
 };
 
 export default Graph;

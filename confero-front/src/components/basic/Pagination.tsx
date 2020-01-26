@@ -1,6 +1,6 @@
 import React from "react";
 import { clamp } from "lodash";
-import { Box, Button, Flex } from "@theme-ui/components";
+import { Box, Button } from "@material-ui/core";
 
 export interface PaginationProps<T> {
   items: T[];
@@ -30,7 +30,7 @@ function Pagination<T extends { id: unknown }>({
     <Box>
       {renderItems(filteredItems)}
 
-      <Flex sx={{ justifyContent: "space-between", alignItems: "center" }}>
+      <Box display="flex" justifyContent="space-between" alignItems="center">
         <Button onClick={() => clampPage(page - 1)}>Prev</Button>
         {page > 0 && <Button onClick={() => setPage(0)}>1</Button>}
         <Button>{page + 1}</Button>
@@ -38,7 +38,7 @@ function Pagination<T extends { id: unknown }>({
           <Button onClick={() => setPage(lastPage)}>{lastPage + 1}</Button>
         )}
         <Button onClick={() => clampPage(page + 1)}>Next</Button>
-      </Flex>
+      </Box>
     </Box>
   );
 }

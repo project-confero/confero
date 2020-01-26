@@ -1,15 +1,5 @@
-import { base } from "@theme-ui/presets";
+import { createMuiTheme } from "@material-ui/core/styles";
 
-const theme = {
-  ...base,
-  layout: {
-    container: {
-      padding: 2,
-      width: [540, 720, 960, 1140]
-    }
-  }
-};
-
-console.log(theme);
+const theme = createMuiTheme({});
 
 export default theme;
