@@ -1,7 +1,7 @@
 const offices: Record<string, string> = {
-  H: "House",
+  P: "President",
   S: "Senate",
-  P: "President"
+  H: "House"
 };
 
 const partyColors: Record<string, string> = {
@@ -9,6 +9,17 @@ const partyColors: Record<string, string> = {
   REP: "red",
   DEFAULT: "gray"
 };
+
+export const officeOptions = Object.entries(offices).map(([value, label]) => ({
+  value,
+  label
+}));
+
+export const partyOptions = [
+  { value: "DEM", label: "Democrats" },
+  { value: "REP", label: "Republicans" },
+  { value: "OTHER", label: "Others" }
+];
 
 export const lookupOffice = (abbreviation: string): string =>
   offices[abbreviation] || "Unknown";

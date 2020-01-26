@@ -3,7 +3,6 @@ import {
   Box,
   Container,
   TextField,
-  Button,
   Typography,
   Divider,
   List,
@@ -15,39 +14,47 @@ import {
 import candidates from "data/candidates.json";
 import connections from "data/connections.json";
 import { Candidate, candidateName } from "lib/candidate";
+import { officeOptions, partyOptions } from "lib/lookups";
 import Pagination from "../basic/Pagination";
 import CandidateDetails from "./CandidateDetails";
-import OfficeBadge from "./CandidateAvatar";
 import CandidateAvatar from "./CandidateAvatar";
+import FilterButtons from "./FilterButtons";
+
+const filterCandidates = (
+  candidates: Candidate[],
+  textFilter: string,
+  officeFilters: string[],
+  partyFilters: string[]
+): Candidate[] => {
+  const compareFilter = textFilter.toLowerCase();
+  return candidates.filter(candidate => {
+    const matchesText = candidate.name.toLowerCase().includes(compareFilter);
+    const matchesOffice =
+      officeFilters.length === 0 || officeFilters.includes(candidate.office);
+    const matchesParty =
+      partyFilters.length === 0 ||
+      partyFilters.includes(candidate.party || "") ||
+      (partyFilters.includes("OTHER") &&
+        candidate.party !== "DEM" &&
+        candidate.party !== "REP");
+
+    return matchesText && matchesOffice && matchesParty;
+  });
+};
 
 const Candidates = () => {
   const [filter, setFilter] = React.useState("");
-  const [officeFilters, setOfficeFilters] = React.useState<string[]>([]);
+  const [officeFilters, setOfficeFilters] = React.useState<string[]>(["P"]);
+  const [partyFilters, setPartyFilters] = React.useState<string[]>([]);
   const [
     selectedCandidate,
     setSelectedCandidate
   ] = React.useState<Candidate | null>(null);
 
-  const onOfficeClick = (office: string) => {
-    if (officeFilters.includes(office)) {
-      setOfficeFilters(officeFilters.filter(filter => filter !== office));
-    } else {
-      setOfficeFilters([...officeFilters, office]);
-    }
-  };
-
-  const shownCandidates = React.useMemo(() => {
-    const compareFilter = filter.toLowerCase();
-    return candidates.filter(candidate => {
-      const matchesText = candidate.name.toLowerCase().includes(compareFilter);
-      const matchesOffice =
-        officeFilters.length > 0
-          ? officeFilters.includes(candidate.office)
-          : true;
-
-      return matchesText && matchesOffice;
-    });
-  }, [filter, officeFilters]);
+  const shownCandidates = React.useMemo(
+    () => filterCandidates(candidates, filter, officeFilters, partyFilters),
+    [filter, officeFilters, partyFilters]
+  );
 
   return (
     <Container>
@@ -71,28 +78,18 @@ const Candidates = () => {
         variant="filled"
       />
 
-      <Box display="flex" my={2}>
-        <Button
-          variant="contained"
-          onClick={() => onOfficeClick("P")}
-          color={officeFilters.includes("P") ? "primary" : "default"}
-        >
-          President
-        </Button>
-        <Button
-          variant="contained"
-          color={officeFilters.includes("H") ? "primary" : "default"}
-          onClick={() => onOfficeClick("H")}
-        >
-          House
-        </Button>
-        <Button
-          variant="contained"
-          color={officeFilters.includes("S") ? "primary" : "default"}
-          onClick={() => onOfficeClick("S")}
-        >
-          Senate
-        </Button>
+      <Box display="flex">
+        <FilterButtons
+          value={officeFilters}
+          options={officeOptions}
+          onChange={setOfficeFilters}
+        />
+
+        <FilterButtons
+          value={partyFilters}
+          options={partyOptions}
+          onChange={setPartyFilters}
+        />
       </Box>
 
       <Box display="flex">
