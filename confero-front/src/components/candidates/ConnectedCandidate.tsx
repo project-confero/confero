@@ -1,8 +1,8 @@
 import React from "react";
-import { Text } from "@theme-ui/components";
+import { ListItem, ListItemText, ListItemAvatar } from "@material-ui/core";
 
 import { Candidate, candidateName } from "lib/candidate";
-import TextButton from "components/basic/TextButton";
+import CandidateAvatar from "./CandidateAvatar";
 
 export interface ConnectedCandidateProps {
   candidate: Candidate;
@@ -16,10 +16,15 @@ const ConnectedCandidate: React.FunctionComponent<ConnectedCandidateProps> = ({
   onSelect
 }) => {
   return (
-    <TextButton onClick={() => onSelect(candidate)}>
-      <Text>{candidateName(candidate)}</Text>
-      <Text>Shared Contributors: {score}</Text>
-    </TextButton>
+    <ListItem button onClick={() => onSelect(candidate)}>
+      <ListItemAvatar>
+        <CandidateAvatar candidate={candidate} />
+      </ListItemAvatar>
+      <ListItemText
+        primary={candidateName(candidate)}
+        secondary={`Shared Contributors: ${score}`}
+      />
+    </ListItem>
   );
 };
 

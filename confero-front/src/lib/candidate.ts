@@ -13,9 +13,15 @@ export interface Candidate {
   contribution_amount: number;
 }
 
-export const candidateName = (candidate: Candidate): string => {
-  if (!candidate.party) return candidate.name;
-  return `${candidate.name} (${candidate.party[0]} ${candidate.state})`;
+export const candidateName = ({
+  name,
+  office,
+  state,
+  district
+}: Candidate): string => {
+  if (office === "P") return `${name}: President`;
+  if (office === "S") return `${name}: ${state} Senate`;
+  return `${name}: ${state} D${district} House`;
 };
 
 export const findConnectedCandidates = (

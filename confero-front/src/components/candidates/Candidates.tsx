@@ -1,11 +1,24 @@
 import React from "react";
-import { Box, Container, Flex, Input, Button } from "@theme-ui/components";
+import {
+  Box,
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon
+} from "@material-ui/core";
 
 import candidates from "data/candidates.json";
 import connections from "data/connections.json";
 import { Candidate, candidateName } from "lib/candidate";
 import Pagination from "../basic/Pagination";
 import CandidateDetails from "./CandidateDetails";
+import OfficeBadge from "./CandidateAvatar";
+import CandidateAvatar from "./CandidateAvatar";
 
 const Candidates = () => {
   const [filter, setFilter] = React.useState("");
@@ -38,51 +51,74 @@ const Candidates = () => {
 
   return (
     <Container>
-      <Input
+      <Box my={2}>
+        <Typography>
+          Looking to see how specific candidates are connected? Trying to figure
+          out who to support?
+        </Typography>
+        <Typography>
+          Search for candidates by name, or filter by office, party, and more.
+        </Typography>
+      </Box>
+
+      <Divider />
+
+      <TextField
         value={filter}
         onChange={event => setFilter(event.target.value)}
-        placeholder="Search by name"
+        label="Search by name"
+        fullWidth
+        variant="filled"
       />
 
-      <Flex>
+      <Box display="flex" my={2}>
         <Button
+          variant="contained"
           onClick={() => onOfficeClick("P")}
-          backgroundColor={officeFilters.includes("P") ? "primary" : "gray"}
+          color={officeFilters.includes("P") ? "primary" : "default"}
         >
           President
         </Button>
         <Button
-          backgroundColor={officeFilters.includes("H") ? "primary" : "gray"}
+          variant="contained"
+          color={officeFilters.includes("H") ? "primary" : "default"}
           onClick={() => onOfficeClick("H")}
         >
           House
         </Button>
         <Button
-          backgroundColor={officeFilters.includes("S") ? "primary" : "gray"}
+          variant="contained"
+          color={officeFilters.includes("S") ? "primary" : "default"}
           onClick={() => onOfficeClick("S")}
         >
           Senate
         </Button>
-      </Flex>
+      </Box>
 
-      <Flex>
+      <Box display="flex">
         <Pagination size={10} items={shownCandidates}>
-          {candidates =>
-            candidates.map((candidate: Candidate) => (
-              <Flex key={candidate.id}>
-                <Button
-                  bg="transparent"
-                  color="text"
+          {candidates => (
+            <List>
+              {candidates.map((candidate: Candidate) => (
+                <ListItem
+                  key={candidate.id}
+                  button
                   onClick={() => setSelectedCandidate(candidate)}
                 >
-                  {candidateName(candidate)}
-                </Button>
-              </Flex>
-            ))
-          }
+                  <ListItemIcon>
+                    <CandidateAvatar candidate={candidate} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={candidateName(candidate)}
+                    secondary={`Connection Score: ${candidate.score}`}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          )}
         </Pagination>
 
-        <Box sx={{ flexGrow: 1 }} pl={2}>
+        <Box flexGrow={1} pl={2}>
           {selectedCandidate && (
             <CandidateDetails
               candidate={selectedCandidate}
@@ -92,7 +128,7 @@ const Candidates = () => {
             />
           )}
         </Box>
-      </Flex>
+      </Box>
     </Container>
   );
 };

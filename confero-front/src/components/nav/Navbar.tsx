@@ -1,23 +1,27 @@
 import React from "react";
-import { Box, Flex } from "@theme-ui/components";
+import { AppBar, Toolbar, Typography, Box, Button } from "@material-ui/core";
 
-import NavLink from "./NavLink";
+import Link from "./Link";
 
 const Navbar = () => {
   return (
-    <Flex sx={{ px: 2, bg: "black", alignItems: "center" }} color="white">
-      <NavLink to="/" p={2}>
-        Confero
-      </NavLink>
-
-      <Box sx={{ mx: "auto" }} />
-      <NavLink p={2} to="/candidates">
-        Candidates
-      </NavLink>
-      <NavLink p={2} to="/connections">
-        Connections
-      </NavLink>
-    </Flex>
+    <AppBar position="static">
+      <Toolbar>
+        <Box flexGrow={1}>
+          <Typography variant="h6">
+            <Link to="/" color="inherit">
+              Project Confero
+            </Link>
+          </Typography>
+        </Box>
+        <Link to="/candidates" color="inherit">
+          <Button color="inherit">Candidates</Button>
+        </Link>
+        <Link to="/connections" color="inherit">
+          <Button color="inherit">Connections</Button>
+        </Link>
+      </Toolbar>
+    </AppBar>
   );
 };
 
