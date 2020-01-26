@@ -1,7 +1,4 @@
-import { CandidateNode } from "./candidate";
-
 export interface Connection {
-  id: number;
   score: number;
   source_id: string;
   target_id: string;

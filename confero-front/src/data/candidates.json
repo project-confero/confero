@@ -1,2267 +1,14 @@
 [
   {
-    "id": "H0AL01089",
-    "name": "HIGHTOWER, BILL",
-    "office": "H",
-    "party": "REP",
-    "state": "AL",
-    "district": 1
-  },
-  {
-    "id": "H0AL07086",
-    "name": "SEWELL, TERRI A.",
-    "office": "H",
+    "id": "S0KY00339",
+    "name": "MCGRATH, AMY",
+    "office": "S",
     "party": "DEM",
-    "state": "AL",
-    "district": 7
-  },
-  {
-    "id": "H0AR03105",
-    "name": "WILLIAMS, CELESTE SARENE",
-    "office": "H",
-    "party": "DEM",
-    "state": "AR",
-    "district": 3
-  },
-  {
-    "id": "H0AZ01358",
-    "name": "PUTZOVA, EVA",
-    "office": "H",
-    "party": "DEM",
-    "state": "AZ",
-    "district": 1
-  },
-  {
-    "id": "H0CA03078",
-    "name": "BERA, AMERISH",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 7
-  },
-  {
-    "id": "H0CA04175",
-    "name": "KENNEDY, BRYNNE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 4
-  },
-  {
-    "id": "H0CA08101",
-    "name": "BUBSER, CHRISTINE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 8
-  },
-  {
-    "id": "H0CA22094",
-    "name": "REZVANI SARABI, AMIR DARYOUSH",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 22
-  },
-  {
-    "id": "H0CA22102",
-    "name": "ARBALLO, PHIL",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 22
-  },
-  {
-    "id": "H0CA27085",
-    "name": "SCHIFF, ADAM",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 28
-  },
-  {
-    "id": "H0CA28158",
-    "name": "HOLLIS, JON",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 28
-  },
-  {
-    "id": "H0CA33117",
-    "name": "BASS, KAREN",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 37
-  },
-  {
-    "id": "H0CA43108",
-    "name": "COLLINS, JOE",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 43
-  },
-  {
-    "id": "H0CA45129",
-    "name": "SPARKS, LISA",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 45
-  },
-  {
-    "id": "H0CA48198",
-    "name": "STEEL, MICHELLE",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 48
-  },
-  {
-    "id": "H0CA50111",
-    "name": "WILSKE, LARRY A MR.",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 50
-  },
-  {
-    "id": "H0CA53107",
-    "name": "GOMEZ, GEORGETTE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 53
-  },
-  {
-    "id": "H0CA53115",
-    "name": "JACOBS, SARA",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 53
-  },
-  {
-    "id": "H0CO01136",
-    "name": "DURAN, CRISANTA DESIRAE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CO",
-    "district": 1
-  },
-  {
-    "id": "H0CO06119",
-    "name": "HOUSE, STEVEN",
-    "office": "H",
-    "party": "REP",
-    "state": "CO",
-    "district": 6
-  },
-  {
-    "id": "H0CT03072",
-    "name": "DELAURO, ROSA L",
-    "office": "H",
-    "party": "DEM",
-    "state": "CT",
-    "district": 3
-  },
-  {
-    "id": "H0FL13133",
-    "name": "MAKKI, AMANDA",
-    "office": "H",
-    "party": "REP",
-    "state": "FL",
-    "district": 13
-  },
-  {
-    "id": "H0FL15088",
-    "name": "HATTERSLEY, ADAM ROGER",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 15
-  },
-  {
-    "id": "H0FL16094",
-    "name": "GOOD, MARGARET ELIZABETH ROWELL",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 16
-  },
-  {
-    "id": "H0FL19080",
-    "name": "DEUTCH, THEODORE ELIOT",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 22
-  },
-  {
-    "id": "H0FL21078",
-    "name": "LOOMER, LAURA",
-    "office": "H",
-    "party": "REP",
-    "state": "FL",
-    "district": 21
-  },
-  {
-    "id": "H0GA06168",
-    "name": "BEACH, BRANDON",
-    "office": "H",
-    "party": "REP",
-    "state": "GA",
-    "district": 6
-  },
-  {
-    "id": "H0GA07208",
-    "name": "ISLAM, NABILAH AISHAH",
-    "office": "H",
-    "party": "DEM",
-    "state": "GA",
-    "district": 7
-  },
-  {
-    "id": "H0GA07265",
-    "name": "LERAH, LEE",
-    "office": "H",
-    "party": "REP",
-    "state": "GA",
-    "district": 7
-  },
-  {
-    "id": "H0GA07299",
-    "name": "UNTERMAN, RENEE",
-    "office": "H",
-    "party": "REP",
-    "state": "GA",
-    "district": 7
-  },
-  {
-    "id": "H0GA07323",
-    "name": "KARINSHAK, ZAHRA S.",
-    "office": "H",
-    "party": "DEM",
-    "state": "GA",
-    "district": 7
-  },
-  {
-    "id": "H0IA01174",
-    "name": "ARENHOLZ, ASHLEY HINSON",
-    "office": "H",
-    "party": "REP",
-    "state": "IA",
-    "district": 1
-  },
-  {
-    "id": "H0IA02156",
-    "name": "HART, RITA",
-    "office": "H",
-    "party": "DEM",
-    "state": "IA",
-    "district": 2
-  },
-  {
-    "id": "H0IL05096",
-    "name": "QUIGLEY, MIKE",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 5
-  },
-  {
-    "id": "H0IL06060",
-    "name": "IVES, JEANNE",
-    "office": "H",
-    "party": "REP",
-    "state": "IL",
-    "district": 6
-  },
-  {
-    "id": "H0IL07175",
-    "name": "SCHANBACHER, KRISTINE",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 7
-  },
-  {
-    "id": "H0IL14197",
-    "name": "LAUF, CATALINA",
-    "office": "H",
-    "party": "REP",
-    "state": "IL",
-    "district": 14
-  },
-  {
-    "id": "H0IN02190",
-    "name": "WALORSKI SWIHART, JACKIE",
-    "office": "H",
-    "party": "REP",
-    "state": "IN",
-    "district": 2
-  },
-  {
-    "id": "H0IN05219",
-    "name": "HALE, CHRISTINA",
-    "office": "H",
-    "party": "DEM",
-    "state": "IN",
-    "district": 5
-  },
-  {
-    "id": "H0KY06104",
-    "name": "BARR, GARLAND ANDY",
-    "office": "H",
-    "party": "REP",
     "state": "KY",
-    "district": 6
-  },
-  {
-    "id": "H0LA01087",
-    "name": "SCALISE, STEVE MR",
-    "office": "H",
-    "party": "REP",
-    "state": "LA",
-    "district": 1
-  },
-  {
-    "id": "H0MA01081",
-    "name": "MORSE, ALEX",
-    "office": "H",
-    "party": "DEM",
-    "state": "MA",
-    "district": 1
-  },
-  {
-    "id": "H0MI02094",
-    "name": "HUIZENGA, WILLIAM P",
-    "office": "H",
-    "party": "REP",
-    "state": "MI",
-    "district": 2
-  },
-  {
-    "id": "H0MI03282",
-    "name": "COLVIN, NICK",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 3
-  },
-  {
-    "id": "H0MI03316",
-    "name": "SCHOLTEN, HILLARY",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 3
-  },
-  {
-    "id": "H0MI06152",
-    "name": "HOADLEY, JON",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 6
-  },
-  {
-    "id": "H0NC02083",
-    "name": "COOPER, SCOTT",
-    "office": "H",
-    "party": "DEM",
-    "state": "NC",
-    "district": 2
-  },
-  {
-    "id": "H0NC03172",
-    "name": "MURPHY, GREGORY FRANCIS",
-    "office": "H",
-    "party": "REP",
-    "state": "NC",
-    "district": 3
-  },
-  {
-    "id": "H0NC03248",
-    "name": "THOMAS, ALLEN",
-    "office": "H",
-    "party": "DEM",
-    "state": "NC",
-    "district": 3
-  },
-  {
-    "id": "H0NC09187",
-    "name": "BISHOP, JAMES DANIEL",
-    "office": "H",
-    "party": "REP",
-    "state": "NC",
-    "district": 9
-  },
-  {
-    "id": "H0NH02181",
-    "name": "KUSTER, ANN MCLANE",
-    "office": "H",
-    "party": "DEM",
-    "state": "NH",
-    "district": 2
-  },
-  {
-    "id": "H0NJ07261",
-    "name": "KEAN, THOMAS H. JR.",
-    "office": "H",
-    "party": "REP",
-    "state": "NJ",
-    "district": 7
-  },
-  {
-    "id": "H0NM03110",
-    "name": "PLAME, VALERIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "NM",
-    "district": 3
-  },
-  {
-    "id": "H0NY11078",
-    "name": "MALLIOTAKIS, NICOLE",
-    "office": "H",
-    "party": "REP",
-    "state": "NY",
-    "district": 11
-  },
-  {
-    "id": "H0NY15160",
-    "name": "TORRES, RITCHIE JOHN",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 15
-  },
-  {
-    "id": "H0NY15194",
-    "name": "BLAKE, MICHAEL ALEXANDER",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 15
-  },
-  {
-    "id": "H0NY17174",
-    "name": "JONES, MONDAIRE",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 17
-  },
-  {
-    "id": "H0NY24063",
-    "name": "CONOLE, FRANCIS",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 24
-  },
-  {
-    "id": "H0OH01081",
-    "name": "FOSTER, NIKKI",
-    "office": "H",
-    "party": "DEM",
-    "state": "OH",
-    "district": 1
-  },
-  {
-    "id": "H0OH01099",
-    "name": "SCHRODER, KATE",
-    "office": "H",
-    "party": "DEM",
-    "state": "OH",
-    "district": 1
-  },
-  {
-    "id": "H0OH05074",
-    "name": "RUBANDO, NICK",
-    "office": "H",
-    "party": "DEM",
-    "state": "OH",
-    "district": 5
-  },
-  {
-    "id": "H0PA10110",
-    "name": "DEPASQUALE, EUGENE",
-    "office": "H",
-    "party": "DEM",
-    "state": "PA",
-    "district": 10
-  },
-  {
-    "id": "H0RI01073",
-    "name": "CICILLINE, DAVID N",
-    "office": "H",
-    "party": "DEM",
-    "state": "RI",
-    "district": 1
-  },
-  {
-    "id": "H0SC02061",
-    "name": "BOROUGHS, ADAIR FORD",
-    "office": "H",
-    "party": "DEM",
-    "state": "SC",
-    "district": 2
-  },
-  {
-    "id": "H0SC03077",
-    "name": "DUNCAN, JEFFREY D MR.",
-    "office": "H",
-    "party": "REP",
-    "state": "SC",
-    "district": 3
-  },
-  {
-    "id": "H0TX07170",
-    "name": "HUNT, WESLEY",
-    "office": "H",
-    "party": "REP",
-    "state": "TX",
-    "district": 7
-  },
-  {
-    "id": "H0TX10216",
-    "name": "GANDHI, PRITESH",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 10
-  },
-  {
-    "id": "H0TX21148",
-    "name": "DAVIS, WENDY",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 21
-  },
-  {
-    "id": "H0TX24167",
-    "name": "OLSON, KIMBERLY D",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 24
-  },
-  {
-    "id": "H0TX28077",
-    "name": "CISNEROS, JESSICA",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 28
-  },
-  {
-    "id": "H0VA05145",
-    "name": "WEBB, BRYANT CAMERON",
-    "office": "H",
-    "party": "DEM",
-    "state": "VA",
-    "district": 5
-  },
-  {
-    "id": "H0WA08046",
-    "name": "DELBENE, SUZAN K",
-    "office": "H",
-    "party": "DEM",
-    "state": "WA",
-    "district": 1
-  },
-  {
-    "id": "H0WI07051",
-    "name": "DUFFY, SEAN",
-    "office": "H",
-    "party": "REP",
-    "state": "WI",
-    "district": 7
-  },
-  {
-    "id": "H2CA00120",
-    "name": "BROWNLEY, JULIA",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 26
-  },
-  {
-    "id": "H2CA08164",
-    "name": "COOK, PAUL",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 8
-  },
-  {
-    "id": "H2CA15094",
-    "name": "SWALWELL, ERIC MICHAEL",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 15
-  },
-  {
-    "id": "H2CA28113",
-    "name": "CARDENAS, TONY",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 29
-  },
-  {
-    "id": "H2CA31125",
-    "name": "AGUILAR, PETE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 31
-  },
-  {
-    "id": "H2CA36439",
-    "name": "RUIZ, RAUL DR",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 36
-  },
-  {
-    "id": "H2CA39078",
-    "name": "SANCHEZ, LINDA",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 38
-  },
-  {
-    "id": "H2GA09150",
-    "name": "COLLINS, DOUGLAS ALLEN",
-    "office": "H",
-    "party": "REP",
-    "state": "GA",
-    "district": 9
-  },
-  {
-    "id": "H2IA05072",
-    "name": "KING, STEVE MR.",
-    "office": "H",
-    "party": "REP",
-    "state": "IA",
-    "district": 4
-  },
-  {
-    "id": "H2IL02172",
-    "name": "KELLY, ROBIN",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 2
-  },
-  {
-    "id": "H2IL10068",
-    "name": "SCHNEIDER, BRADLEY SCOTT",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 10
-  },
-  {
-    "id": "H2IL13120",
-    "name": "DAVIS, RODNEY L",
-    "office": "H",
-    "party": "REP",
-    "state": "IL",
-    "district": 13
-  },
-  {
-    "id": "H2IL17071",
-    "name": "BUSTOS, CHERI",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 17
-  },
-  {
-    "id": "H2MD05155",
-    "name": "HOYER, STENY",
-    "office": "H",
-    "party": "DEM",
-    "state": "MD",
-    "district": 5
-  },
-  {
-    "id": "H2MI05119",
-    "name": "KILDEE, DANIEL T.",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 5
-  },
-  {
-    "id": "H2MO02102",
-    "name": "WAGNER, ANN L.",
-    "office": "H",
-    "party": "REP",
-    "state": "MO",
-    "district": 2
-  },
-  {
-    "id": "H2NC08185",
-    "name": "HUDSON, RICHARD L. JR.",
-    "office": "H",
-    "party": "REP",
-    "state": "NC",
-    "district": 8
-  },
-  {
-    "id": "H2NC11080",
-    "name": "MEADOWS, MARK R",
-    "office": "H",
-    "party": "REP",
-    "state": "NC",
-    "district": 11
-  },
-  {
-    "id": "H2NV04011",
-    "name": "HORSFORD, STEVEN ALEXZANDER",
-    "office": "H",
-    "party": "DEM",
-    "state": "NV",
-    "district": 4
-  },
-  {
-    "id": "H2NY10092",
-    "name": "JEFFRIES, HAKEEM",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 8
-  },
-  {
-    "id": "H2NY14037",
-    "name": "MALONEY, CAROLYN B.",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 12
-  },
-  {
-    "id": "H2NY17071",
-    "name": "NADLER, JERROLD L.",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 10
-  },
-  {
-    "id": "H2NY22139",
-    "name": "MALONEY, SEAN PATRICK",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 18
-  },
-  {
-    "id": "H2PA17079",
-    "name": "CARTWRIGHT, MATTHEW A.",
-    "office": "H",
-    "party": "DEM",
-    "state": "PA",
-    "district": 8
-  },
-  {
-    "id": "H2SC02042",
-    "name": "CLYBURN, JAMES E.",
-    "office": "H",
-    "party": "DEM",
-    "state": "SC",
-    "district": 6
-  },
-  {
-    "id": "H2WA06129",
-    "name": "KILMER, DEREK",
-    "office": "H",
-    "party": "DEM",
-    "state": "WA",
-    "district": 6
-  },
-  {
-    "id": "H2WI02124",
-    "name": "POCAN, MARK",
-    "office": "H",
-    "party": "DEM",
-    "state": "WI",
-    "district": 2
-  },
-  {
-    "id": "H4AZ06045",
-    "name": "SCHWEIKERT, DAVID S.",
-    "office": "H",
-    "party": "REP",
-    "state": "AZ",
-    "district": 6
-  },
-  {
-    "id": "H4AZ07043",
-    "name": "GALLEGO, RUBEN",
-    "office": "H",
-    "party": "DEM",
-    "state": "AZ",
-    "district": 7
-  },
-  {
-    "id": "H4CA11081",
-    "name": "MCNERNEY, GERALD MARK",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 9
-  },
-  {
-    "id": "H4CA12055",
-    "name": "KHANNA, ROHIT",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 17
-  },
-  {
-    "id": "H4CA16049",
-    "name": "LOFGREN, ZOE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 19
-  },
-  {
-    "id": "H4CA23011",
-    "name": "WATERS, MAXINE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 43
-  },
-  {
-    "id": "H4CA33119",
-    "name": "LIEU, TED",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 33
-  },
-  {
-    "id": "H4CA45089",
-    "name": "RATHS, GREGORY GERARD",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 45
-  },
-  {
-    "id": "H4FL20023",
-    "name": "WASSERMAN SCHULTZ, DEBBIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 23
-  },
-  {
-    "id": "H4IL03077",
-    "name": "LIPINSKI, DANIEL WILLIAM WILLIAM",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 3
-  },
-  {
-    "id": "H4MA03022",
-    "name": "MCGOVERN, JAMES P. MR.",
-    "office": "H",
-    "party": "DEM",
-    "state": "MA",
-    "district": 2
-  },
-  {
-    "id": "H4MI12079",
-    "name": "DINGELL, DEBBIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 12
-  },
-  {
-    "id": "H4MN06087",
-    "name": "EMMER, THOMAS EARL JR.",
-    "office": "H",
-    "party": "REP",
-    "state": "MN",
-    "district": 6
-  },
-  {
-    "id": "H4MT00050",
-    "name": "ROSENDALE, MATT MR.",
-    "office": "H",
-    "party": "REP",
-    "state": "MT",
-    "district": 0
-  },
-  {
-    "id": "H4NC01046",
-    "name": "BUTTERFIELD, G. K.",
-    "office": "H",
-    "party": "DEM",
-    "state": "NC",
-    "district": 1
-  },
-  {
-    "id": "H4NC10047",
-    "name": "MCHENRY, PATRICK TIMOTHY",
-    "office": "H",
-    "party": "REP",
-    "state": "NC",
-    "district": 10
-  },
-  {
-    "id": "H4NY21079",
-    "name": "STEFANIK, ELISE M.",
-    "office": "H",
-    "party": "REP",
-    "state": "NY",
-    "district": 21
-  },
-  {
-    "id": "H4NY24073",
-    "name": "KATKO, JOHN M",
-    "office": "H",
-    "party": "REP",
-    "state": "NY",
-    "district": 24
-  },
-  {
-    "id": "H4TX10093",
-    "name": "MCCAUL, MICHAEL",
-    "office": "H",
-    "party": "REP",
-    "state": "TX",
-    "district": 10
-  },
-  {
-    "id": "H4WA04104",
-    "name": "NEWHOUSE, DAN",
-    "office": "H",
-    "party": "REP",
-    "state": "WA",
-    "district": 4
-  },
-  {
-    "id": "H4WA05077",
-    "name": "MCMORRIS RODGERS, CATHY",
-    "office": "H",
-    "party": "REP",
-    "state": "WA",
-    "district": 5
-  },
-  {
-    "id": "H6AZ01199",
-    "name": "O'HALLERAN, TOM",
-    "office": "H",
-    "party": "DEM",
-    "state": "AZ",
-    "district": 1
-  },
-  {
-    "id": "H6AZ05083",
-    "name": "BIGGS, ANDY MR.",
-    "office": "H",
-    "party": "REP",
-    "state": "AZ",
-    "district": 5
-  },
-  {
-    "id": "H6CA22125",
-    "name": "MCCARTHY, KEVIN",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 23
-  },
-  {
-    "id": "H6CA24303",
-    "name": "CARBAJAL, SALUD O.",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 24
-  },
-  {
-    "id": "H6CA44103",
-    "name": "BARRAGAN, NANETTE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 44
-  },
-  {
-    "id": "H6CA44145",
-    "name": "NAVARRO, OMAR",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 43
-  },
-  {
-    "id": "H6CA46116",
-    "name": "CORREA, LOU",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 46
-  },
-  {
-    "id": "H6CO01141",
-    "name": "DEGETTE, DIANA L",
-    "office": "H",
-    "party": "DEM",
-    "state": "CO",
-    "district": 1
-  },
-  {
-    "id": "H6FL01119",
-    "name": "GAETZ, MATT",
-    "office": "H",
-    "party": "REP",
-    "state": "FL",
-    "district": 1
-  },
-  {
-    "id": "H6FL07140",
-    "name": "MURPHY, STEPHANIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 7
-  },
-  {
-    "id": "H6FL08213",
-    "name": "GRAYSON, ALAN MARK",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 9
-  },
-  {
-    "id": "H6FL11126",
-    "name": "CASTOR, KATHY",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 14
-  },
-  {
-    "id": "H6FL13205",
-    "name": "CRIST, CHARLIE JOSEPH",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 13
-  },
-  {
-    "id": "H6FL18097",
-    "name": "MAST, BRIAN",
-    "office": "H",
-    "party": "REP",
-    "state": "FL",
-    "district": 18
-  },
-  {
-    "id": "H6GA03113",
-    "name": "FERGUSON, ANDERSON DREW IV",
-    "office": "H",
-    "party": "REP",
-    "state": "GA",
-    "district": 3
-  },
-  {
-    "id": "H6GA05217",
-    "name": "LEWIS, JOHN R",
-    "office": "H",
-    "party": "DEM",
-    "state": "GA",
-    "district": 5
-  },
-  {
-    "id": "H6IL08147",
-    "name": "KRISHNAMOORTHI, S. RAJA",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 8
-  },
-  {
-    "id": "H6IL18088",
-    "name": "LAHOOD, DARIN MCKAY",
-    "office": "H",
-    "party": "REP",
-    "state": "IL",
-    "district": 18
-  },
-  {
-    "id": "H6MD08457",
-    "name": "RASKIN, JAMIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "MD",
-    "district": 8
-  },
-  {
-    "id": "H6MN02131",
-    "name": "CRAIG, ANGELA DAWN",
-    "office": "H",
-    "party": "DEM",
-    "state": "MN",
-    "district": 2
-  },
-  {
-    "id": "H6NE02125",
-    "name": "BACON, DONALD J",
-    "office": "H",
-    "party": "REP",
-    "state": "NE",
-    "district": 2
-  },
-  {
-    "id": "H6NJ05171",
-    "name": "GOTTHEIMER, JOSH",
-    "office": "H",
-    "party": "DEM",
-    "state": "NJ",
-    "district": 5
-  },
-  {
-    "id": "H6NV04020",
-    "name": "LEE, SUSIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "NV",
-    "district": 3
-  },
-  {
-    "id": "H6NY03247",
-    "name": "SUOZZI, THOMAS",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 3
-  },
-  {
-    "id": "H6OH04082",
-    "name": "JORDAN, JAMES D.",
-    "office": "H",
-    "party": "REP",
-    "state": "OH",
-    "district": 4
-  },
-  {
-    "id": "H6OR04047",
-    "name": "DEFAZIO, PETER A",
-    "office": "H",
-    "party": "DEM",
-    "state": "OR",
-    "district": 4
-  },
-  {
-    "id": "H6PA08277",
-    "name": "FITZPATRICK, BRIAN",
-    "office": "H",
-    "party": "REP",
-    "state": "PA",
-    "district": 1
-  },
-  {
-    "id": "H6TX08100",
-    "name": "BRADY, KEVIN",
-    "office": "H",
-    "party": "REP",
-    "state": "TX",
-    "district": 8
-  },
-  {
-    "id": "H6WA07458",
-    "name": "JAYAPAL, PRAMILA",
-    "office": "H",
-    "party": "DEM",
-    "state": "WA",
-    "district": 7
-  },
-  {
-    "id": "H8AK00140",
-    "name": "GALVIN, ALYSE",
-    "office": "H",
-    "party": "IND",
-    "state": "AK",
-    "district": 0
-  },
-  {
-    "id": "H8AZ01104",
-    "name": "KIRKPATRICK, ANN",
-    "office": "H",
-    "party": "DEM",
-    "state": "AZ",
-    "district": 2
-  },
-  {
-    "id": "H8AZ01237",
-    "name": "SHEDD, TIFFANY",
-    "office": "H",
-    "party": "REP",
-    "state": "AZ",
-    "district": 1
-  },
-  {
-    "id": "H8AZ08083",
-    "name": "TIPIRNENI, HIRAL VYAS",
-    "office": "H",
-    "party": "DEM",
-    "state": "AZ",
-    "district": 6
-  },
-  {
-    "id": "H8AZ08158",
-    "name": "LESKO, DEBBIE",
-    "office": "H",
-    "party": "REP",
-    "state": "AZ",
-    "district": 8
-  },
-  {
-    "id": "H8AZ09040",
-    "name": "STANTON, GREG",
-    "office": "H",
-    "party": "DEM",
-    "state": "AZ",
-    "district": 9
-  },
-  {
-    "id": "H8CA01257",
-    "name": "DENNEY, AUDREY L",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 1
-  },
-  {
-    "id": "H8CA05035",
-    "name": "PELOSI, NANCY",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 12
-  },
-  {
-    "id": "H8CA09060",
-    "name": "LEE, BARBARA",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 13
-  },
-  {
-    "id": "H8CA10126",
-    "name": "HARDER, JOSH",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 10
-  },
-  {
-    "id": "H8CA10167",
-    "name": "COX, TERRANCE JOHN (TJ)",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 21
-  },
-  {
-    "id": "H8CA10209",
-    "name": "HOWZE, TED D II",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 10
-  },
-  {
-    "id": "H8CA12098",
-    "name": "ESHOO, ANNA G",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 18
-  },
-  {
-    "id": "H8CA12262",
-    "name": "BUTTAR, SHAHID",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 12
-  },
-  {
-    "id": "H8CA20059",
-    "name": "NUNES, DEVIN G.",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 22
-  },
-  {
-    "id": "H8CA25074",
-    "name": "HILL, KATHERINE LAUREN",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 25
-  },
-  {
-    "id": "H8CA34266",
-    "name": "GOMEZ, JIMMY",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 34
-  },
-  {
-    "id": "H8CA39174",
-    "name": "CISNEROS, GILBERT",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 39
-  },
-  {
-    "id": "H8CA39240",
-    "name": "KIM, YOUNG",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 39
-  },
-  {
-    "id": "H8CA45130",
-    "name": "PORTER, KATHERINE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 45
-  },
-  {
-    "id": "H8CA48035",
-    "name": "ROUDA, HARLEY E JR",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 48
-  },
-  {
-    "id": "H8CA49058",
-    "name": "LEVIN, MIKE",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 49
-  },
-  {
-    "id": "H8CA50098",
-    "name": "CAMPA-NAJJAR, AMMAR",
-    "office": "H",
-    "party": "DEM",
-    "state": "CA",
-    "district": 50
-  },
-  {
-    "id": "H8CA52052",
-    "name": "HUNTER, DUNCAN D",
-    "office": "H",
-    "party": "REP",
-    "state": "CA",
-    "district": 50
-  },
-  {
-    "id": "H8CO02160",
-    "name": "NEGUSE, JOSEPH",
-    "office": "H",
-    "party": "DEM",
-    "state": "CO",
-    "district": 2
-  },
-  {
-    "id": "H8CO03192",
-    "name": "MITSCH BUSH, DIANE MS.",
-    "office": "H",
-    "party": "DEM",
-    "state": "CO",
-    "district": 3
-  },
-  {
-    "id": "H8CO06229",
-    "name": "CROW, JASON",
-    "office": "H",
-    "party": "DEM",
-    "state": "CO",
-    "district": 6
-  },
-  {
-    "id": "H8CT04172",
-    "name": "HIMES, JIM",
-    "office": "H",
-    "party": "DEM",
-    "state": "CT",
-    "district": 4
-  },
-  {
-    "id": "H8CT05245",
-    "name": "HAYES, JAHANA",
-    "office": "H",
-    "party": "DEM",
-    "state": "CT",
-    "district": 5
-  },
-  {
-    "id": "H8FL13136",
-    "name": "BUCK, GEORGE WILLIAM PHD",
-    "office": "H",
-    "party": "REP",
-    "state": "FL",
-    "district": 13
-  },
-  {
-    "id": "H8FL26039",
-    "name": "MUCARSEL-POWELL, DEBBIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 26
-  },
-  {
-    "id": "H8FL27185",
-    "name": "SALAZAR, MARIA ELVIRA",
-    "office": "H",
-    "party": "REP",
-    "state": "FL",
-    "district": 27
-  },
-  {
-    "id": "H8FL27193",
-    "name": "SHALALA, DONNA",
-    "office": "H",
-    "party": "DEM",
-    "state": "FL",
-    "district": 27
-  },
-  {
-    "id": "H8GA06286",
-    "name": "HANDEL, KAREN CHRISTINE",
-    "office": "H",
-    "party": "REP",
-    "state": "GA",
-    "district": 6
-  },
-  {
-    "id": "H8GA06393",
-    "name": "MCBATH, LUCIA KAY MS.",
-    "office": "H",
-    "party": "DEM",
-    "state": "GA",
-    "district": 6
-  },
-  {
-    "id": "H8GA07201",
-    "name": "BOURDEAUX, CAROLYN",
-    "office": "H",
-    "party": "DEM",
-    "state": "GA",
-    "district": 7
-  },
-  {
-    "id": "H8IA01094",
-    "name": "FINKENAUER, ABBY",
-    "office": "H",
-    "party": "DEM",
-    "state": "IA",
-    "district": 1
-  },
-  {
-    "id": "H8IA03124",
-    "name": "AXNE, CINDY",
-    "office": "H",
-    "party": "DEM",
-    "state": "IA",
-    "district": 3
-  },
-  {
-    "id": "H8IA04106",
-    "name": "SCHOLTEN, JAMES D.",
-    "office": "H",
-    "party": "DEM",
-    "state": "IA",
-    "district": 4
-  },
-  {
-    "id": "H8IL03102",
-    "name": "NEWMAN, MARIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 3
-  },
-  {
-    "id": "H8IL06139",
-    "name": "CASTEN, SEAN",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 6
-  },
-  {
-    "id": "H8IL13150",
-    "name": "LONDRIGAN, BETSY DIRKSEN",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 13
-  },
-  {
-    "id": "H8IL14067",
-    "name": "FOSTER, G. WILLIAM (BILL)",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 11
-  },
-  {
-    "id": "H8IL14174",
-    "name": "UNDERWOOD, LAUREN",
-    "office": "H",
-    "party": "DEM",
-    "state": "IL",
-    "district": 14
-  },
-  {
-    "id": "H8IN06129",
-    "name": "PENCE, GREGORY J.",
-    "office": "H",
-    "party": "REP",
-    "state": "IN",
-    "district": 6
-  },
-  {
-    "id": "H8KS03155",
-    "name": "DAVIDS, SHARICE",
-    "office": "H",
-    "party": "DEM",
-    "state": "KS",
-    "district": 3
-  },
-  {
-    "id": "H8MA02041",
-    "name": "NEAL, RICHARD E MR.",
-    "office": "H",
-    "party": "DEM",
-    "state": "MA",
-    "district": 1
-  },
-  {
-    "id": "H8MA03106",
-    "name": "TRAHAN, LORI",
-    "office": "H",
-    "party": "DEM",
-    "state": "MA",
-    "district": 3
-  },
-  {
-    "id": "H8MA07032",
-    "name": "PRESSLEY, AYANNA",
-    "office": "H",
-    "party": "DEM",
-    "state": "MA",
-    "district": 7
-  },
-  {
-    "id": "H8MA08170",
-    "name": "WU, BRIANNA",
-    "office": "H",
-    "party": "DEM",
-    "state": "MA",
-    "district": 8
-  },
-  {
-    "id": "H8ME02185",
-    "name": "GOLDEN, JARED",
-    "office": "H",
-    "party": "DEM",
-    "state": "ME",
-    "district": 2
-  },
-  {
-    "id": "H8MI08102",
-    "name": "SLOTKIN, ELISSA",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 8
-  },
-  {
-    "id": "H8MI09118",
-    "name": "LEVIN, ANDY",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 9
-  },
-  {
-    "id": "H8MI11254",
-    "name": "STEVENS, HALEY",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 11
-  },
-  {
-    "id": "H8MI13250",
-    "name": "TLAIB, RASHIDA",
-    "office": "H",
-    "party": "DEM",
-    "state": "MI",
-    "district": 13
-  },
-  {
-    "id": "H8MN03143",
-    "name": "PHILLIPS, DEAN",
-    "office": "H",
-    "party": "DFL",
-    "state": "MN",
-    "district": 3
-  },
-  {
-    "id": "H8MN05239",
-    "name": "OMAR, ILHAN",
-    "office": "H",
-    "party": "DFL",
-    "state": "MN",
-    "district": 5
-  },
-  {
-    "id": "H8MT01232",
-    "name": "WILLIAMS, KATHLEEN",
-    "office": "H",
-    "party": "DEM",
-    "state": "MT",
-    "district": 0
-  },
-  {
-    "id": "H8NC09123",
-    "name": "MCCREADY, DANIEL",
-    "office": "H",
-    "party": "DEM",
-    "state": "NC",
-    "district": 9
-  },
-  {
-    "id": "H8NE02220",
-    "name": "EASTMAN, KARA",
-    "office": "H",
-    "party": "DEM",
-    "state": "NE",
-    "district": 2
-  },
-  {
-    "id": "H8NH01210",
-    "name": "PAPPAS, CHRIS",
-    "office": "H",
-    "party": "DEM",
-    "state": "NH",
-    "district": 1
-  },
-  {
-    "id": "H8NJ02166",
-    "name": "VAN DREW, JEFF",
-    "office": "H",
-    "party": "DEM",
-    "state": "NJ",
-    "district": 2
-  },
-  {
-    "id": "H8NJ03206",
-    "name": "KIM, ANDY",
-    "office": "H",
-    "party": "DEM",
-    "state": "NJ",
-    "district": 3
-  },
-  {
-    "id": "H8NJ07223",
-    "name": "MALINOWSKI, TOM",
-    "office": "H",
-    "party": "DEM",
-    "state": "NJ",
-    "district": 7
-  },
-  {
-    "id": "H8NJ11142",
-    "name": "SHERRILL, MIKIE",
-    "office": "H",
-    "party": "DEM",
-    "state": "NJ",
-    "district": 11
-  },
-  {
-    "id": "H8NM01331",
-    "name": "HAALAND, DEBRA",
-    "office": "H",
-    "party": "DEM",
-    "state": "NM",
-    "district": 1
-  },
-  {
-    "id": "H8NM02156",
-    "name": "HERRELL, STELLA YVETTE",
-    "office": "H",
-    "party": "REP",
-    "state": "NM",
-    "district": 2
-  },
-  {
-    "id": "H8NM02248",
-    "name": "TORRES SMALL, XOCHITL",
-    "office": "H",
-    "party": "DEM",
-    "state": "NM",
-    "district": 2
-  },
-  {
-    "id": "H8NY01148",
-    "name": "ZELDIN, LEE M",
-    "office": "H",
-    "party": "REP",
-    "state": "NY",
-    "district": 1
-  },
-  {
-    "id": "H8NY01155",
-    "name": "GERSHON, PERRY",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 1
-  },
-  {
-    "id": "H8NY09158",
-    "name": "BUNKEDDEKO, ADEM",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 9
-  },
-  {
-    "id": "H8NY11113",
-    "name": "ROSE, MAX",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 11
-  },
-  {
-    "id": "H8NY15148",
-    "name": "OCASIO-CORTEZ, ALEXANDRIA",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 14
-  },
-  {
-    "id": "H8NY19181",
-    "name": "DELGADO, ANTONIO",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 19
-  },
-  {
-    "id": "H8NY20056",
-    "name": "LOWEY, NITA M",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 17
-  },
-  {
-    "id": "H8NY21245",
-    "name": "COBB, TEDRA",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 21
-  },
-  {
-    "id": "H8NY22151",
-    "name": "BRINDISI, ANTHONY",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 22
-  },
-  {
-    "id": "H8NY23183",
-    "name": "MITRANO, TRACY",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 23
-  },
-  {
-    "id": "H8NY24090",
-    "name": "BALTER, DANA",
-    "office": "H",
-    "party": "DEM",
-    "state": "NY",
-    "district": 24
-  },
-  {
-    "id": "H8OK05109",
-    "name": "HORN, KENDRA",
-    "office": "H",
-    "party": "DEM",
-    "state": "OK",
-    "district": 5
-  },
-  {
-    "id": "H8PA04116",
-    "name": "DEAN, MADELEINE",
-    "office": "H",
-    "party": "DEM",
-    "state": "PA",
-    "district": 4
-  },
-  {
-    "id": "H8PA06087",
-    "name": "HOULAHAN, CHRISSY",
-    "office": "H",
-    "party": "DEM",
-    "state": "PA",
-    "district": 6
-  },
-  {
-    "id": "H8PA07200",
-    "name": "SCANLON, MARY GAY",
-    "office": "H",
-    "party": "DEM",
-    "state": "PA",
-    "district": 5
-  },
-  {
-    "id": "H8PA15229",
-    "name": "WILD, SUSAN",
-    "office": "H",
-    "party": "DEM",
-    "state": "PA",
-    "district": 7
-  },
-  {
-    "id": "H8PA18181",
-    "name": "LAMB, CONOR",
-    "office": "H",
-    "party": "DEM",
-    "state": "PA",
-    "district": 17
-  },
-  {
-    "id": "H8SC01116",
-    "name": "CUNNINGHAM, JOE",
-    "office": "H",
-    "party": "DEM",
-    "state": "SC",
-    "district": 1
-  },
-  {
-    "id": "H8SD01055",
-    "name": "JOHNSON, DUSTY",
-    "office": "H",
-    "party": "REP",
-    "state": "SD",
-    "district": 0
-  },
-  {
-    "id": "H8TX07140",
-    "name": "FLETCHER, ELIZABETH",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 7
-  },
-  {
-    "id": "H8TX10110",
-    "name": "SIEGEL, MICHAEL",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 10
-  },
-  {
-    "id": "H8TX10185",
-    "name": "HUTCHESON, SHANNON",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 10
-  },
-  {
-    "id": "H8TX21307",
-    "name": "ROY, CHIP",
-    "office": "H",
-    "party": "REP",
-    "state": "TX",
-    "district": 21
-  },
-  {
-    "id": "H8TX22313",
-    "name": "KULKARNI, SRI PRESTON",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 22
-  },
-  {
-    "id": "H8TX23121",
-    "name": "JONES, GINA ORTIZ",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 23
-  },
-  {
-    "id": "H8TX25159",
-    "name": "OLIVER, JULIE LYNN",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 25
-  },
-  {
-    "id": "H8TX32098",
-    "name": "ALLRED, COLIN",
-    "office": "H",
-    "party": "DEM",
-    "state": "TX",
-    "district": 32
-  },
-  {
-    "id": "H8UT04053",
-    "name": "MCADAMS, BEN",
-    "office": "H",
-    "party": "DEM",
-    "state": "UT",
-    "district": 4
-  },
-  {
-    "id": "H8VA02111",
-    "name": "LURIA, ELAINE",
-    "office": "H",
-    "party": "DEM",
-    "state": "VA",
-    "district": 2
-  },
-  {
-    "id": "H8VA05114",
-    "name": "HUFFSTETLER, ROGER DEAN RD",
-    "office": "H",
-    "party": "DEM",
-    "state": "VA",
-    "district": 5
-  },
-  {
-    "id": "H8VA07094",
-    "name": "SPANBERGER, ABIGAIL",
-    "office": "H",
-    "party": "DEM",
-    "state": "VA",
-    "district": 7
-  },
-  {
-    "id": "H8VA10106",
-    "name": "WEXTON, JENNIFER",
-    "office": "H",
-    "party": "DEM",
-    "state": "VA",
-    "district": 10
-  },
-  {
-    "id": "H8WA03198",
-    "name": "LONG, CAROLYN N.",
-    "office": "H",
-    "party": "DEM",
-    "state": "WA",
-    "district": 3
-  },
-  {
-    "id": "H8WA08189",
-    "name": "SCHRIER, KIM DR.",
-    "office": "H",
-    "party": "DEM",
-    "state": "WA",
-    "district": 8
-  },
-  {
-    "id": "H8WI01156",
-    "name": "STEIL, BRYAN GEORGE",
-    "office": "H",
-    "party": "REP",
-    "state": "WI",
-    "district": 1
-  },
-  {
-    "id": "P00006213",
-    "name": "DELANEY, JOHN K.",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00006486",
-    "name": "YANG, ANDREW MR.",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00009092",
-    "name": "CASTRO, JULIAN",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00009183",
-    "name": "GABBARD, TULSI",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00009290",
-    "name": "GILLIBRAND, KIRSTEN",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00009423",
-    "name": "HARRIS, KAMALA D.",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00009621",
-    "name": "WARREN, ELIZABETH",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00009795",
-    "name": "BOOKER, CORY A.",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00010298",
-    "name": "BUTTIGIEG, PETE",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00010454",
-    "name": "INSLEE, JAY R",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00010520",
-    "name": "HICKENLOOPER, JOHN W.",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00010793",
-    "name": "O'ROURKE, ROBERT BETO",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00011239",
-    "name": "WELD, WILLIAM FLOYD (BILL)",
-    "office": "P",
-    "party": "REP",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00011312",
-    "name": "SWALWELL, ERIC MICHAEL",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00011338",
-    "name": "RYAN, TIMOTHY J.",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00011833",
-    "name": "BENNET, MICHAEL F.",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00011866",
-    "name": "MOULTON, SETH",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00011999",
-    "name": "BULLOCK, STEVE",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00012716",
-    "name": "STEYER, TOM",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00013276",
-    "name": "WALSH, JOE",
-    "office": "P",
-    "party": "REP",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P00013649",
-    "name": "SANFORD, MARSHALL HON",
-    "office": "P",
-    "party": "REP",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P60007168",
-    "name": "SANDERS, BERNARD",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P80000722",
-    "name": "BIDEN, JOSEPH R JR",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P80001571",
-    "name": "TRUMP, DONALD J.",
-    "office": "P",
-    "party": "REP",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "P80006117",
-    "name": "KLOBUCHAR, AMY J.",
-    "office": "P",
-    "party": "DEM",
-    "state": "US",
-    "district": 0
-  },
-  {
-    "id": "S0AK00196",
-    "name": "GROSS, AL DR.",
-    "office": "S",
-    "party": "IND",
-    "state": "AK",
-    "district": 0
-  },
-  {
-    "id": "S0AL00156",
-    "name": "JONES, DOUG",
-    "office": "S",
-    "party": "DEM",
-    "state": "AL",
-    "district": 0
-  },
-  {
-    "id": "S0AL00230",
-    "name": "TUBERVILLE, THOMAS H",
-    "office": "S",
-    "party": "REP",
-    "state": "AL",
-    "district": 0
-  },
-  {
-    "id": "S0AL00263",
-    "name": "MOONEY, ARNOLD",
-    "office": "S",
-    "party": "REP",
-    "state": "AL",
-    "district": 0
-  },
-  {
-    "id": "S0AR00200",
-    "name": "MAHONY, JOSHUA MR.",
-    "office": "S",
-    "party": "DEM",
-    "state": "AR",
-    "district": 0
+    "district": 0,
+    "score": 337,
+    "contribution_count": 8051,
+    "contribution_amount": 3432062
   },
   {
     "id": "S0AZ00350",
@@ -2269,679 +16,21 @@
     "office": "S",
     "party": "DEM",
     "state": "AZ",
-    "district": 0
+    "district": 0,
+    "score": 1120,
+    "contribution_count": 14214,
+    "contribution_amount": 2555177
   },
   {
-    "id": "S0CO00286",
-    "name": "ROMANOFF, ANDREW",
-    "office": "S",
-    "party": "DEM",
-    "state": "CO",
-    "district": 0
-  },
-  {
-    "id": "S0CO00468",
-    "name": "JOHNSTON, MICHAEL C",
-    "office": "S",
-    "party": "DEM",
-    "state": "CO",
-    "district": 0
-  },
-  {
-    "id": "S0CO00500",
-    "name": "BAER, DAN",
-    "office": "S",
-    "party": "DEM",
-    "state": "CO",
-    "district": 0
-  },
-  {
-    "id": "S0CO00518",
-    "name": "WALSH, JOHN",
-    "office": "S",
-    "party": "DEM",
-    "state": "CO",
-    "district": 0
-  },
-  {
-    "id": "S0CO00534",
-    "name": "MADDEN, ALICE",
-    "office": "S",
-    "party": "DEM",
-    "state": "CO",
-    "district": 0
-  },
-  {
-    "id": "S0CO00559",
-    "name": "WILLIAMS, ANGELA",
-    "office": "S",
-    "party": "DEM",
-    "state": "CO",
-    "district": 0
-  },
-  {
-    "id": "S0CO00575",
-    "name": "HICKENLOOPER, JOHN W.",
-    "office": "S",
-    "party": "DEM",
-    "state": "CO",
-    "district": 0
-  },
-  {
-    "id": "S0CT00177",
-    "name": "BLUMENTHAL, RICHARD",
-    "office": "S",
-    "party": "DEM",
-    "state": "CT",
-    "district": 0
-  },
-  {
-    "id": "S0DE00092",
-    "name": "COONS, CHRISTOPHER A.",
-    "office": "S",
-    "party": "DEM",
-    "state": "DE",
-    "district": 0
-  },
-  {
-    "id": "S0FL00338",
-    "name": "RUBIO, MARCO",
-    "office": "S",
-    "party": "REP",
-    "state": "FL",
-    "district": 0
-  },
-  {
-    "id": "S0GA00393",
-    "name": "TOMLINSON, TERESA PIKE",
-    "office": "S",
-    "party": "DEM",
-    "state": "GA",
-    "district": 0
-  },
-  {
-    "id": "S0GA00401",
-    "name": "RIGGS AMICO, SARAH",
-    "office": "S",
-    "party": "DEM",
-    "state": "GA",
-    "district": 0
-  },
-  {
-    "id": "S0GA00419",
-    "name": "TERRY, EDWARD",
-    "office": "S",
-    "party": "DEM",
-    "state": "GA",
-    "district": 0
-  },
-  {
-    "id": "S0IA00028",
-    "name": "GRASSLEY, CHARLES E ",
-    "office": "S",
-    "party": "REP",
-    "state": "IA",
-    "district": 0
-  },
-  {
-    "id": "S0IA00150",
-    "name": "MAURO, EDDIE J",
-    "office": "S",
-    "party": "DEM",
-    "state": "IA",
-    "district": 0
-  },
-  {
-    "id": "S0IA00168",
-    "name": "GRAHAM, KIMBERLY",
-    "office": "S",
-    "party": "DEM",
-    "state": "IA",
-    "district": 0
-  },
-  {
-    "id": "S0IA00176",
-    "name": "GREENFIELD, THERESA",
-    "office": "S",
-    "party": "DEM",
-    "state": "IA",
-    "district": 0
-  },
-  {
-    "id": "S0IA00200",
-    "name": "FRANKEN, MICHAEL",
-    "office": "S",
-    "party": "DEM",
-    "state": "IA",
-    "district": 0
-  },
-  {
-    "id": "S0IL00501",
-    "name": "HUBBARD, PEGGY",
-    "office": "S",
-    "party": "REP",
-    "state": "IL",
-    "district": 0
-  },
-  {
-    "id": "S0KS00232",
-    "name": "GRISSOM, BARRY",
-    "office": "S",
-    "party": "DEM",
-    "state": "KS",
-    "district": 0
-  },
-  {
-    "id": "S0KY00339",
-    "name": "MCGRATH, AMY",
-    "office": "S",
-    "party": "DEM",
-    "state": "KY",
-    "district": 0
-  },
-  {
-    "id": "S0MA00182",
-    "name": "PEMBERTON, STEVE",
-    "office": "S",
-    "party": "DEM",
-    "state": "MA",
-    "district": 0
-  },
-  {
-    "id": "S0MA00208",
-    "name": "KENNEDY, JOSEPH P III",
-    "office": "S",
-    "party": "DEM",
-    "state": "MA",
-    "district": 0
-  },
-  {
-    "id": "S0ME00103",
-    "name": "SWEET, BETSY",
-    "office": "S",
-    "party": "DEM",
-    "state": "ME",
-    "district": 0
-  },
-  {
-    "id": "S0ME00111",
-    "name": "GIDEON, SARA",
-    "office": "S",
-    "party": "DEM",
-    "state": "ME",
-    "district": 0
-  },
-  {
-    "id": "S0NC00202",
-    "name": "CUNNINGHAM, CAL",
-    "office": "S",
+    "id": "H8NC09123",
+    "name": "MCCREADY, DANIEL",
+    "office": "H",
     "party": "DEM",
     "state": "NC",
-    "district": 0
-  },
-  {
-    "id": "S0NC00319",
-    "name": "TUCKER, GARLAND S III",
-    "office": "S",
-    "party": "REP",
-    "state": "NC",
-    "district": 0
-  },
-  {
-    "id": "S0NH00219",
-    "name": "SHAHEEN, JEANNE",
-    "office": "S",
-    "party": "DEM",
-    "state": "NH",
-    "district": 0
-  },
-  {
-    "id": "S0NM00058",
-    "name": "LUJAN, BEN RAY",
-    "office": "S",
-    "party": "DEM",
-    "state": "NM",
-    "district": 0
-  },
-  {
-    "id": "S0NM00074",
-    "name": "TOULOUSE OLIVER, MAGGIE",
-    "office": "S",
-    "party": "DEM",
-    "state": "NM",
-    "district": 0
-  },
-  {
-    "id": "S0SC00149",
-    "name": "GRAHAM, LINDSEY O.",
-    "office": "S",
-    "party": "REP",
-    "state": "SC",
-    "district": 0
-  },
-  {
-    "id": "S0SC00289",
-    "name": "HARRISON, JAIME",
-    "office": "S",
-    "party": "DEM",
-    "state": "SC",
-    "district": 0
-  },
-  {
-    "id": "S0TN00144",
-    "name": "SETHI, DR. MANNY",
-    "office": "S",
-    "party": "REP",
-    "state": "TN",
-    "district": 0
-  },
-  {
-    "id": "S0TX00233",
-    "name": "HEGAR, MARY JENNINGS MJ",
-    "office": "S",
-    "party": "DEM",
-    "state": "TX",
-    "district": 0
-  },
-  {
-    "id": "S0TX00258",
-    "name": "EDWARDS, AMANDA",
-    "office": "S",
-    "party": "DEM",
-    "state": "TX",
-    "district": 0
-  },
-  {
-    "id": "S0TX00266",
-    "name": "WEST, ROYCE",
-    "office": "S",
-    "party": "DEM",
-    "state": "TX",
-    "district": 0
-  },
-  {
-    "id": "S0TX00324",
-    "name": "BELL, ROBERT CHRISTOPHER MR.",
-    "office": "S",
-    "party": "DEM",
-    "state": "TX",
-    "district": 0
-  },
-  {
-    "id": "S0VA00104",
-    "name": "TAYLOR, SCOTT W.",
-    "office": "S",
-    "party": "REP",
-    "state": "VA",
-    "district": 0
-  },
-  {
-    "id": "S2CT00132",
-    "name": "MURPHY, CHRISTOPHER S",
-    "office": "S",
-    "party": "DEM",
-    "state": "CT",
-    "district": 0
-  },
-  {
-    "id": "S2HI00106",
-    "name": "HIRONO, MAZIE K.",
-    "office": "S",
-    "party": "DEM",
-    "state": "HI",
-    "district": 0
-  },
-  {
-    "id": "S2KY00012",
-    "name": "MCCONNELL, MITCH",
-    "office": "S",
-    "party": "REP",
-    "state": "KY",
-    "district": 0
-  },
-  {
-    "id": "S2MT00096",
-    "name": "DAINES, STEVEN",
-    "office": "S",
-    "party": "REP",
-    "state": "MT",
-    "district": 0
-  },
-  {
-    "id": "S2NM00088",
-    "name": "HEINRICH, MARTIN",
-    "office": "S",
-    "party": "DEM",
-    "state": "NM",
-    "district": 0
-  },
-  {
-    "id": "S2SD00068",
-    "name": "THUNE, JOHN",
-    "office": "S",
-    "party": "REP",
-    "state": "SD",
-    "district": 0
-  },
-  {
-    "id": "S2TX00106",
-    "name": "CORNYN, JOHN SEN",
-    "office": "S",
-    "party": "REP",
-    "state": "TX",
-    "district": 0
-  },
-  {
-    "id": "S2TX00312",
-    "name": "CRUZ, RAFAEL EDWARD  TED",
-    "office": "S",
-    "party": "REP",
-    "state": "TX",
-    "district": 0
-  },
-  {
-    "id": "S2VA00142",
-    "name": "KAINE, TIMOTHY MICHAEL",
-    "office": "S",
-    "party": "DEM",
-    "state": "VA",
-    "district": 0
-  },
-  {
-    "id": "S2WA00189",
-    "name": "MURRAY, PATTY",
-    "office": "S",
-    "party": "DEM",
-    "state": "WA",
-    "district": 0
-  },
-  {
-    "id": "S2WI00219",
-    "name": "BALDWIN, TAMMY",
-    "office": "S",
-    "party": "DEM",
-    "state": "WI",
-    "district": 0
-  },
-  {
-    "id": "S4AK00214",
-    "name": "SULLIVAN, DAN",
-    "office": "S",
-    "party": "REP",
-    "state": "AK",
-    "district": 0
-  },
-  {
-    "id": "S4AR00103",
-    "name": "COTTON, THOMAS",
-    "office": "S",
-    "party": "REP",
-    "state": "AR",
-    "district": 0
-  },
-  {
-    "id": "S4CO00395",
-    "name": "GARDNER, CORY",
-    "office": "S",
-    "party": "REP",
-    "state": "CO",
-    "district": 0
-  },
-  {
-    "id": "S4GA11285",
-    "name": "PERDUE, DAVID",
-    "office": "S",
-    "party": "REP",
-    "state": "GA",
-    "district": 0
-  },
-  {
-    "id": "S4HI00136",
-    "name": "SCHATZ, BRIAN",
-    "office": "S",
-    "party": "DEM",
-    "state": "HI",
-    "district": 0
-  },
-  {
-    "id": "S4IA00129",
-    "name": "ERNST, JONI K",
-    "office": "S",
-    "party": "REP",
-    "state": "IA",
-    "district": 0
-  },
-  {
-    "id": "S4LA00107",
-    "name": "CASSIDY, WILLIAM M.",
-    "office": "S",
-    "party": "REP",
-    "state": "LA",
-    "district": 0
-  },
-  {
-    "id": "S4MA00028",
-    "name": "MARKEY, EDWARD J. SEN.",
-    "office": "S",
-    "party": "DEM",
-    "state": "MA",
-    "district": 0
-  },
-  {
-    "id": "S4MI00355",
-    "name": "PETERS, GARY",
-    "office": "S",
-    "party": "DEM",
-    "state": "MI",
-    "district": 0
-  },
-  {
-    "id": "S4NC00162",
-    "name": "TILLIS, THOM R. SEN.",
-    "office": "S",
-    "party": "REP",
-    "state": "NC",
-    "district": 0
-  },
-  {
-    "id": "S4NE00090",
-    "name": "SASSE, BENJAMIN E",
-    "office": "S",
-    "party": "REP",
-    "state": "NE",
-    "district": 0
-  },
-  {
-    "id": "S4OK00083",
-    "name": "INHOFE, JAMES M. SEN.",
-    "office": "S",
-    "party": "REP",
-    "state": "OK",
-    "district": 0
-  },
-  {
-    "id": "S4PA00121",
-    "name": "TOOMEY, PATRICK JOSEPH",
-    "office": "S",
-    "party": "REP",
-    "state": "PA",
-    "district": 0
-  },
-  {
-    "id": "S4SD00049",
-    "name": "ROUNDS, MIKE",
-    "office": "S",
-    "party": "REP",
-    "state": "SD",
-    "district": 0
-  },
-  {
-    "id": "S4VT00017",
-    "name": "LEAHY, PATRICK J",
-    "office": "S",
-    "party": "DEM",
-    "state": "VT",
-    "district": 0
-  },
-  {
-    "id": "S4WV00159",
-    "name": "CAPITO, SHELLEY MOORE MS.",
-    "office": "S",
-    "party": "REP",
-    "state": "WV",
-    "district": 0
-  },
-  {
-    "id": "S6IL00151",
-    "name": "DURBIN, RICHARD J",
-    "office": "S",
-    "party": "DEM",
-    "state": "IL",
-    "district": 0
-  },
-  {
-    "id": "S6IL00292",
-    "name": "DUCKWORTH, L TAMMY",
-    "office": "S",
-    "party": "DEM",
-    "state": "IL",
-    "district": 0
-  },
-  {
-    "id": "S6IN00191",
-    "name": "YOUNG, TODD CHRISTOPHER",
-    "office": "S",
-    "party": "REP",
-    "state": "IN",
-    "district": 0
-  },
-  {
-    "id": "S6ME00159",
-    "name": "COLLINS, SUSAN M.",
-    "office": "S",
-    "party": "REP",
-    "state": "ME",
-    "district": 0
-  },
-  {
-    "id": "S6MT00162",
-    "name": "TESTER, R. JON",
-    "office": "S",
-    "party": "DEM",
-    "state": "MT",
-    "district": 0
-  },
-  {
-    "id": "S6NH00091",
-    "name": "HASSAN, MARGARET WOOD",
-    "office": "S",
-    "party": "DEM",
-    "state": "NH",
-    "district": 0
-  },
-  {
-    "id": "S6NV00200",
-    "name": "MASTO, CATHERINE CORTEZ",
-    "office": "S",
-    "party": "DEM",
-    "state": "NV",
-    "district": 0
-  },
-  {
-    "id": "S6OH00163",
-    "name": "BROWN, SHERROD",
-    "office": "S",
-    "party": "DEM",
-    "state": "OH",
-    "district": 0
-  },
-  {
-    "id": "S6OR00110",
-    "name": "WYDEN, RONALD LEE",
-    "office": "S",
-    "party": "DEM",
-    "state": "OR",
-    "district": 0
-  },
-  {
-    "id": "S6PA00217",
-    "name": "CASEY, ROBERT P. JR.",
-    "office": "S",
-    "party": "DEM",
-    "state": "PA",
-    "district": 0
-  },
-  {
-    "id": "S6RI00163",
-    "name": "REED, JOHN F.",
-    "office": "S",
-    "party": "DEM",
-    "state": "RI",
-    "district": 0
-  },
-  {
-    "id": "S6VA00093",
-    "name": "WARNER, MARK ROBERT",
-    "office": "S",
-    "party": "DEM",
-    "state": "VA",
-    "district": 0
-  },
-  {
-    "id": "S8AZ00197",
-    "name": "SINEMA, KYRSTEN",
-    "office": "S",
-    "party": "DEM",
-    "state": "AZ",
-    "district": 0
-  },
-  {
-    "id": "S8AZ00221",
-    "name": "MCSALLY, MARTHA",
-    "office": "S",
-    "party": "REP",
-    "state": "AZ",
-    "district": 0
-  },
-  {
-    "id": "S8DE00079",
-    "name": "CARPER, THOMAS R.",
-    "office": "S",
-    "party": "DEM",
-    "state": "DE",
-    "district": 0
-  },
-  {
-    "id": "S8FL00273",
-    "name": "SCOTT, RICK SEN",
-    "office": "S",
-    "party": "REP",
-    "state": "FL",
-    "district": 0
-  },
-  {
-    "id": "S8GA00180",
-    "name": "OSSOFF, T. JONATHAN",
-    "office": "S",
-    "party": "DEM",
-    "state": "GA",
-    "district": 0
-  },
-  {
-    "id": "S8ID00092",
-    "name": "RISCH, JAMES E",
-    "office": "S",
-    "party": "REP",
-    "state": "ID",
-    "district": 0
-  },
-  {
-    "id": "S8MI00281",
-    "name": "STABENOW, DEBBIE",
-    "office": "S",
-    "party": "DEM",
-    "state": "MI",
-    "district": 0
+    "district": 9,
+    "score": 1587,
+    "contribution_count": 11024,
+    "contribution_amount": 2154619
   },
   {
     "id": "S8MI00372",
@@ -2949,47 +38,351 @@
     "office": "S",
     "party": "REP",
     "state": "MI",
-    "district": 0
+    "district": 0,
+    "score": 142,
+    "contribution_count": 3001,
+    "contribution_amount": 1977974
   },
   {
-    "id": "S8MN00578",
-    "name": "SMITH, TINA",
+    "id": "S0ME00111",
+    "name": "GIDEON, SARA",
     "office": "S",
     "party": "DEM",
-    "state": "MN",
-    "district": 0
+    "state": "ME",
+    "district": 0,
+    "score": 1280,
+    "contribution_count": 4120,
+    "contribution_amount": 1835593
   },
   {
-    "id": "S8MO00160",
-    "name": "HAWLEY, JOSHUA DAVID",
+    "id": "S8AZ00221",
+    "name": "MCSALLY, MARTHA",
     "office": "S",
     "party": "REP",
-    "state": "MO",
-    "district": 0
+    "state": "AZ",
+    "district": 0,
+    "score": 325,
+    "contribution_count": 11531,
+    "contribution_amount": 1687762
   },
   {
-    "id": "S8MS00261",
-    "name": "HYDE-SMITH, CINDY",
+    "id": "S0SC00149",
+    "name": "GRAHAM, LINDSEY O.",
     "office": "S",
     "party": "REP",
-    "state": "MS",
-    "district": 0
+    "state": "SC",
+    "district": 0,
+    "score": 600,
+    "contribution_count": 5359,
+    "contribution_amount": 1662981
   },
   {
-    "id": "S8NV00156",
-    "name": "ROSEN, JACKY",
+    "id": "S6ME00159",
+    "name": "COLLINS, SUSAN M.",
     "office": "S",
-    "party": "DEM",
-    "state": "NV",
-    "district": 0
+    "party": "REP",
+    "state": "ME",
+    "district": 0,
+    "score": 140,
+    "contribution_count": 1466,
+    "contribution_amount": 1628017
   },
   {
-    "id": "S8NY00082",
-    "name": "SCHUMER, CHARLES E",
+    "id": "H0LA01087",
+    "name": "SCALISE, STEVE MR",
+    "office": "H",
+    "party": "REP",
+    "state": "LA",
+    "district": 1,
+    "score": 1219,
+    "contribution_count": 21127,
+    "contribution_amount": 1572718
+  },
+  {
+    "id": "P00011999",
+    "name": "BULLOCK, STEVE",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 416,
+    "contribution_count": 6773,
+    "contribution_amount": 1523468
+  },
+  {
+    "id": "S0CO00575",
+    "name": "HICKENLOOPER, JOHN W.",
     "office": "S",
     "party": "DEM",
-    "state": "NY",
-    "district": 0
+    "state": "CO",
+    "district": 0,
+    "score": 603,
+    "contribution_count": 1405,
+    "contribution_amount": 1509659
+  },
+  {
+    "id": "S4MI00355",
+    "name": "PETERS, GARY",
+    "office": "S",
+    "party": "DEM",
+    "state": "MI",
+    "district": 0,
+    "score": 447,
+    "contribution_count": 3835,
+    "contribution_amount": 1455520
+  },
+  {
+    "id": "S4CO00395",
+    "name": "GARDNER, CORY",
+    "office": "S",
+    "party": "REP",
+    "state": "CO",
+    "district": 0,
+    "score": 247,
+    "contribution_count": 2205,
+    "contribution_amount": 1364333
+  },
+  {
+    "id": "S0AL00156",
+    "name": "JONES, DOUG",
+    "office": "S",
+    "party": "DEM",
+    "state": "AL",
+    "district": 0,
+    "score": 365,
+    "contribution_count": 4481,
+    "contribution_amount": 1320526
+  },
+  {
+    "id": "S2TX00106",
+    "name": "CORNYN, JOHN SEN",
+    "office": "S",
+    "party": "REP",
+    "state": "TX",
+    "district": 0,
+    "score": 49,
+    "contribution_count": 5111,
+    "contribution_amount": 1316213
+  },
+  {
+    "id": "S0NH00219",
+    "name": "SHAHEEN, JEANNE",
+    "office": "S",
+    "party": "DEM",
+    "state": "NH",
+    "district": 0,
+    "score": 326,
+    "contribution_count": 4747,
+    "contribution_amount": 1235362
+  },
+  {
+    "id": "H8CA20059",
+    "name": "NUNES, DEVIN G.",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 22,
+    "score": 821,
+    "contribution_count": 9136,
+    "contribution_amount": 1068597
+  },
+  {
+    "id": "S4GA11285",
+    "name": "PERDUE, DAVID",
+    "office": "S",
+    "party": "REP",
+    "state": "GA",
+    "district": 0,
+    "score": 25,
+    "contribution_count": 1248,
+    "contribution_amount": 1064945
+  },
+  {
+    "id": "S2KY00012",
+    "name": "MCCONNELL, MITCH",
+    "office": "S",
+    "party": "REP",
+    "state": "KY",
+    "district": 0,
+    "score": 778,
+    "contribution_count": 3302,
+    "contribution_amount": 1023214
+  },
+  {
+    "id": "S6VA00093",
+    "name": "WARNER, MARK ROBERT",
+    "office": "S",
+    "party": "DEM",
+    "state": "VA",
+    "district": 0,
+    "score": 84,
+    "contribution_count": 1711,
+    "contribution_amount": 981933
+  },
+  {
+    "id": "P60007168",
+    "name": "SANDERS, BERNARD",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 238,
+    "contribution_count": 14774,
+    "contribution_amount": 908218
+  },
+  {
+    "id": "H8TX23121",
+    "name": "JONES, GINA ORTIZ",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 23,
+    "score": 938,
+    "contribution_count": 1124,
+    "contribution_amount": 900691
+  },
+  {
+    "id": "H0NC09187",
+    "name": "BISHOP, JAMES DANIEL",
+    "office": "H",
+    "party": "REP",
+    "state": "NC",
+    "district": 9,
+    "score": 375,
+    "contribution_count": 1873,
+    "contribution_amount": 899210
+  },
+  {
+    "id": "S0SC00289",
+    "name": "HARRISON, JAIME",
+    "office": "S",
+    "party": "DEM",
+    "state": "SC",
+    "district": 0,
+    "score": 522,
+    "contribution_count": 7488,
+    "contribution_amount": 884308
+  },
+  {
+    "id": "P00009423",
+    "name": "HARRIS, KAMALA D.",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 309,
+    "contribution_count": 2900,
+    "contribution_amount": 867591
+  },
+  {
+    "id": "S4NC00162",
+    "name": "TILLIS, THOM R. SEN.",
+    "office": "S",
+    "party": "REP",
+    "state": "NC",
+    "district": 0,
+    "score": 35,
+    "contribution_count": 797,
+    "contribution_amount": 738726
+  },
+  {
+    "id": "S4MA00028",
+    "name": "MARKEY, EDWARD J. SEN.",
+    "office": "S",
+    "party": "DEM",
+    "state": "MA",
+    "district": 0,
+    "score": 328,
+    "contribution_count": 2672,
+    "contribution_amount": 715244
+  },
+  {
+    "id": "H6IL08147",
+    "name": "KRISHNAMOORTHI, S. RAJA",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 8,
+    "score": 15,
+    "contribution_count": 862,
+    "contribution_amount": 707957
+  },
+  {
+    "id": "S0AK00196",
+    "name": "GROSS, AL DR.",
+    "office": "S",
+    "party": "IND",
+    "state": "AK",
+    "district": 0,
+    "score": 34,
+    "contribution_count": 959,
+    "contribution_amount": 697234
+  },
+  {
+    "id": "S2MT00096",
+    "name": "DAINES, STEVEN",
+    "office": "S",
+    "party": "REP",
+    "state": "MT",
+    "district": 0,
+    "score": 38,
+    "contribution_count": 742,
+    "contribution_amount": 692796
+  },
+  {
+    "id": "P00010298",
+    "name": "BUTTIGIEG, PETE",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 376,
+    "contribution_count": 4851,
+    "contribution_amount": 663238
+  },
+  {
+    "id": "H0TX21148",
+    "name": "DAVIS, WENDY",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 21,
+    "score": 149,
+    "contribution_count": 817,
+    "contribution_amount": 658873
+  },
+  {
+    "id": "H8CA45130",
+    "name": "PORTER, KATHERINE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 45,
+    "score": 893,
+    "contribution_count": 2347,
+    "contribution_amount": 648849
+  },
+  {
+    "id": "S0NC00202",
+    "name": "CUNNINGHAM, CAL",
+    "office": "S",
+    "party": "DEM",
+    "state": "NC",
+    "district": 0,
+    "score": 206,
+    "contribution_count": 900,
+    "contribution_amount": 635978
+  },
+  {
+    "id": "S0TX00233",
+    "name": "HEGAR, MARY JENNINGS MJ",
+    "office": "S",
+    "party": "DEM",
+    "state": "TX",
+    "district": 0,
+    "score": 284,
+    "contribution_count": 1564,
+    "contribution_amount": 630411
   },
   {
     "id": "S8OR00207",
@@ -2997,15 +390,538 @@
     "office": "S",
     "party": "DEM",
     "state": "OR",
-    "district": 0
+    "district": 0,
+    "score": 517,
+    "contribution_count": 6503,
+    "contribution_amount": 617610
   },
   {
-    "id": "S8TN00311",
-    "name": "MACKLER, JAMES",
+    "id": "S0IA00176",
+    "name": "GREENFIELD, THERESA",
     "office": "S",
     "party": "DEM",
+    "state": "IA",
+    "district": 0,
+    "score": 322,
+    "contribution_count": 791,
+    "contribution_amount": 613166
+  },
+  {
+    "id": "S8GA00180",
+    "name": "OSSOFF, T. JONATHAN",
+    "office": "S",
+    "party": "DEM",
+    "state": "GA",
+    "district": 0,
+    "score": 76,
+    "contribution_count": 478,
+    "contribution_amount": 608594
+  },
+  {
+    "id": "H8NY11113",
+    "name": "ROSE, MAX",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 11,
+    "score": 131,
+    "contribution_count": 950,
+    "contribution_amount": 604443
+  },
+  {
+    "id": "H8MI08102",
+    "name": "SLOTKIN, ELISSA",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 8,
+    "score": 509,
+    "contribution_count": 1291,
+    "contribution_amount": 601677
+  },
+  {
+    "id": "H8CA10126",
+    "name": "HARDER, JOSH",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 10,
+    "score": 403,
+    "contribution_count": 1403,
+    "contribution_amount": 597294
+  },
+  {
+    "id": "H4CA12055",
+    "name": "KHANNA, ROHIT",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 17,
+    "score": 66,
+    "contribution_count": 609,
+    "contribution_amount": 577904
+  },
+  {
+    "id": "H8NY19181",
+    "name": "DELGADO, ANTONIO",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 19,
+    "score": 427,
+    "contribution_count": 1398,
+    "contribution_amount": 577072
+  },
+  {
+    "id": "P00012716",
+    "name": "STEYER, TOM",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 36,
+    "contribution_count": 1262,
+    "contribution_amount": 564893
+  },
+  {
+    "id": "P00009621",
+    "name": "WARREN, ELIZABETH",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 463,
+    "contribution_count": 5557,
+    "contribution_amount": 557023
+  },
+  {
+    "id": "S8MN00578",
+    "name": "SMITH, TINA",
+    "office": "S",
+    "party": "DEM",
+    "state": "MN",
+    "district": 0,
+    "score": 214,
+    "contribution_count": 1754,
+    "contribution_amount": 535242
+  },
+  {
+    "id": "H8NJ07223",
+    "name": "MALINOWSKI, TOM",
+    "office": "H",
+    "party": "DEM",
+    "state": "NJ",
+    "district": 7,
+    "score": 487,
+    "contribution_count": 1228,
+    "contribution_amount": 517427
+  },
+  {
+    "id": "S0DE00092",
+    "name": "COONS, CHRISTOPHER A.",
+    "office": "S",
+    "party": "DEM",
+    "state": "DE",
+    "district": 0,
+    "score": 96,
+    "contribution_count": 513,
+    "contribution_amount": 516050
+  },
+  {
+    "id": "S0NM00058",
+    "name": "LUJAN, BEN RAY",
+    "office": "S",
+    "party": "DEM",
+    "state": "NM",
+    "district": 0,
+    "score": 439,
+    "contribution_count": 3450,
+    "contribution_amount": 514285
+  },
+  {
+    "id": "S4AK00214",
+    "name": "SULLIVAN, DAN",
+    "office": "S",
+    "party": "REP",
+    "state": "AK",
+    "district": 0,
+    "score": 14,
+    "contribution_count": 451,
+    "contribution_amount": 510951
+  },
+  {
+    "id": "S0TN00144",
+    "name": "SETHI, DR. MANNY",
+    "office": "S",
+    "party": "REP",
     "state": "TN",
-    "district": 0
+    "district": 0,
+    "score": 5,
+    "contribution_count": 473,
+    "contribution_amount": 504428
+  },
+  {
+    "id": "H8TX32098",
+    "name": "ALLRED, COLIN",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 32,
+    "score": 308,
+    "contribution_count": 929,
+    "contribution_amount": 502785
+  },
+  {
+    "id": "H0CA27085",
+    "name": "SCHIFF, ADAM",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 28,
+    "score": 390,
+    "contribution_count": 3993,
+    "contribution_amount": 498276
+  },
+  {
+    "id": "S0TX00258",
+    "name": "EDWARDS, AMANDA",
+    "office": "S",
+    "party": "DEM",
+    "state": "TX",
+    "district": 0,
+    "score": 16,
+    "contribution_count": 583,
+    "contribution_amount": 494202
+  },
+  {
+    "id": "H6NJ05171",
+    "name": "GOTTHEIMER, JOSH",
+    "office": "H",
+    "party": "DEM",
+    "state": "NJ",
+    "district": 5,
+    "score": 63,
+    "contribution_count": 543,
+    "contribution_amount": 478365
+  },
+  {
+    "id": "H8IL06139",
+    "name": "CASTEN, SEAN",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 6,
+    "score": 319,
+    "contribution_count": 1726,
+    "contribution_amount": 476337
+  },
+  {
+    "id": "S0MA00208",
+    "name": "KENNEDY, JOSEPH P III",
+    "office": "S",
+    "party": "DEM",
+    "state": "MA",
+    "district": 0,
+    "score": 52,
+    "contribution_count": 718,
+    "contribution_amount": 476269
+  },
+  {
+    "id": "H8SC01116",
+    "name": "CUNNINGHAM, JOE",
+    "office": "H",
+    "party": "DEM",
+    "state": "SC",
+    "district": 1,
+    "score": 367,
+    "contribution_count": 1627,
+    "contribution_amount": 470129
+  },
+  {
+    "id": "H8NJ11142",
+    "name": "SHERRILL, MIKIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "NJ",
+    "district": 11,
+    "score": 331,
+    "contribution_count": 1148,
+    "contribution_amount": 466887
+  },
+  {
+    "id": "H8NM02248",
+    "name": "TORRES SMALL, XOCHITL",
+    "office": "H",
+    "party": "DEM",
+    "state": "NM",
+    "district": 2,
+    "score": 613,
+    "contribution_count": 1121,
+    "contribution_amount": 464738
+  },
+  {
+    "id": "H8CA25074",
+    "name": "HILL, KATHERINE LAUREN",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 25,
+    "score": 378,
+    "contribution_count": 1171,
+    "contribution_amount": 462280
+  },
+  {
+    "id": "S4LA00107",
+    "name": "CASSIDY, WILLIAM M.",
+    "office": "S",
+    "party": "REP",
+    "state": "LA",
+    "district": 0,
+    "score": 42,
+    "contribution_count": 683,
+    "contribution_amount": 462078
+  },
+  {
+    "id": "S2TX00312",
+    "name": "CRUZ, RAFAEL EDWARD  TED",
+    "office": "S",
+    "party": "REP",
+    "state": "TX",
+    "district": 0,
+    "score": 197,
+    "contribution_count": 4093,
+    "contribution_amount": 461755
+  },
+  {
+    "id": "H8NJ03206",
+    "name": "KIM, ANDY",
+    "office": "H",
+    "party": "DEM",
+    "state": "NJ",
+    "district": 3,
+    "score": 576,
+    "contribution_count": 1346,
+    "contribution_amount": 454118
+  },
+  {
+    "id": "H8TX07140",
+    "name": "FLETCHER, ELIZABETH",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 7,
+    "score": 214,
+    "contribution_count": 636,
+    "contribution_amount": 450140
+  },
+  {
+    "id": "H8IL14174",
+    "name": "UNDERWOOD, LAUREN",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 14,
+    "score": 666,
+    "contribution_count": 1431,
+    "contribution_amount": 445604
+  },
+  {
+    "id": "H0TX07170",
+    "name": "HUNT, WESLEY",
+    "office": "H",
+    "party": "REP",
+    "state": "TX",
+    "district": 7,
+    "score": 8,
+    "contribution_count": 395,
+    "contribution_amount": 445047
+  },
+  {
+    "id": "S0AL00230",
+    "name": "TUBERVILLE, THOMAS H",
+    "office": "S",
+    "party": "REP",
+    "state": "AL",
+    "district": 0,
+    "score": 6,
+    "contribution_count": 457,
+    "contribution_amount": 433755
+  },
+  {
+    "id": "P00009290",
+    "name": "GILLIBRAND, KIRSTEN",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 60,
+    "contribution_count": 2119,
+    "contribution_amount": 430946
+  },
+  {
+    "id": "H8FL27185",
+    "name": "SALAZAR, MARIA ELVIRA",
+    "office": "H",
+    "party": "REP",
+    "state": "FL",
+    "district": 27,
+    "score": 2,
+    "contribution_count": 208,
+    "contribution_amount": 429900
+  },
+  {
+    "id": "H8MI11254",
+    "name": "STEVENS, HALEY",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 11,
+    "score": 412,
+    "contribution_count": 981,
+    "contribution_amount": 424163
+  },
+  {
+    "id": "H8VA10106",
+    "name": "WEXTON, JENNIFER",
+    "office": "H",
+    "party": "DEM",
+    "state": "VA",
+    "district": 10,
+    "score": 163,
+    "contribution_count": 768,
+    "contribution_amount": 420993
+  },
+  {
+    "id": "H6NY03247",
+    "name": "SUOZZI, THOMAS",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 3,
+    "score": 9,
+    "contribution_count": 355,
+    "contribution_amount": 417694
+  },
+  {
+    "id": "S6IL00151",
+    "name": "DURBIN, RICHARD J",
+    "office": "S",
+    "party": "DEM",
+    "state": "IL",
+    "district": 0,
+    "score": 197,
+    "contribution_count": 1850,
+    "contribution_amount": 416161
+  },
+  {
+    "id": "H8WA03198",
+    "name": "LONG, CAROLYN N.",
+    "office": "H",
+    "party": "DEM",
+    "state": "WA",
+    "district": 3,
+    "score": 47,
+    "contribution_count": 721,
+    "contribution_amount": 414228
+  },
+  {
+    "id": "H8TX21307",
+    "name": "ROY, CHIP",
+    "office": "H",
+    "party": "REP",
+    "state": "TX",
+    "district": 21,
+    "score": 210,
+    "contribution_count": 812,
+    "contribution_amount": 408968
+  },
+  {
+    "id": "H8OK05109",
+    "name": "HORN, KENDRA",
+    "office": "H",
+    "party": "DEM",
+    "state": "OK",
+    "district": 5,
+    "score": 338,
+    "contribution_count": 974,
+    "contribution_amount": 406824
+  },
+  {
+    "id": "H0NJ07261",
+    "name": "KEAN, THOMAS H. JR.",
+    "office": "H",
+    "party": "REP",
+    "state": "NJ",
+    "district": 7,
+    "score": 2,
+    "contribution_count": 354,
+    "contribution_amount": 399600
+  },
+  {
+    "id": "H8GA06393",
+    "name": "MCBATH, LUCIA KAY MS.",
+    "office": "H",
+    "party": "DEM",
+    "state": "GA",
+    "district": 6,
+    "score": 521,
+    "contribution_count": 956,
+    "contribution_amount": 393471
+  },
+  {
+    "id": "H8FL26039",
+    "name": "MUCARSEL-POWELL, DEBBIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 26,
+    "score": 389,
+    "contribution_count": 638,
+    "contribution_amount": 392192
+  },
+  {
+    "id": "S4IA00129",
+    "name": "ERNST, JONI K",
+    "office": "S",
+    "party": "REP",
+    "state": "IA",
+    "district": 0,
+    "score": 146,
+    "contribution_count": 1387,
+    "contribution_amount": 391420
+  },
+  {
+    "id": "S4PA00121",
+    "name": "TOOMEY, PATRICK JOSEPH",
+    "office": "S",
+    "party": "REP",
+    "state": "PA",
+    "district": 0,
+    "score": 35,
+    "contribution_count": 1120,
+    "contribution_amount": 389932
+  },
+  {
+    "id": "H8CA48035",
+    "name": "ROUDA, HARLEY E JR",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 48,
+    "score": 348,
+    "contribution_count": 1069,
+    "contribution_amount": 387542
+  },
+  {
+    "id": "H8CA05035",
+    "name": "PELOSI, NANCY",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 12,
+    "score": 69,
+    "contribution_count": 5318,
+    "contribution_amount": 385537
   },
   {
     "id": "S8TX00459",
@@ -3013,7 +929,2947 @@
     "office": "S",
     "party": "DEM",
     "state": "TX",
-    "district": 0
+    "district": 0,
+    "score": 66,
+    "contribution_count": 517,
+    "contribution_amount": 380654
+  },
+  {
+    "id": "H0CA48198",
+    "name": "STEEL, MICHELLE",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 48,
+    "score": 6,
+    "contribution_count": 324,
+    "contribution_amount": 378525
+  },
+  {
+    "id": "S4AR00103",
+    "name": "COTTON, THOMAS",
+    "office": "S",
+    "party": "REP",
+    "state": "AR",
+    "district": 0,
+    "score": 290,
+    "contribution_count": 1905,
+    "contribution_amount": 373342
+  },
+  {
+    "id": "H8VA07094",
+    "name": "SPANBERGER, ABIGAIL",
+    "office": "H",
+    "party": "DEM",
+    "state": "VA",
+    "district": 7,
+    "score": 651,
+    "contribution_count": 1391,
+    "contribution_amount": 370903
+  },
+  {
+    "id": "H8CA49058",
+    "name": "LEVIN, MIKE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 49,
+    "score": 257,
+    "contribution_count": 625,
+    "contribution_amount": 367600
+  },
+  {
+    "id": "H8NJ02166",
+    "name": "VAN DREW, JEFF",
+    "office": "H",
+    "party": "DEM",
+    "state": "NJ",
+    "district": 2,
+    "score": 162,
+    "contribution_count": 478,
+    "contribution_amount": 366384
+  },
+  {
+    "id": "S8ID00092",
+    "name": "RISCH, JAMES E",
+    "office": "S",
+    "party": "REP",
+    "state": "ID",
+    "district": 0,
+    "score": 26,
+    "contribution_count": 252,
+    "contribution_amount": 365665
+  },
+  {
+    "id": "H0FL16094",
+    "name": "GOOD, MARGARET ELIZABETH ROWELL",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 16,
+    "score": 31,
+    "contribution_count": 560,
+    "contribution_amount": 355607
+  },
+  {
+    "id": "H8TX22313",
+    "name": "KULKARNI, SRI PRESTON",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 22,
+    "score": 113,
+    "contribution_count": 397,
+    "contribution_amount": 355530
+  },
+  {
+    "id": "H8AK00140",
+    "name": "GALVIN, ALYSE",
+    "office": "H",
+    "party": "IND",
+    "state": "AK",
+    "district": 0,
+    "score": 43,
+    "contribution_count": 717,
+    "contribution_amount": 352268
+  },
+  {
+    "id": "H8NY01148",
+    "name": "ZELDIN, LEE M",
+    "office": "H",
+    "party": "REP",
+    "state": "NY",
+    "district": 1,
+    "score": 20,
+    "contribution_count": 507,
+    "contribution_amount": 350965
+  },
+  {
+    "id": "H8UT04053",
+    "name": "MCADAMS, BEN",
+    "office": "H",
+    "party": "DEM",
+    "state": "UT",
+    "district": 4,
+    "score": 140,
+    "contribution_count": 452,
+    "contribution_amount": 346567
+  },
+  {
+    "id": "S8MO00160",
+    "name": "HAWLEY, JOSHUA DAVID",
+    "office": "S",
+    "party": "REP",
+    "state": "MO",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 268,
+    "contribution_amount": 343976
+  },
+  {
+    "id": "P00006213",
+    "name": "DELANEY, JOHN K.",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 49,
+    "contribution_count": 845,
+    "contribution_amount": 341947
+  },
+  {
+    "id": "H8MA03106",
+    "name": "TRAHAN, LORI",
+    "office": "H",
+    "party": "DEM",
+    "state": "MA",
+    "district": 3,
+    "score": 44,
+    "contribution_count": 273,
+    "contribution_amount": 340706
+  },
+  {
+    "id": "H8MI13250",
+    "name": "TLAIB, RASHIDA",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 13,
+    "score": 182,
+    "contribution_count": 644,
+    "contribution_amount": 340256
+  },
+  {
+    "id": "H8KS03155",
+    "name": "DAVIDS, SHARICE",
+    "office": "H",
+    "party": "DEM",
+    "state": "KS",
+    "district": 3,
+    "score": 463,
+    "contribution_count": 1178,
+    "contribution_amount": 335800
+  },
+  {
+    "id": "S0GA00393",
+    "name": "TOMLINSON, TERESA PIKE",
+    "office": "S",
+    "party": "DEM",
+    "state": "GA",
+    "district": 0,
+    "score": 103,
+    "contribution_count": 575,
+    "contribution_amount": 335387
+  },
+  {
+    "id": "H8WA08189",
+    "name": "SCHRIER, KIM DR.",
+    "office": "H",
+    "party": "DEM",
+    "state": "WA",
+    "district": 8,
+    "score": 133,
+    "contribution_count": 738,
+    "contribution_amount": 334240
+  },
+  {
+    "id": "H2MD05155",
+    "name": "HOYER, STENY",
+    "office": "H",
+    "party": "DEM",
+    "state": "MD",
+    "district": 5,
+    "score": 23,
+    "contribution_count": 295,
+    "contribution_amount": 327806
+  },
+  {
+    "id": "H2IL10068",
+    "name": "SCHNEIDER, BRADLEY SCOTT",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 10,
+    "score": 35,
+    "contribution_count": 1186,
+    "contribution_amount": 326478
+  },
+  {
+    "id": "H8IA03124",
+    "name": "AXNE, CINDY",
+    "office": "H",
+    "party": "DEM",
+    "state": "IA",
+    "district": 3,
+    "score": 350,
+    "contribution_count": 728,
+    "contribution_amount": 321192
+  },
+  {
+    "id": "P80000722",
+    "name": "BIDEN, JOSEPH R JR",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 177,
+    "contribution_count": 2004,
+    "contribution_amount": 320910
+  },
+  {
+    "id": "S0CO00468",
+    "name": "JOHNSTON, MICHAEL C",
+    "office": "S",
+    "party": "DEM",
+    "state": "CO",
+    "district": 0,
+    "score": 38,
+    "contribution_count": 341,
+    "contribution_amount": 320448
+  },
+  {
+    "id": "H8NY22151",
+    "name": "BRINDISI, ANTHONY",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 22,
+    "score": 216,
+    "contribution_count": 884,
+    "contribution_amount": 319650
+  },
+  {
+    "id": "H2NY10092",
+    "name": "JEFFRIES, HAKEEM",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 8,
+    "score": 21,
+    "contribution_count": 254,
+    "contribution_amount": 317725
+  },
+  {
+    "id": "H0OH01099",
+    "name": "SCHRODER, KATE",
+    "office": "H",
+    "party": "DEM",
+    "state": "OH",
+    "district": 1,
+    "score": 4,
+    "contribution_count": 426,
+    "contribution_amount": 316137
+  },
+  {
+    "id": "S0TX00266",
+    "name": "WEST, ROYCE",
+    "office": "S",
+    "party": "DEM",
+    "state": "TX",
+    "district": 0,
+    "score": 9,
+    "contribution_count": 278,
+    "contribution_amount": 315492
+  },
+  {
+    "id": "H0NY15160",
+    "name": "TORRES, RITCHIE JOHN",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 15,
+    "score": 39,
+    "contribution_count": 349,
+    "contribution_amount": 313218
+  },
+  {
+    "id": "P00011239",
+    "name": "WELD, WILLIAM FLOYD (BILL)",
+    "office": "P",
+    "party": "REP",
+    "state": "US",
+    "district": 0,
+    "score": 6,
+    "contribution_count": 816,
+    "contribution_amount": 311234
+  },
+  {
+    "id": "H6NV04020",
+    "name": "LEE, SUSIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "NV",
+    "district": 3,
+    "score": 390,
+    "contribution_count": 444,
+    "contribution_amount": 310909
+  },
+  {
+    "id": "H6FL13205",
+    "name": "CRIST, CHARLIE JOSEPH",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 13,
+    "score": 7,
+    "contribution_count": 327,
+    "contribution_amount": 310392
+  },
+  {
+    "id": "S6RI00163",
+    "name": "REED, JOHN F.",
+    "office": "S",
+    "party": "DEM",
+    "state": "RI",
+    "district": 0,
+    "score": 7,
+    "contribution_count": 417,
+    "contribution_amount": 309594
+  },
+  {
+    "id": "H8CO06229",
+    "name": "CROW, JASON",
+    "office": "H",
+    "party": "DEM",
+    "state": "CO",
+    "district": 6,
+    "score": 95,
+    "contribution_count": 577,
+    "contribution_amount": 309489
+  },
+  {
+    "id": "H8IA01094",
+    "name": "FINKENAUER, ABBY",
+    "office": "H",
+    "party": "DEM",
+    "state": "IA",
+    "district": 1,
+    "score": 272,
+    "contribution_count": 503,
+    "contribution_amount": 305132
+  },
+  {
+    "id": "S4NE00090",
+    "name": "SASSE, BENJAMIN E",
+    "office": "S",
+    "party": "REP",
+    "state": "NE",
+    "district": 0,
+    "score": 25,
+    "contribution_count": 297,
+    "contribution_amount": 304650
+  },
+  {
+    "id": "S8TN00311",
+    "name": "MACKLER, JAMES",
+    "office": "S",
+    "party": "DEM",
+    "state": "TN",
+    "district": 0,
+    "score": 58,
+    "contribution_count": 773,
+    "contribution_amount": 302605
+  },
+  {
+    "id": "H8CA39240",
+    "name": "KIM, YOUNG",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 39,
+    "score": 10,
+    "contribution_count": 299,
+    "contribution_amount": 301447
+  },
+  {
+    "id": "H8ME02185",
+    "name": "GOLDEN, JARED",
+    "office": "H",
+    "party": "DEM",
+    "state": "ME",
+    "district": 2,
+    "score": 442,
+    "contribution_count": 901,
+    "contribution_amount": 301202
+  },
+  {
+    "id": "H8CA50098",
+    "name": "CAMPA-NAJJAR, AMMAR",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 50,
+    "score": 4,
+    "contribution_count": 2249,
+    "contribution_amount": 299909
+  },
+  {
+    "id": "H0IA01174",
+    "name": "ARENHOLZ, ASHLEY HINSON",
+    "office": "H",
+    "party": "REP",
+    "state": "IA",
+    "district": 1,
+    "score": 7,
+    "contribution_count": 267,
+    "contribution_amount": 298156
+  },
+  {
+    "id": "H0CA53115",
+    "name": "JACOBS, SARA",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 53,
+    "score": 10,
+    "contribution_count": 155,
+    "contribution_amount": 297095
+  },
+  {
+    "id": "H8IL13150",
+    "name": "LONDRIGAN, BETSY DIRKSEN",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 13,
+    "score": 128,
+    "contribution_count": 566,
+    "contribution_amount": 295560
+  },
+  {
+    "id": "S0KS00232",
+    "name": "GRISSOM, BARRY",
+    "office": "S",
+    "party": "DEM",
+    "state": "KS",
+    "district": 0,
+    "score": 14,
+    "contribution_count": 411,
+    "contribution_amount": 294243
+  },
+  {
+    "id": "S0CO00286",
+    "name": "ROMANOFF, ANDREW",
+    "office": "S",
+    "party": "DEM",
+    "state": "CO",
+    "district": 0,
+    "score": 33,
+    "contribution_count": 2046,
+    "contribution_amount": 292334
+  },
+  {
+    "id": "H6MN02131",
+    "name": "CRAIG, ANGELA DAWN",
+    "office": "H",
+    "party": "DEM",
+    "state": "MN",
+    "district": 2,
+    "score": 346,
+    "contribution_count": 645,
+    "contribution_amount": 291280
+  },
+  {
+    "id": "H8MT01232",
+    "name": "WILLIAMS, KATHLEEN",
+    "office": "H",
+    "party": "DEM",
+    "state": "MT",
+    "district": 0,
+    "score": 16,
+    "contribution_count": 833,
+    "contribution_amount": 290029
+  },
+  {
+    "id": "P80006117",
+    "name": "KLOBUCHAR, AMY J.",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 185,
+    "contribution_count": 1008,
+    "contribution_amount": 284654
+  },
+  {
+    "id": "H8VA02111",
+    "name": "LURIA, ELAINE",
+    "office": "H",
+    "party": "DEM",
+    "state": "VA",
+    "district": 2,
+    "score": 517,
+    "contribution_count": 734,
+    "contribution_amount": 283908
+  },
+  {
+    "id": "S4WV00159",
+    "name": "CAPITO, SHELLEY MOORE MS.",
+    "office": "S",
+    "party": "REP",
+    "state": "WV",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 212,
+    "contribution_amount": 282087
+  },
+  {
+    "id": "S8AZ00197",
+    "name": "SINEMA, KYRSTEN",
+    "office": "S",
+    "party": "DEM",
+    "state": "AZ",
+    "district": 0,
+    "score": 7,
+    "contribution_count": 1512,
+    "contribution_amount": 279401
+  },
+  {
+    "id": "H0IL06060",
+    "name": "IVES, JEANNE",
+    "office": "H",
+    "party": "REP",
+    "state": "IL",
+    "district": 6,
+    "score": 2,
+    "contribution_count": 209,
+    "contribution_amount": 274218
+  },
+  {
+    "id": "S4OK00083",
+    "name": "INHOFE, JAMES M. SEN.",
+    "office": "S",
+    "party": "REP",
+    "state": "OK",
+    "district": 0,
+    "score": 6,
+    "contribution_count": 249,
+    "contribution_amount": 273855
+  },
+  {
+    "id": "S0MA00182",
+    "name": "PEMBERTON, STEVE",
+    "office": "S",
+    "party": "DEM",
+    "state": "MA",
+    "district": 0,
+    "score": 4,
+    "contribution_count": 375,
+    "contribution_amount": 272585
+  },
+  {
+    "id": "H6WA07458",
+    "name": "JAYAPAL, PRAMILA",
+    "office": "H",
+    "party": "DEM",
+    "state": "WA",
+    "district": 7,
+    "score": 61,
+    "contribution_count": 1132,
+    "contribution_amount": 271614
+  },
+  {
+    "id": "P00011338",
+    "name": "RYAN, TIMOTHY J.",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 6,
+    "contribution_count": 831,
+    "contribution_amount": 271492
+  },
+  {
+    "id": "P00010793",
+    "name": "O'ROURKE, ROBERT BETO",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 111,
+    "contribution_count": 2539,
+    "contribution_amount": 268953
+  },
+  {
+    "id": "H8CA10167",
+    "name": "COX, TERRANCE JOHN (TJ)",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 21,
+    "score": 214,
+    "contribution_count": 612,
+    "contribution_amount": 265261
+  },
+  {
+    "id": "H8NY15148",
+    "name": "OCASIO-CORTEZ, ALEXANDRIA",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 14,
+    "score": 334,
+    "contribution_count": 3758,
+    "contribution_amount": 263645
+  },
+  {
+    "id": "S0GA00401",
+    "name": "RIGGS AMICO, SARAH",
+    "office": "S",
+    "party": "DEM",
+    "state": "GA",
+    "district": 0,
+    "score": 17,
+    "contribution_count": 253,
+    "contribution_amount": 262821
+  },
+  {
+    "id": "S4HI00136",
+    "name": "SCHATZ, BRIAN",
+    "office": "S",
+    "party": "DEM",
+    "state": "HI",
+    "district": 0,
+    "score": 8,
+    "contribution_count": 421,
+    "contribution_amount": 260831
+  },
+  {
+    "id": "H8MA02041",
+    "name": "NEAL, RICHARD E MR.",
+    "office": "H",
+    "party": "DEM",
+    "state": "MA",
+    "district": 1,
+    "score": 13,
+    "contribution_count": 219,
+    "contribution_amount": 259550
+  },
+  {
+    "id": "H8MN05239",
+    "name": "OMAR, ILHAN",
+    "office": "H",
+    "party": "DFL",
+    "state": "MN",
+    "district": 5,
+    "score": 286,
+    "contribution_count": 2891,
+    "contribution_amount": 254615
+  },
+  {
+    "id": "H8GA07201",
+    "name": "BOURDEAUX, CAROLYN",
+    "office": "H",
+    "party": "DEM",
+    "state": "GA",
+    "district": 7,
+    "score": 43,
+    "contribution_count": 619,
+    "contribution_amount": 250903
+  },
+  {
+    "id": "H6CA22125",
+    "name": "MCCARTHY, KEVIN",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 23,
+    "score": 297,
+    "contribution_count": 2365,
+    "contribution_amount": 250625
+  },
+  {
+    "id": "S8MS00261",
+    "name": "HYDE-SMITH, CINDY",
+    "office": "S",
+    "party": "REP",
+    "state": "MS",
+    "district": 0,
+    "score": 29,
+    "contribution_count": 281,
+    "contribution_amount": 249870
+  },
+  {
+    "id": "H2MO02102",
+    "name": "WAGNER, ANN L.",
+    "office": "H",
+    "party": "REP",
+    "state": "MO",
+    "district": 2,
+    "score": 2,
+    "contribution_count": 194,
+    "contribution_amount": 249800
+  },
+  {
+    "id": "S4SD00049",
+    "name": "ROUNDS, MIKE",
+    "office": "S",
+    "party": "REP",
+    "state": "SD",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 270,
+    "contribution_amount": 245873
+  },
+  {
+    "id": "H4CA33119",
+    "name": "LIEU, TED",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 33,
+    "score": 7,
+    "contribution_count": 269,
+    "contribution_amount": 244925
+  },
+  {
+    "id": "P00009795",
+    "name": "BOOKER, CORY A.",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 67,
+    "contribution_count": 456,
+    "contribution_amount": 242644
+  },
+  {
+    "id": "H8AZ08083",
+    "name": "TIPIRNENI, HIRAL VYAS",
+    "office": "H",
+    "party": "DEM",
+    "state": "AZ",
+    "district": 6,
+    "score": 146,
+    "contribution_count": 699,
+    "contribution_amount": 241510
+  },
+  {
+    "id": "H2IL17071",
+    "name": "BUSTOS, CHERI",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 17,
+    "score": 52,
+    "contribution_count": 1094,
+    "contribution_amount": 239971
+  },
+  {
+    "id": "H0CA45129",
+    "name": "SPARKS, LISA",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 45,
+    "score": 2,
+    "contribution_count": 145,
+    "contribution_amount": 238998
+  },
+  {
+    "id": "H0IN05219",
+    "name": "HALE, CHRISTINA",
+    "office": "H",
+    "party": "DEM",
+    "state": "IN",
+    "district": 5,
+    "score": 2,
+    "contribution_count": 333,
+    "contribution_amount": 237348
+  },
+  {
+    "id": "H4MT00050",
+    "name": "ROSENDALE, MATT MR.",
+    "office": "H",
+    "party": "REP",
+    "state": "MT",
+    "district": 0,
+    "score": 13,
+    "contribution_count": 154,
+    "contribution_amount": 235600
+  },
+  {
+    "id": "H0PA10110",
+    "name": "DEPASQUALE, EUGENE",
+    "office": "H",
+    "party": "DEM",
+    "state": "PA",
+    "district": 10,
+    "score": 2,
+    "contribution_count": 347,
+    "contribution_amount": 231143
+  },
+  {
+    "id": "H0NC03172",
+    "name": "MURPHY, GREGORY FRANCIS",
+    "office": "H",
+    "party": "REP",
+    "state": "NC",
+    "district": 3,
+    "score": 18,
+    "contribution_count": 292,
+    "contribution_amount": 227189
+  },
+  {
+    "id": "H0AL01089",
+    "name": "HIGHTOWER, BILL",
+    "office": "H",
+    "party": "REP",
+    "state": "AL",
+    "district": 1,
+    "score": 14,
+    "contribution_count": 179,
+    "contribution_amount": 226653
+  },
+  {
+    "id": "H0NH02181",
+    "name": "KUSTER, ANN MCLANE",
+    "office": "H",
+    "party": "DEM",
+    "state": "NH",
+    "district": 2,
+    "score": 31,
+    "contribution_count": 578,
+    "contribution_amount": 224866
+  },
+  {
+    "id": "H8WI01156",
+    "name": "STEIL, BRYAN GEORGE",
+    "office": "H",
+    "party": "REP",
+    "state": "WI",
+    "district": 1,
+    "score": 3,
+    "contribution_count": 225,
+    "contribution_amount": 222368
+  },
+  {
+    "id": "H8PA06087",
+    "name": "HOULAHAN, CHRISSY",
+    "office": "H",
+    "party": "DEM",
+    "state": "PA",
+    "district": 6,
+    "score": 109,
+    "contribution_count": 452,
+    "contribution_amount": 216164
+  },
+  {
+    "id": "H0NY15194",
+    "name": "BLAKE, MICHAEL ALEXANDER",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 15,
+    "score": 16,
+    "contribution_count": 370,
+    "contribution_amount": 214882
+  },
+  {
+    "id": "S2WI00219",
+    "name": "BALDWIN, TAMMY",
+    "office": "S",
+    "party": "DEM",
+    "state": "WI",
+    "district": 0,
+    "score": 73,
+    "contribution_count": 2457,
+    "contribution_amount": 214588
+  },
+  {
+    "id": "H0SC02061",
+    "name": "BOROUGHS, ADAIR FORD",
+    "office": "H",
+    "party": "DEM",
+    "state": "SC",
+    "district": 2,
+    "score": 120,
+    "contribution_count": 641,
+    "contribution_amount": 214563
+  },
+  {
+    "id": "S2WA00189",
+    "name": "MURRAY, PATTY",
+    "office": "S",
+    "party": "DEM",
+    "state": "WA",
+    "district": 0,
+    "score": 52,
+    "contribution_count": 1486,
+    "contribution_amount": 209344
+  },
+  {
+    "id": "S0NC00319",
+    "name": "TUCKER, GARLAND S III",
+    "office": "S",
+    "party": "REP",
+    "state": "NC",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 375,
+    "contribution_amount": 209156
+  },
+  {
+    "id": "H8SD01055",
+    "name": "JOHNSON, DUSTY",
+    "office": "H",
+    "party": "REP",
+    "state": "SD",
+    "district": 0,
+    "score": 9,
+    "contribution_count": 308,
+    "contribution_amount": 207670
+  },
+  {
+    "id": "S0VA00104",
+    "name": "TAYLOR, SCOTT W.",
+    "office": "S",
+    "party": "REP",
+    "state": "VA",
+    "district": 0,
+    "score": 6,
+    "contribution_count": 205,
+    "contribution_amount": 204932
+  },
+  {
+    "id": "P80001571",
+    "name": "TRUMP, DONALD J.",
+    "office": "P",
+    "party": "REP",
+    "state": "US",
+    "district": 0,
+    "score": 9,
+    "contribution_count": 2946,
+    "contribution_amount": 203639
+  },
+  {
+    "id": "H8VA05114",
+    "name": "HUFFSTETLER, ROGER DEAN RD",
+    "office": "H",
+    "party": "DEM",
+    "state": "VA",
+    "district": 5,
+    "score": 114,
+    "contribution_count": 241,
+    "contribution_amount": 202829
+  },
+  {
+    "id": "H8FL27193",
+    "name": "SHALALA, DONNA",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 27,
+    "score": 43,
+    "contribution_count": 174,
+    "contribution_amount": 200087
+  },
+  {
+    "id": "H2PA17079",
+    "name": "CARTWRIGHT, MATTHEW A.",
+    "office": "H",
+    "party": "DEM",
+    "state": "PA",
+    "district": 8,
+    "score": 62,
+    "contribution_count": 250,
+    "contribution_amount": 199319
+  },
+  {
+    "id": "H8IL03102",
+    "name": "NEWMAN, MARIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 3,
+    "score": 256,
+    "contribution_count": 592,
+    "contribution_amount": 198705
+  },
+  {
+    "id": "H8NY21245",
+    "name": "COBB, TEDRA",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 21,
+    "score": 7,
+    "contribution_count": 663,
+    "contribution_amount": 197938
+  },
+  {
+    "id": "H8MN03143",
+    "name": "PHILLIPS, DEAN",
+    "office": "H",
+    "party": "DFL",
+    "state": "MN",
+    "district": 3,
+    "score": 33,
+    "contribution_count": 598,
+    "contribution_amount": 197708
+  },
+  {
+    "id": "H8GA06286",
+    "name": "HANDEL, KAREN CHRISTINE",
+    "office": "H",
+    "party": "REP",
+    "state": "GA",
+    "district": 6,
+    "score": 34,
+    "contribution_count": 240,
+    "contribution_amount": 197045
+  },
+  {
+    "id": "H2NY14037",
+    "name": "MALONEY, CAROLYN B.",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 12,
+    "score": 8,
+    "contribution_count": 207,
+    "contribution_amount": 196275
+  },
+  {
+    "id": "H0TX24167",
+    "name": "OLSON, KIMBERLY D",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 24,
+    "score": 72,
+    "contribution_count": 552,
+    "contribution_amount": 195728
+  },
+  {
+    "id": "H0FL13133",
+    "name": "MAKKI, AMANDA",
+    "office": "H",
+    "party": "REP",
+    "state": "FL",
+    "district": 13,
+    "score": 5,
+    "contribution_count": 196,
+    "contribution_amount": 195467
+  },
+  {
+    "id": "H0TX28077",
+    "name": "CISNEROS, JESSICA",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 28,
+    "score": 82,
+    "contribution_count": 299,
+    "contribution_amount": 194391
+  },
+  {
+    "id": "S0CO00500",
+    "name": "BAER, DAN",
+    "office": "S",
+    "party": "DEM",
+    "state": "CO",
+    "district": 0,
+    "score": 40,
+    "contribution_count": 478,
+    "contribution_amount": 194017
+  },
+  {
+    "id": "H8PA15229",
+    "name": "WILD, SUSAN",
+    "office": "H",
+    "party": "DEM",
+    "state": "PA",
+    "district": 7,
+    "score": 222,
+    "contribution_count": 448,
+    "contribution_amount": 193919
+  },
+  {
+    "id": "H0GA07323",
+    "name": "KARINSHAK, ZAHRA S.",
+    "office": "H",
+    "party": "DEM",
+    "state": "GA",
+    "district": 7,
+    "score": 2,
+    "contribution_count": 200,
+    "contribution_amount": 190355
+  },
+  {
+    "id": "H6AZ01199",
+    "name": "O'HALLERAN, TOM",
+    "office": "H",
+    "party": "DEM",
+    "state": "AZ",
+    "district": 1,
+    "score": 6,
+    "contribution_count": 454,
+    "contribution_amount": 189523
+  },
+  {
+    "id": "H8NY01155",
+    "name": "GERSHON, PERRY",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 1,
+    "score": 6,
+    "contribution_count": 284,
+    "contribution_amount": 188974
+  },
+  {
+    "id": "H8IA04106",
+    "name": "SCHOLTEN, JAMES D.",
+    "office": "H",
+    "party": "DEM",
+    "state": "IA",
+    "district": 4,
+    "score": 73,
+    "contribution_count": 253,
+    "contribution_amount": 188544
+  },
+  {
+    "id": "H8CA12098",
+    "name": "ESHOO, ANNA G",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 18,
+    "score": 2,
+    "contribution_count": 144,
+    "contribution_amount": 188400
+  },
+  {
+    "id": "H8CA52052",
+    "name": "HUNTER, DUNCAN D",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 50,
+    "score": 115,
+    "contribution_count": 909,
+    "contribution_amount": 185958
+  },
+  {
+    "id": "H0GA06168",
+    "name": "BEACH, BRANDON",
+    "office": "H",
+    "party": "REP",
+    "state": "GA",
+    "district": 6,
+    "score": 4,
+    "contribution_count": 214,
+    "contribution_amount": 183616
+  },
+  {
+    "id": "H8PA18181",
+    "name": "LAMB, CONOR",
+    "office": "H",
+    "party": "DEM",
+    "state": "PA",
+    "district": 17,
+    "score": 207,
+    "contribution_count": 418,
+    "contribution_amount": 182874
+  },
+  {
+    "id": "H0IA02156",
+    "name": "HART, RITA",
+    "office": "H",
+    "party": "DEM",
+    "state": "IA",
+    "district": 2,
+    "score": 87,
+    "contribution_count": 389,
+    "contribution_amount": 182004
+  },
+  {
+    "id": "H0MI06152",
+    "name": "HOADLEY, JON",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 6,
+    "score": 13,
+    "contribution_count": 571,
+    "contribution_amount": 179980
+  },
+  {
+    "id": "H6PA08277",
+    "name": "FITZPATRICK, BRIAN",
+    "office": "H",
+    "party": "REP",
+    "state": "PA",
+    "district": 1,
+    "score": 21,
+    "contribution_count": 188,
+    "contribution_amount": 179690
+  },
+  {
+    "id": "H4NY24073",
+    "name": "KATKO, JOHN M",
+    "office": "H",
+    "party": "REP",
+    "state": "NY",
+    "district": 24,
+    "score": 16,
+    "contribution_count": 213,
+    "contribution_amount": 179575
+  },
+  {
+    "id": "H2NV04011",
+    "name": "HORSFORD, STEVEN ALEXZANDER",
+    "office": "H",
+    "party": "DEM",
+    "state": "NV",
+    "district": 4,
+    "score": 151,
+    "contribution_count": 304,
+    "contribution_amount": 179285
+  },
+  {
+    "id": "H6FL18097",
+    "name": "MAST, BRIAN",
+    "office": "H",
+    "party": "REP",
+    "state": "FL",
+    "district": 18,
+    "score": 170,
+    "contribution_count": 1333,
+    "contribution_amount": 176158
+  },
+  {
+    "id": "S6PA00217",
+    "name": "CASEY, ROBERT P. JR.",
+    "office": "S",
+    "party": "DEM",
+    "state": "PA",
+    "district": 0,
+    "score": 54,
+    "contribution_count": 662,
+    "contribution_amount": 176146
+  },
+  {
+    "id": "S0TX00324",
+    "name": "BELL, ROBERT CHRISTOPHER MR.",
+    "office": "S",
+    "party": "DEM",
+    "state": "TX",
+    "district": 0,
+    "score": 9,
+    "contribution_count": 236,
+    "contribution_amount": 176095
+  },
+  {
+    "id": "H4NY21079",
+    "name": "STEFANIK, ELISE M.",
+    "office": "H",
+    "party": "REP",
+    "state": "NY",
+    "district": 21,
+    "score": 2,
+    "contribution_count": 227,
+    "contribution_amount": 173562
+  },
+  {
+    "id": "H4WA05077",
+    "name": "MCMORRIS RODGERS, CATHY",
+    "office": "H",
+    "party": "REP",
+    "state": "WA",
+    "district": 5,
+    "score": 11,
+    "contribution_count": 486,
+    "contribution_amount": 172161
+  },
+  {
+    "id": "P00010520",
+    "name": "HICKENLOOPER, JOHN W.",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 61,
+    "contribution_count": 646,
+    "contribution_amount": 172052
+  },
+  {
+    "id": "H0MI03316",
+    "name": "SCHOLTEN, HILLARY",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 3,
+    "score": 6,
+    "contribution_count": 303,
+    "contribution_amount": 170317
+  },
+  {
+    "id": "H0NY11078",
+    "name": "MALLIOTAKIS, NICOLE",
+    "office": "H",
+    "party": "REP",
+    "state": "NY",
+    "district": 11,
+    "score": 10,
+    "contribution_count": 265,
+    "contribution_amount": 169764
+  },
+  {
+    "id": "H0TX10216",
+    "name": "GANDHI, PRITESH",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 10,
+    "score": 6,
+    "contribution_count": 347,
+    "contribution_amount": 167373
+  },
+  {
+    "id": "H6GA05217",
+    "name": "LEWIS, JOHN R",
+    "office": "H",
+    "party": "DEM",
+    "state": "GA",
+    "district": 5,
+    "score": 118,
+    "contribution_count": 7154,
+    "contribution_amount": 165797
+  },
+  {
+    "id": "H8CA39174",
+    "name": "CISNEROS, GILBERT",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 39,
+    "score": 330,
+    "contribution_count": 322,
+    "contribution_amount": 164115
+  },
+  {
+    "id": "H6MD08457",
+    "name": "RASKIN, JAMIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "MD",
+    "district": 8,
+    "score": 4,
+    "contribution_count": 661,
+    "contribution_amount": 163454
+  },
+  {
+    "id": "H0NY17174",
+    "name": "JONES, MONDAIRE",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 17,
+    "score": 3,
+    "contribution_count": 307,
+    "contribution_amount": 162822
+  },
+  {
+    "id": "H4FL20023",
+    "name": "WASSERMAN SCHULTZ, DEBBIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 23,
+    "score": 13,
+    "contribution_count": 222,
+    "contribution_amount": 162440
+  },
+  {
+    "id": "S0NM00074",
+    "name": "TOULOUSE OLIVER, MAGGIE",
+    "office": "S",
+    "party": "DEM",
+    "state": "NM",
+    "district": 0,
+    "score": 46,
+    "contribution_count": 530,
+    "contribution_amount": 161949
+  },
+  {
+    "id": "H0CA53107",
+    "name": "GOMEZ, GEORGETTE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 53,
+    "score": 3,
+    "contribution_count": 188,
+    "contribution_amount": 159857
+  },
+  {
+    "id": "H4CA16049",
+    "name": "LOFGREN, ZOE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 19,
+    "score": 20,
+    "contribution_count": 251,
+    "contribution_amount": 158399
+  },
+  {
+    "id": "S2SD00068",
+    "name": "THUNE, JOHN",
+    "office": "S",
+    "party": "REP",
+    "state": "SD",
+    "district": 0,
+    "score": 8,
+    "contribution_count": 351,
+    "contribution_amount": 158249
+  },
+  {
+    "id": "S6OH00163",
+    "name": "BROWN, SHERROD",
+    "office": "S",
+    "party": "DEM",
+    "state": "OH",
+    "district": 0,
+    "score": 109,
+    "contribution_count": 1911,
+    "contribution_amount": 157525
+  },
+  {
+    "id": "H0KY06104",
+    "name": "BARR, GARLAND ANDY",
+    "office": "H",
+    "party": "REP",
+    "state": "KY",
+    "district": 6,
+    "score": 2,
+    "contribution_count": 193,
+    "contribution_amount": 155880
+  },
+  {
+    "id": "H0CA04175",
+    "name": "KENNEDY, BRYNNE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 4,
+    "score": 20,
+    "contribution_count": 180,
+    "contribution_amount": 155268
+  },
+  {
+    "id": "H6CA24303",
+    "name": "CARBAJAL, SALUD O.",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 24,
+    "score": 5,
+    "contribution_count": 177,
+    "contribution_amount": 154358
+  },
+  {
+    "id": "H8AZ09040",
+    "name": "STANTON, GREG",
+    "office": "H",
+    "party": "DEM",
+    "state": "AZ",
+    "district": 9,
+    "score": 9,
+    "contribution_count": 276,
+    "contribution_amount": 152648
+  },
+  {
+    "id": "P00011312",
+    "name": "SWALWELL, ERIC MICHAEL",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 9,
+    "contribution_count": 147,
+    "contribution_amount": 151014
+  },
+  {
+    "id": "H8NH01210",
+    "name": "PAPPAS, CHRIS",
+    "office": "H",
+    "party": "DEM",
+    "state": "NH",
+    "district": 1,
+    "score": 158,
+    "contribution_count": 347,
+    "contribution_amount": 149629
+  },
+  {
+    "id": "H0NY24063",
+    "name": "CONOLE, FRANCIS",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 24,
+    "score": 8,
+    "contribution_count": 370,
+    "contribution_amount": 148899
+  },
+  {
+    "id": "H0VA05145",
+    "name": "WEBB, BRYANT CAMERON",
+    "office": "H",
+    "party": "DEM",
+    "state": "VA",
+    "district": 5,
+    "score": 2,
+    "contribution_count": 207,
+    "contribution_amount": 148562
+  },
+  {
+    "id": "H8MA07032",
+    "name": "PRESSLEY, AYANNA",
+    "office": "H",
+    "party": "DEM",
+    "state": "MA",
+    "district": 7,
+    "score": 157,
+    "contribution_count": 486,
+    "contribution_amount": 148470
+  },
+  {
+    "id": "H2NY22139",
+    "name": "MALONEY, SEAN PATRICK",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 18,
+    "score": 11,
+    "contribution_count": 388,
+    "contribution_amount": 147420
+  },
+  {
+    "id": "H0NC02083",
+    "name": "COOPER, SCOTT",
+    "office": "H",
+    "party": "DEM",
+    "state": "NC",
+    "district": 2,
+    "score": 88,
+    "contribution_count": 401,
+    "contribution_amount": 147091
+  },
+  {
+    "id": "S6IL00292",
+    "name": "DUCKWORTH, L TAMMY",
+    "office": "S",
+    "party": "DEM",
+    "state": "IL",
+    "district": 0,
+    "score": 67,
+    "contribution_count": 1910,
+    "contribution_amount": 143706
+  },
+  {
+    "id": "S6IN00191",
+    "name": "YOUNG, TODD CHRISTOPHER",
+    "office": "S",
+    "party": "REP",
+    "state": "IN",
+    "district": 0,
+    "score": 31,
+    "contribution_count": 200,
+    "contribution_amount": 143560
+  },
+  {
+    "id": "S8NY00082",
+    "name": "SCHUMER, CHARLES E",
+    "office": "S",
+    "party": "DEM",
+    "state": "NY",
+    "district": 0,
+    "score": 10,
+    "contribution_count": 212,
+    "contribution_amount": 140922
+  },
+  {
+    "id": "H0MA01081",
+    "name": "MORSE, ALEX",
+    "office": "H",
+    "party": "DEM",
+    "state": "MA",
+    "district": 1,
+    "score": 10,
+    "contribution_count": 192,
+    "contribution_amount": 139058
+  },
+  {
+    "id": "H0NM03110",
+    "name": "PLAME, VALERIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "NM",
+    "district": 3,
+    "score": 82,
+    "contribution_count": 383,
+    "contribution_amount": 138190
+  },
+  {
+    "id": "H8NM01331",
+    "name": "HAALAND, DEBRA",
+    "office": "H",
+    "party": "DEM",
+    "state": "NM",
+    "district": 1,
+    "score": 55,
+    "contribution_count": 339,
+    "contribution_amount": 137173
+  },
+  {
+    "id": "H2IL13120",
+    "name": "DAVIS, RODNEY L",
+    "office": "H",
+    "party": "REP",
+    "state": "IL",
+    "district": 13,
+    "score": 2,
+    "contribution_count": 259,
+    "contribution_amount": 135448
+  },
+  {
+    "id": "H0CA08101",
+    "name": "BUBSER, CHRISTINE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 8,
+    "score": 45,
+    "contribution_count": 329,
+    "contribution_amount": 131480
+  },
+  {
+    "id": "H2CA31125",
+    "name": "AGUILAR, PETE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 31,
+    "score": 46,
+    "contribution_count": 703,
+    "contribution_amount": 130834
+  },
+  {
+    "id": "H0CA22102",
+    "name": "ARBALLO, PHIL",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 22,
+    "score": 79,
+    "contribution_count": 346,
+    "contribution_amount": 129962
+  },
+  {
+    "id": "H0NC03248",
+    "name": "THOMAS, ALLEN",
+    "office": "H",
+    "party": "DEM",
+    "state": "NC",
+    "district": 3,
+    "score": 9,
+    "contribution_count": 328,
+    "contribution_amount": 128273
+  },
+  {
+    "id": "S6NH00091",
+    "name": "HASSAN, MARGARET WOOD",
+    "office": "S",
+    "party": "DEM",
+    "state": "NH",
+    "district": 0,
+    "score": 327,
+    "contribution_count": 1187,
+    "contribution_amount": 127809
+  },
+  {
+    "id": "H2NC11080",
+    "name": "MEADOWS, MARK R",
+    "office": "H",
+    "party": "REP",
+    "state": "NC",
+    "district": 11,
+    "score": 32,
+    "contribution_count": 330,
+    "contribution_amount": 127771
+  },
+  {
+    "id": "H2CA00120",
+    "name": "BROWNLEY, JULIA",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 26,
+    "score": 12,
+    "contribution_count": 559,
+    "contribution_amount": 127613
+  },
+  {
+    "id": "H0MI03282",
+    "name": "COLVIN, NICK",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 3,
+    "score": 8,
+    "contribution_count": 215,
+    "contribution_amount": 126649
+  },
+  {
+    "id": "H0GA07299",
+    "name": "UNTERMAN, RENEE",
+    "office": "H",
+    "party": "REP",
+    "state": "GA",
+    "district": 7,
+    "score": 4,
+    "contribution_count": 119,
+    "contribution_amount": 126500
+  },
+  {
+    "id": "H0RI01073",
+    "name": "CICILLINE, DAVID N",
+    "office": "H",
+    "party": "DEM",
+    "state": "RI",
+    "district": 1,
+    "score": 2,
+    "contribution_count": 230,
+    "contribution_amount": 125997
+  },
+  {
+    "id": "H8CO02160",
+    "name": "NEGUSE, JOSEPH",
+    "office": "H",
+    "party": "DEM",
+    "state": "CO",
+    "district": 2,
+    "score": 19,
+    "contribution_count": 193,
+    "contribution_amount": 124878
+  },
+  {
+    "id": "H4NC10047",
+    "name": "MCHENRY, PATRICK TIMOTHY",
+    "office": "H",
+    "party": "REP",
+    "state": "NC",
+    "district": 10,
+    "score": 20,
+    "contribution_count": 190,
+    "contribution_amount": 122450
+  },
+  {
+    "id": "S0IA00200",
+    "name": "FRANKEN, MICHAEL",
+    "office": "S",
+    "party": "DEM",
+    "state": "IA",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 174,
+    "contribution_amount": 121446
+  },
+  {
+    "id": "H8CA09060",
+    "name": "LEE, BARBARA",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 13,
+    "score": 23,
+    "contribution_count": 558,
+    "contribution_amount": 116820
+  },
+  {
+    "id": "H2GA09150",
+    "name": "COLLINS, DOUGLAS ALLEN",
+    "office": "H",
+    "party": "REP",
+    "state": "GA",
+    "district": 9,
+    "score": 2,
+    "contribution_count": 212,
+    "contribution_amount": 115530
+  },
+  {
+    "id": "H8MI09118",
+    "name": "LEVIN, ANDY",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 9,
+    "score": 21,
+    "contribution_count": 158,
+    "contribution_amount": 114959
+  },
+  {
+    "id": "S0CT00177",
+    "name": "BLUMENTHAL, RICHARD",
+    "office": "S",
+    "party": "DEM",
+    "state": "CT",
+    "district": 0,
+    "score": 56,
+    "contribution_count": 376,
+    "contribution_amount": 114847
+  },
+  {
+    "id": "H6IL18088",
+    "name": "LAHOOD, DARIN MCKAY",
+    "office": "H",
+    "party": "REP",
+    "state": "IL",
+    "district": 18,
+    "score": 2,
+    "contribution_count": 191,
+    "contribution_amount": 114583
+  },
+  {
+    "id": "H4AZ06045",
+    "name": "SCHWEIKERT, DAVID S.",
+    "office": "H",
+    "party": "REP",
+    "state": "AZ",
+    "district": 6,
+    "score": 5,
+    "contribution_count": 93,
+    "contribution_amount": 114101
+  },
+  {
+    "id": "S6NV00200",
+    "name": "MASTO, CATHERINE CORTEZ",
+    "office": "S",
+    "party": "DEM",
+    "state": "NV",
+    "district": 0,
+    "score": 190,
+    "contribution_count": 844,
+    "contribution_amount": 113732
+  },
+  {
+    "id": "H4MN06087",
+    "name": "EMMER, THOMAS EARL JR.",
+    "office": "H",
+    "party": "REP",
+    "state": "MN",
+    "district": 6,
+    "score": 14,
+    "contribution_count": 176,
+    "contribution_amount": 113650
+  },
+  {
+    "id": "H4CA11081",
+    "name": "MCNERNEY, GERALD MARK",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 9,
+    "score": 12,
+    "contribution_count": 215,
+    "contribution_amount": 113390
+  },
+  {
+    "id": "H8AZ01104",
+    "name": "KIRKPATRICK, ANN",
+    "office": "H",
+    "party": "DEM",
+    "state": "AZ",
+    "district": 2,
+    "score": 67,
+    "contribution_count": 676,
+    "contribution_amount": 113027
+  },
+  {
+    "id": "H0IL07175",
+    "name": "SCHANBACHER, KRISTINE",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 7,
+    "score": 2,
+    "contribution_count": 198,
+    "contribution_amount": 112821
+  },
+  {
+    "id": "H2WA06129",
+    "name": "KILMER, DEREK",
+    "office": "H",
+    "party": "DEM",
+    "state": "WA",
+    "district": 6,
+    "score": 8,
+    "contribution_count": 250,
+    "contribution_amount": 109788
+  },
+  {
+    "id": "H2NY17071",
+    "name": "NADLER, JERROLD L.",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 10,
+    "score": 34,
+    "contribution_count": 365,
+    "contribution_amount": 109502
+  },
+  {
+    "id": "S0CO00518",
+    "name": "WALSH, JOHN",
+    "office": "S",
+    "party": "DEM",
+    "state": "CO",
+    "district": 0,
+    "score": 17,
+    "contribution_count": 265,
+    "contribution_amount": 107944
+  },
+  {
+    "id": "P00009092",
+    "name": "CASTRO, JULIAN",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 112,
+    "contribution_count": 457,
+    "contribution_amount": 107880
+  },
+  {
+    "id": "H8IL14067",
+    "name": "FOSTER, G. WILLIAM (BILL)",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 11,
+    "score": 6,
+    "contribution_count": 291,
+    "contribution_amount": 107875
+  },
+  {
+    "id": "H6NE02125",
+    "name": "BACON, DONALD J",
+    "office": "H",
+    "party": "REP",
+    "state": "NE",
+    "district": 2,
+    "score": 18,
+    "contribution_count": 156,
+    "contribution_amount": 106790
+  },
+  {
+    "id": "S0AL00263",
+    "name": "MOONEY, ARNOLD",
+    "office": "S",
+    "party": "REP",
+    "state": "AL",
+    "district": 0,
+    "score": 31,
+    "contribution_count": 223,
+    "contribution_amount": 106500
+  },
+  {
+    "id": "H2NC08185",
+    "name": "HUDSON, RICHARD L. JR.",
+    "office": "H",
+    "party": "REP",
+    "state": "NC",
+    "district": 8,
+    "score": 2,
+    "contribution_count": 135,
+    "contribution_amount": 106250
+  },
+  {
+    "id": "H8CO03192",
+    "name": "MITSCH BUSH, DIANE MS.",
+    "office": "H",
+    "party": "DEM",
+    "state": "CO",
+    "district": 3,
+    "score": 25,
+    "contribution_count": 307,
+    "contribution_amount": 105652
+  },
+  {
+    "id": "H8CA10209",
+    "name": "HOWZE, TED D II",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 10,
+    "score": 2,
+    "contribution_count": 87,
+    "contribution_amount": 103265
+  },
+  {
+    "id": "P00010454",
+    "name": "INSLEE, JAY R",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 39,
+    "contribution_count": 405,
+    "contribution_amount": 103173
+  },
+  {
+    "id": "H4TX10093",
+    "name": "MCCAUL, MICHAEL",
+    "office": "H",
+    "party": "REP",
+    "state": "TX",
+    "district": 10,
+    "score": 13,
+    "contribution_count": 107,
+    "contribution_amount": 102074
+  },
+  {
+    "id": "H0OH01081",
+    "name": "FOSTER, NIKKI",
+    "office": "H",
+    "party": "DEM",
+    "state": "OH",
+    "district": 1,
+    "score": 15,
+    "contribution_count": 284,
+    "contribution_amount": 100664
+  },
+  {
+    "id": "H6FL07140",
+    "name": "MURPHY, STEPHANIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 7,
+    "score": 15,
+    "contribution_count": 169,
+    "contribution_amount": 100563
+  },
+  {
+    "id": "H2CA15094",
+    "name": "SWALWELL, ERIC MICHAEL",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 15,
+    "score": 11,
+    "contribution_count": 217,
+    "contribution_amount": 100222
+  },
+  {
+    "id": "H8NY09158",
+    "name": "BUNKEDDEKO, ADEM",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 9,
+    "score": 5,
+    "contribution_count": 89,
+    "contribution_amount": 99275
+  },
+  {
+    "id": "H8CT05245",
+    "name": "HAYES, JAHANA",
+    "office": "H",
+    "party": "DEM",
+    "state": "CT",
+    "district": 5,
+    "score": 113,
+    "contribution_count": 275,
+    "contribution_amount": 98581
+  },
+  {
+    "id": "H0CA33117",
+    "name": "BASS, KAREN",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 37,
+    "score": 6,
+    "contribution_count": 91,
+    "contribution_amount": 98573
+  },
+  {
+    "id": "H6OR04047",
+    "name": "DEFAZIO, PETER A",
+    "office": "H",
+    "party": "DEM",
+    "state": "OR",
+    "district": 4,
+    "score": 3,
+    "contribution_count": 339,
+    "contribution_amount": 97423
+  },
+  {
+    "id": "S0CO00559",
+    "name": "WILLIAMS, ANGELA",
+    "office": "S",
+    "party": "DEM",
+    "state": "CO",
+    "district": 0,
+    "score": 3,
+    "contribution_count": 152,
+    "contribution_amount": 97180
+  },
+  {
+    "id": "H4CA23011",
+    "name": "WATERS, MAXINE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 43,
+    "score": 5,
+    "contribution_count": 128,
+    "contribution_amount": 96001
+  },
+  {
+    "id": "H8AZ01237",
+    "name": "SHEDD, TIFFANY",
+    "office": "H",
+    "party": "REP",
+    "state": "AZ",
+    "district": 1,
+    "score": 2,
+    "contribution_count": 128,
+    "contribution_amount": 95590
+  },
+  {
+    "id": "H8PA07200",
+    "name": "SCANLON, MARY GAY",
+    "office": "H",
+    "party": "DEM",
+    "state": "PA",
+    "district": 5,
+    "score": 4,
+    "contribution_count": 265,
+    "contribution_amount": 95042
+  },
+  {
+    "id": "H0MI02094",
+    "name": "HUIZENGA, WILLIAM P",
+    "office": "H",
+    "party": "REP",
+    "state": "MI",
+    "district": 2,
+    "score": 17,
+    "contribution_count": 143,
+    "contribution_amount": 94850
+  },
+  {
+    "id": "H4CA45089",
+    "name": "RATHS, GREGORY GERARD",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 45,
+    "score": 2,
+    "contribution_count": 134,
+    "contribution_amount": 94630
+  },
+  {
+    "id": "H0FL19080",
+    "name": "DEUTCH, THEODORE ELIOT",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 22,
+    "score": 19,
+    "contribution_count": 132,
+    "contribution_amount": 93565
+  },
+  {
+    "id": "H8CA01257",
+    "name": "DENNEY, AUDREY L",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 1,
+    "score": 2,
+    "contribution_count": 706,
+    "contribution_amount": 93253
+  },
+  {
+    "id": "H8NY24090",
+    "name": "BALTER, DANA",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 24,
+    "score": 34,
+    "contribution_count": 320,
+    "contribution_amount": 86909
+  },
+  {
+    "id": "S0FL00338",
+    "name": "RUBIO, MARCO",
+    "office": "S",
+    "party": "REP",
+    "state": "FL",
+    "district": 0,
+    "score": 94,
+    "contribution_count": 735,
+    "contribution_amount": 86724
+  },
+  {
+    "id": "H8TX10110",
+    "name": "SIEGEL, MICHAEL",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 10,
+    "score": 26,
+    "contribution_count": 467,
+    "contribution_amount": 86681
+  },
+  {
+    "id": "H6TX08100",
+    "name": "BRADY, KEVIN",
+    "office": "H",
+    "party": "REP",
+    "state": "TX",
+    "district": 8,
+    "score": 2,
+    "contribution_count": 47,
+    "contribution_amount": 84900
+  },
+  {
+    "id": "H0GA07208",
+    "name": "ISLAM, NABILAH AISHAH",
+    "office": "H",
+    "party": "DEM",
+    "state": "GA",
+    "district": 7,
+    "score": 12,
+    "contribution_count": 218,
+    "contribution_amount": 84833
+  },
+  {
+    "id": "H6FL01119",
+    "name": "GAETZ, MATT",
+    "office": "H",
+    "party": "REP",
+    "state": "FL",
+    "district": 1,
+    "score": 27,
+    "contribution_count": 493,
+    "contribution_amount": 84274
+  },
+  {
+    "id": "H0CA43108",
+    "name": "COLLINS, JOE",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 43,
+    "score": 43,
+    "contribution_count": 176,
+    "contribution_amount": 83926
+  },
+  {
+    "id": "H2SC02042",
+    "name": "CLYBURN, JAMES E.",
+    "office": "H",
+    "party": "DEM",
+    "state": "SC",
+    "district": 6,
+    "score": 2,
+    "contribution_count": 155,
+    "contribution_amount": 83540
+  },
+  {
+    "id": "H2MI05119",
+    "name": "KILDEE, DANIEL T.",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 5,
+    "score": 6,
+    "contribution_count": 170,
+    "contribution_amount": 83405
+  },
+  {
+    "id": "P00006486",
+    "name": "YANG, ANDREW MR.",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 684,
+    "contribution_amount": 83086
+  },
+  {
+    "id": "H4IL03077",
+    "name": "LIPINSKI, DANIEL WILLIAM WILLIAM",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 3,
+    "score": 2,
+    "contribution_count": 98,
+    "contribution_amount": 81880
+  },
+  {
+    "id": "H2CA36439",
+    "name": "RUIZ, RAUL DR",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 36,
+    "score": 32,
+    "contribution_count": 844,
+    "contribution_amount": 80303
+  },
+  {
+    "id": "P00009183",
+    "name": "GABBARD, TULSI",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 34,
+    "contribution_count": 728,
+    "contribution_amount": 79891
+  },
+  {
+    "id": "H6FL11126",
+    "name": "CASTOR, KATHY",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 14,
+    "score": 7,
+    "contribution_count": 213,
+    "contribution_amount": 78474
+  },
+  {
+    "id": "H8CT04172",
+    "name": "HIMES, JIM",
+    "office": "H",
+    "party": "DEM",
+    "state": "CT",
+    "district": 4,
+    "score": 4,
+    "contribution_count": 158,
+    "contribution_amount": 77139
+  },
+  {
+    "id": "H6GA03113",
+    "name": "FERGUSON, ANDERSON DREW IV",
+    "office": "H",
+    "party": "REP",
+    "state": "GA",
+    "district": 3,
+    "score": 6,
+    "contribution_count": 113,
+    "contribution_amount": 76320
+  },
+  {
+    "id": "H0SC03077",
+    "name": "DUNCAN, JEFFREY D MR.",
+    "office": "H",
+    "party": "REP",
+    "state": "SC",
+    "district": 3,
+    "score": 7,
+    "contribution_count": 177,
+    "contribution_amount": 75981
+  },
+  {
+    "id": "H2IL02172",
+    "name": "KELLY, ROBIN",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 2,
+    "score": 2,
+    "contribution_count": 151,
+    "contribution_amount": 75743
+  },
+  {
+    "id": "H0FL15088",
+    "name": "HATTERSLEY, ADAM ROGER",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 15,
+    "score": 70,
+    "contribution_count": 129,
+    "contribution_amount": 75125
+  },
+  {
+    "id": "H6CO01141",
+    "name": "DEGETTE, DIANA L",
+    "office": "H",
+    "party": "DEM",
+    "state": "CO",
+    "district": 1,
+    "score": 6,
+    "contribution_count": 126,
+    "contribution_amount": 74873
+  },
+  {
+    "id": "H8TX25159",
+    "name": "OLIVER, JULIE LYNN",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 25,
+    "score": 50,
+    "contribution_count": 282,
+    "contribution_amount": 74391
+  },
+  {
+    "id": "H8NE02220",
+    "name": "EASTMAN, KARA",
+    "office": "H",
+    "party": "DEM",
+    "state": "NE",
+    "district": 2,
+    "score": 47,
+    "contribution_count": 242,
+    "contribution_amount": 74166
+  },
+  {
+    "id": "H0WA08046",
+    "name": "DELBENE, SUZAN K",
+    "office": "H",
+    "party": "DEM",
+    "state": "WA",
+    "district": 1,
+    "score": 8,
+    "contribution_count": 258,
+    "contribution_amount": 73208
+  },
+  {
+    "id": "H0IL05096",
+    "name": "QUIGLEY, MIKE",
+    "office": "H",
+    "party": "DEM",
+    "state": "IL",
+    "district": 5,
+    "score": 4,
+    "contribution_count": 114,
+    "contribution_amount": 73150
+  },
+  {
+    "id": "H2WI02124",
+    "name": "POCAN, MARK",
+    "office": "H",
+    "party": "DEM",
+    "state": "WI",
+    "district": 2,
+    "score": 11,
+    "contribution_count": 317,
+    "contribution_amount": 73015
+  },
+  {
+    "id": "P00011833",
+    "name": "BENNET, MICHAEL F.",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 15,
+    "contribution_count": 172,
+    "contribution_amount": 73007
+  },
+  {
+    "id": "H6AZ05083",
+    "name": "BIGGS, ANDY MR.",
+    "office": "H",
+    "party": "REP",
+    "state": "AZ",
+    "district": 5,
+    "score": 4,
+    "contribution_count": 81,
+    "contribution_amount": 69800
+  },
+  {
+    "id": "S0AR00200",
+    "name": "MAHONY, JOSHUA MR.",
+    "office": "S",
+    "party": "DEM",
+    "state": "AR",
+    "district": 0,
+    "score": 10,
+    "contribution_count": 163,
+    "contribution_amount": 69587
+  },
+  {
+    "id": "H0CA03078",
+    "name": "BERA, AMERISH",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 7,
+    "score": 6,
+    "contribution_count": 313,
+    "contribution_amount": 69123
+  },
+  {
+    "id": "P00013276",
+    "name": "WALSH, JOE",
+    "office": "P",
+    "party": "REP",
+    "state": "US",
+    "district": 0,
+    "score": 5,
+    "contribution_count": 70,
+    "contribution_amount": 67210
+  },
+  {
+    "id": "S6OR00110",
+    "name": "WYDEN, RONALD LEE",
+    "office": "S",
+    "party": "DEM",
+    "state": "OR",
+    "district": 0,
+    "score": 130,
+    "contribution_count": 1416,
+    "contribution_amount": 66698
+  },
+  {
+    "id": "H6CA44103",
+    "name": "BARRAGAN, NANETTE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 44,
+    "score": 16,
+    "contribution_count": 210,
+    "contribution_amount": 65973
+  },
+  {
+    "id": "S0CO00534",
+    "name": "MADDEN, ALICE",
+    "office": "S",
+    "party": "DEM",
+    "state": "CO",
+    "district": 0,
+    "score": 9,
+    "contribution_count": 215,
+    "contribution_amount": 65679
+  },
+  {
+    "id": "S2VA00142",
+    "name": "KAINE, TIMOTHY MICHAEL",
+    "office": "S",
+    "party": "DEM",
+    "state": "VA",
+    "district": 0,
+    "score": 4,
+    "contribution_count": 486,
+    "contribution_amount": 64666
+  },
+  {
+    "id": "H0IL14197",
+    "name": "LAUF, CATALINA",
+    "office": "H",
+    "party": "REP",
+    "state": "IL",
+    "district": 14,
+    "score": 2,
+    "contribution_count": 80,
+    "contribution_amount": 64235
+  },
+  {
+    "id": "S2CT00132",
+    "name": "MURPHY, CHRISTOPHER S",
+    "office": "S",
+    "party": "DEM",
+    "state": "CT",
+    "district": 0,
+    "score": 157,
+    "contribution_count": 1218,
+    "contribution_amount": 63793
+  },
+  {
+    "id": "H0FL21078",
+    "name": "LOOMER, LAURA",
+    "office": "H",
+    "party": "REP",
+    "state": "FL",
+    "district": 21,
+    "score": 2,
+    "contribution_count": 83,
+    "contribution_amount": 62586
+  },
+  {
+    "id": "H0GA07265",
+    "name": "LERAH, LEE",
+    "office": "H",
+    "party": "REP",
+    "state": "GA",
+    "district": 7,
+    "score": 51,
+    "contribution_count": 168,
+    "contribution_amount": 61825
+  },
+  {
+    "id": "H8PA04116",
+    "name": "DEAN, MADELEINE",
+    "office": "H",
+    "party": "DEM",
+    "state": "PA",
+    "district": 4,
+    "score": 2,
+    "contribution_count": 159,
+    "contribution_amount": 61199
+  },
+  {
+    "id": "H4AZ07043",
+    "name": "GALLEGO, RUBEN",
+    "office": "H",
+    "party": "DEM",
+    "state": "AZ",
+    "district": 7,
+    "score": 30,
+    "contribution_count": 346,
+    "contribution_amount": 60766
+  },
+  {
+    "id": "H8AZ08158",
+    "name": "LESKO, DEBBIE",
+    "office": "H",
+    "party": "REP",
+    "state": "AZ",
+    "district": 8,
+    "score": 44,
+    "contribution_count": 111,
+    "contribution_amount": 59821
+  },
+  {
+    "id": "H8CA12262",
+    "name": "BUTTAR, SHAHID",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 12,
+    "score": 2,
+    "contribution_count": 280,
+    "contribution_amount": 59224
+  },
+  {
+    "id": "S8NV00156",
+    "name": "ROSEN, JACKY",
+    "office": "S",
+    "party": "DEM",
+    "state": "NV",
+    "district": 0,
+    "score": 32,
+    "contribution_count": 548,
+    "contribution_amount": 58423
+  },
+  {
+    "id": "S2HI00106",
+    "name": "HIRONO, MAZIE K.",
+    "office": "S",
+    "party": "DEM",
+    "state": "HI",
+    "district": 0,
+    "score": 22,
+    "contribution_count": 452,
+    "contribution_amount": 57029
+  },
+  {
+    "id": "H2CA28113",
+    "name": "CARDENAS, TONY",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 29,
+    "score": 7,
+    "contribution_count": 94,
+    "contribution_amount": 56860
+  },
+  {
+    "id": "H8NY20056",
+    "name": "LOWEY, NITA M",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 17,
+    "score": 2,
+    "contribution_count": 86,
+    "contribution_amount": 52483
+  },
+  {
+    "id": "H8IN06129",
+    "name": "PENCE, GREGORY J.",
+    "office": "H",
+    "party": "REP",
+    "state": "IN",
+    "district": 6,
+    "score": 8,
+    "contribution_count": 277,
+    "contribution_amount": 52185
+  },
+  {
+    "id": "H0CT03072",
+    "name": "DELAURO, ROSA L",
+    "office": "H",
+    "party": "DEM",
+    "state": "CT",
+    "district": 3,
+    "score": 19,
+    "contribution_count": 200,
+    "contribution_amount": 51789
+  },
+  {
+    "id": "H8NY23183",
+    "name": "MITRANO, TRACY",
+    "office": "H",
+    "party": "DEM",
+    "state": "NY",
+    "district": 23,
+    "score": 2,
+    "contribution_count": 279,
+    "contribution_amount": 50768
+  },
+  {
+    "id": "H0WI07051",
+    "name": "DUFFY, SEAN",
+    "office": "H",
+    "party": "REP",
+    "state": "WI",
+    "district": 7,
+    "score": 13,
+    "contribution_count": 113,
+    "contribution_amount": 49889
+  },
+  {
+    "id": "H6CA46116",
+    "name": "CORREA, LOU",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 46,
+    "score": 2,
+    "contribution_count": 69,
+    "contribution_amount": 48571
+  },
+  {
+    "id": "H4MA03022",
+    "name": "MCGOVERN, JAMES P. MR.",
+    "office": "H",
+    "party": "DEM",
+    "state": "MA",
+    "district": 2,
+    "score": 15,
+    "contribution_count": 181,
+    "contribution_amount": 47804
+  },
+  {
+    "id": "S4VT00017",
+    "name": "LEAHY, PATRICK J",
+    "office": "S",
+    "party": "DEM",
+    "state": "VT",
+    "district": 0,
+    "score": 7,
+    "contribution_count": 101,
+    "contribution_amount": 43778
+  },
+  {
+    "id": "H6CA44145",
+    "name": "NAVARRO, OMAR",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 43,
+    "score": 14,
+    "contribution_count": 367,
+    "contribution_amount": 42731
+  },
+  {
+    "id": "H4MI12079",
+    "name": "DINGELL, DEBBIE",
+    "office": "H",
+    "party": "DEM",
+    "state": "MI",
+    "district": 12,
+    "score": 3,
+    "contribution_count": 92,
+    "contribution_amount": 42410
+  },
+  {
+    "id": "S0IA00028",
+    "name": "GRASSLEY, CHARLES E ",
+    "office": "S",
+    "party": "REP",
+    "state": "IA",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 35,
+    "contribution_amount": 42200
+  },
+  {
+    "id": "S8MI00281",
+    "name": "STABENOW, DEBBIE",
+    "office": "S",
+    "party": "DEM",
+    "state": "MI",
+    "district": 0,
+    "score": 7,
+    "contribution_count": 269,
+    "contribution_amount": 41431
+  },
+  {
+    "id": "H8MA08170",
+    "name": "WU, BRIANNA",
+    "office": "H",
+    "party": "DEM",
+    "state": "MA",
+    "district": 8,
+    "score": 11,
+    "contribution_count": 206,
+    "contribution_amount": 40083
+  },
+  {
+    "id": "H0AR03105",
+    "name": "WILLIAMS, CELESTE SARENE",
+    "office": "H",
+    "party": "DEM",
+    "state": "AR",
+    "district": 3,
+    "score": 6,
+    "contribution_count": 93,
+    "contribution_amount": 40022
+  },
+  {
+    "id": "S0GA00419",
+    "name": "TERRY, EDWARD",
+    "office": "S",
+    "party": "DEM",
+    "state": "GA",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 98,
+    "contribution_amount": 39253
+  },
+  {
+    "id": "P00013649",
+    "name": "SANFORD, MARSHALL HON",
+    "office": "P",
+    "party": "REP",
+    "state": "US",
+    "district": 0,
+    "score": 7,
+    "contribution_count": 59,
+    "contribution_amount": 38650
+  },
+  {
+    "id": "H0CA22094",
+    "name": "REZVANI SARABI, AMIR DARYOUSH",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 22,
+    "score": 6,
+    "contribution_count": 87,
+    "contribution_amount": 38200
+  },
+  {
+    "id": "H2IA05072",
+    "name": "KING, STEVE MR.",
+    "office": "H",
+    "party": "REP",
+    "state": "IA",
+    "district": 4,
+    "score": 13,
+    "contribution_count": 104,
+    "contribution_amount": 37512
+  },
+  {
+    "id": "S0ME00103",
+    "name": "SWEET, BETSY",
+    "office": "S",
+    "party": "DEM",
+    "state": "ME",
+    "district": 0,
+    "score": 11,
+    "contribution_count": 123,
+    "contribution_amount": 37410
+  },
+  {
+    "id": "H6OH04082",
+    "name": "JORDAN, JAMES D.",
+    "office": "H",
+    "party": "REP",
+    "state": "OH",
+    "district": 4,
+    "score": 201,
+    "contribution_count": 157,
+    "contribution_amount": 35720
   },
   {
     "id": "S8WA00194",
@@ -3021,6 +3877,251 @@
     "office": "S",
     "party": "DEM",
     "state": "WA",
-    "district": 0
+    "district": 0,
+    "score": 38,
+    "contribution_count": 305,
+    "contribution_amount": 34805
+  },
+  {
+    "id": "H8FL13136",
+    "name": "BUCK, GEORGE WILLIAM PHD",
+    "office": "H",
+    "party": "REP",
+    "state": "FL",
+    "district": 13,
+    "score": 11,
+    "contribution_count": 78,
+    "contribution_amount": 33748
+  },
+  {
+    "id": "H8NM02156",
+    "name": "HERRELL, STELLA YVETTE",
+    "office": "H",
+    "party": "REP",
+    "state": "NM",
+    "district": 2,
+    "score": 10,
+    "contribution_count": 21,
+    "contribution_amount": 32450
+  },
+  {
+    "id": "S8DE00079",
+    "name": "CARPER, THOMAS R.",
+    "office": "S",
+    "party": "DEM",
+    "state": "DE",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 64,
+    "contribution_amount": 29640
+  },
+  {
+    "id": "H4WA04104",
+    "name": "NEWHOUSE, DAN",
+    "office": "H",
+    "party": "REP",
+    "state": "WA",
+    "district": 4,
+    "score": 2,
+    "contribution_count": 72,
+    "contribution_amount": 29235
+  },
+  {
+    "id": "H0AL07086",
+    "name": "SEWELL, TERRI A.",
+    "office": "H",
+    "party": "DEM",
+    "state": "AL",
+    "district": 7,
+    "score": 2,
+    "contribution_count": 39,
+    "contribution_amount": 26750
+  },
+  {
+    "id": "H0IN02190",
+    "name": "WALORSKI SWIHART, JACKIE",
+    "office": "H",
+    "party": "REP",
+    "state": "IN",
+    "district": 2,
+    "score": 6,
+    "contribution_count": 35,
+    "contribution_amount": 25750
+  },
+  {
+    "id": "H0OH05074",
+    "name": "RUBANDO, NICK",
+    "office": "H",
+    "party": "DEM",
+    "state": "OH",
+    "district": 5,
+    "score": 9,
+    "contribution_count": 64,
+    "contribution_amount": 24807
+  },
+  {
+    "id": "H0CO01136",
+    "name": "DURAN, CRISANTA DESIRAE",
+    "office": "H",
+    "party": "DEM",
+    "state": "CO",
+    "district": 1,
+    "score": 7,
+    "contribution_count": 106,
+    "contribution_amount": 24348
+  },
+  {
+    "id": "S0IA00150",
+    "name": "MAURO, EDDIE J",
+    "office": "S",
+    "party": "DEM",
+    "state": "IA",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 45,
+    "contribution_amount": 23180
+  },
+  {
+    "id": "S6MT00162",
+    "name": "TESTER, R. JON",
+    "office": "S",
+    "party": "DEM",
+    "state": "MT",
+    "district": 0,
+    "score": 14,
+    "contribution_count": 216,
+    "contribution_amount": 22152
+  },
+  {
+    "id": "H0AZ01358",
+    "name": "PUTZOVA, EVA",
+    "office": "H",
+    "party": "DEM",
+    "state": "AZ",
+    "district": 1,
+    "score": 6,
+    "contribution_count": 96,
+    "contribution_amount": 19125
+  },
+  {
+    "id": "H8TX10185",
+    "name": "HUTCHESON, SHANNON",
+    "office": "H",
+    "party": "DEM",
+    "state": "TX",
+    "district": 10,
+    "score": 2,
+    "contribution_count": 22,
+    "contribution_amount": 18700
+  },
+  {
+    "id": "S2NM00088",
+    "name": "HEINRICH, MARTIN",
+    "office": "S",
+    "party": "DEM",
+    "state": "NM",
+    "district": 0,
+    "score": 6,
+    "contribution_count": 441,
+    "contribution_amount": 15511
+  },
+  {
+    "id": "H2CA39078",
+    "name": "SANCHEZ, LINDA",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 38,
+    "score": 4,
+    "contribution_count": 50,
+    "contribution_amount": 13330
+  },
+  {
+    "id": "H0CA28158",
+    "name": "HOLLIS, JON",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 28,
+    "score": 15,
+    "contribution_count": 44,
+    "contribution_amount": 13275
+  },
+  {
+    "id": "H0CA50111",
+    "name": "WILSKE, LARRY A MR.",
+    "office": "H",
+    "party": "REP",
+    "state": "CA",
+    "district": 50,
+    "score": 4,
+    "contribution_count": 82,
+    "contribution_amount": 13251
+  },
+  {
+    "id": "S0IL00501",
+    "name": "HUBBARD, PEGGY",
+    "office": "S",
+    "party": "REP",
+    "state": "IL",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 30,
+    "contribution_amount": 11300
+  },
+  {
+    "id": "H8CA34266",
+    "name": "GOMEZ, JIMMY",
+    "office": "H",
+    "party": "DEM",
+    "state": "CA",
+    "district": 34,
+    "score": 3,
+    "contribution_count": 21,
+    "contribution_amount": 10913
+  },
+  {
+    "id": "S0IA00168",
+    "name": "GRAHAM, KIMBERLY",
+    "office": "S",
+    "party": "DEM",
+    "state": "IA",
+    "district": 0,
+    "score": 2,
+    "contribution_count": 42,
+    "contribution_amount": 9450
+  },
+  {
+    "id": "H4NC01046",
+    "name": "BUTTERFIELD, G. K.",
+    "office": "H",
+    "party": "DEM",
+    "state": "NC",
+    "district": 1,
+    "score": 3,
+    "contribution_count": 13,
+    "contribution_amount": 6150
+  },
+  {
+    "id": "H6FL08213",
+    "name": "GRAYSON, ALAN MARK",
+    "office": "H",
+    "party": "DEM",
+    "state": "FL",
+    "district": 9,
+    "score": 2,
+    "contribution_count": 229,
+    "contribution_amount": 5943
+  },
+  {
+    "id": "P00011866",
+    "name": "MOULTON, SETH",
+    "office": "P",
+    "party": "DEM",
+    "state": "US",
+    "district": 0,
+    "score": 3,
+    "contribution_count": 661,
+    "contribution_amount": -52338
   }
 ]

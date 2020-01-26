@@ -8,11 +8,9 @@ export interface Candidate {
   office: string;
   state: string;
   district: number;
-}
-
-export interface CandidateNode extends Candidate {
-  x: number;
-  y: number;
+  score: number;
+  contribution_count: number;
+  contribution_amount: number;
 }
 
 export const candidateName = (candidate: Candidate): string => {
