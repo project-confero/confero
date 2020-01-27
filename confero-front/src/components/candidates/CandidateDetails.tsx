@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Typography, Paper, List, Divider } from "@material-ui/core";
+import {
+  Box,
+  Typography,
+  Paper,
+  List,
+  IconButton,
+  Button
+} from "@material-ui/core";
 
 import {
   Candidate,
@@ -15,7 +22,7 @@ export interface CandidateDetailsProps {
   candidate: Candidate;
   candidates: Candidate[];
   connections: Connection[];
-  onSelect: (candidate: Candidate) => void;
+  onSelect: (candidate: Candidate | null) => void;
 }
 
 const CandidateDetails: React.FunctionComponent<CandidateDetailsProps> = ({
@@ -32,8 +39,11 @@ const CandidateDetails: React.FunctionComponent<CandidateDetailsProps> = ({
 
   return (
     <Paper>
-      <Box flexDirection="column" p={3}>
-        <Typography variant="h3">{candidateName(candidate)}</Typography>
+      <Box p={3}>
+        <Box display="flex" justifyContent="space-between" alignItems="center">
+          <Typography variant="h3">{candidateName(candidate)}</Typography>
+          <IconButton onClick={() => onSelect(null)}>X</IconButton>
+        </Box>
         <Typography>
           Direct Contributions: {contributions(candidate)}
         </Typography>

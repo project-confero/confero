@@ -26,9 +26,9 @@ const FilterButtons: React.FunctionComponent<FilterButtonsProps> = ({
   };
 
   return (
-    <Box display="flex" my={2}>
+    <Box display="flex" flexWrap="wrap">
       {options.map(({ value, label }) => (
-        <Box key={value} mr={2}>
+        <Box key={value} mr={2} my={2}>
           <Button
             variant="contained"
             onClick={() => onClick(value)}
