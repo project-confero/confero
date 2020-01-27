@@ -4,7 +4,9 @@ import { Box, Typography, Paper, List, Divider } from "@material-ui/core";
 import {
   Candidate,
   findConnectedCandidates,
-  candidateName
+  candidateName,
+  contributionAmount,
+  contributions
 } from "lib/candidate";
 import { Connection } from "lib/connection";
 import ConnectedCandidate from "./ConnectedCandidate";
@@ -32,6 +34,12 @@ const CandidateDetails: React.FunctionComponent<CandidateDetailsProps> = ({
     <Paper>
       <Box flexDirection="column" p={3}>
         <Typography variant="h3">{candidateName(candidate)}</Typography>
+        <Typography>
+          Direct Contributions: {contributions(candidate)}
+        </Typography>
+        <Typography>
+          Direct Contribution Total: {contributionAmount(candidate)}
+        </Typography>
 
         <Typography variant="h5">Connected Campaigns:</Typography>
         <List>

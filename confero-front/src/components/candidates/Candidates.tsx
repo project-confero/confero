@@ -44,7 +44,7 @@ const filterCandidates = (
 
 const Candidates = () => {
   const [filter, setFilter] = React.useState("");
-  const [officeFilters, setOfficeFilters] = React.useState<string[]>(["P"]);
+  const [officeFilters, setOfficeFilters] = React.useState<string[]>([]);
   const [partyFilters, setPartyFilters] = React.useState<string[]>([]);
   const [
     selectedCandidate,
