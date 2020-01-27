@@ -1,6 +1,6 @@
 import * as d3 from "d3";
 import { SimulationLinkDatum, SimulationNodeDatum } from "d3";
-import { memoize } from "lodash";
+import { memoize, clamp } from "lodash";
 
 import { Connection, ConnectionEdge, convertConnections } from "./connection";
 import { Candidate } from "./candidate";
@@ -16,7 +16,7 @@ export type ConnectionLink = OmitNodes<ConnectionEdge> &
   };
 
 export const SIM_WIDTH = 1000;
-export const SIM_HEIGHT = 1000;
+export const SIM_HEIGHT = 600;
 
 export const runSimulation = memoize(
   (candidates: Candidate[], connections: Connection[]) => {
@@ -38,7 +38,14 @@ export const runSimulation = memoize(
       .force("center", d3.forceCenter(SIM_WIDTH / 2, SIM_HEIGHT / 2));
 
     // Run the simulation
-    for (var i = 0; i < 100; ++i) simulation.tick();
+    for (var i = 0; i < 100; ++i) {
+      simulation.tick();
+
+      nodes.forEach(node => {
+        node.x = clamp(node.x || 0, 10, SIM_WIDTH - 10);
+        node.y = clamp(node.y || 0, 10, SIM_HEIGHT - 10);
+      });
+    }
     simulation.stop();
 
     return { nodes, links };

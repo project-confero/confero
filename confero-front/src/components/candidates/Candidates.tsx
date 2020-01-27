@@ -9,7 +9,8 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
-  Grid
+  Grid,
+  Paper
 } from "@material-ui/core";
 
 import candidates from "data/candidates.json";
@@ -20,6 +21,7 @@ import Pagination from "../basic/Pagination";
 import CandidateDetails from "./CandidateDetails";
 import CandidateAvatar from "./CandidateAvatar";
 import FilterButtons from "./FilterButtons";
+import Graph from "components/connections/Graph";
 
 const filterCandidates = (
   candidates: Candidate[],
@@ -93,40 +95,79 @@ const Candidates = () => {
         />
       </Box>
 
+      {/* Candidates */}
       <Grid container spacing={2} wrap="wrap-reverse">
         <Grid item xs={12} md={4}>
           <Pagination size={10} items={shownCandidates}>
             {candidates => (
               <List>
-                {candidates.map((candidate: Candidate) => (
-                  <ListItem
-                    key={candidate.id}
-                    button
-                    onClick={() => setSelectedCandidate(candidate)}
-                  >
-                    <ListItemIcon>
-                      <CandidateAvatar candidate={candidate} />
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={candidateName(candidate)}
-                      secondary={`Connection Score: ${candidate.score}`}
-                    />
-                  </ListItem>
-                ))}
+                {candidates.map((candidate: Candidate) => {
+                  const isSelected = candidate.id === selectedCandidate?.id;
+                  return (
+                    <ListItem
+                      key={candidate.id}
+                      button
+                      selected={isSelected}
+                      onClick={() =>
+                        setSelectedCandidate(isSelected ? null : candidate)
+                      }
+                    >
+                      <ListItemIcon>
+                        <CandidateAvatar candidate={candidate} />
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={candidateName(candidate)}
+                        secondary={`Connection Score: ${candidate.score}`}
+                      />
+                    </ListItem>
+                  );
+                })}
               </List>
             )}
           </Pagination>
         </Grid>
 
+        {/* Connections */}
         <Grid item xs={12} md={8}>
-          {selectedCandidate && (
-            <CandidateDetails
-              candidate={selectedCandidate}
-              candidates={candidates}
-              connections={connections}
-              onSelect={setSelectedCandidate}
-            />
-          )}
+          <Paper>
+            <Box width="100%" paddingBottom="60%" position="relative" m={2}>
+              <Box
+                position="absolute"
+                left="0"
+                right="0"
+                width="100%"
+                height="100%"
+              >
+                <Graph
+                  selectedCandidate={selectedCandidate}
+                  candidates={candidates}
+                  connections={connections}
+                  onSelect={setSelectedCandidate}
+                ></Graph>
+              </Box>
+            </Box>
+
+            {selectedCandidate ? (
+              <CandidateDetails
+                candidate={selectedCandidate}
+                candidates={candidates}
+                connections={connections}
+                onSelect={setSelectedCandidate}
+              />
+            ) : (
+              <Box p={2}>
+                <Typography>
+                  This is a graph of every Federal Candidate that had at least
+                  two shared contributors with another candidate in 2019. Large
+                  circles represent Presidential candidates.
+                </Typography>
+                <Typography>
+                  You can click on a circle, or a name on the left, to highlight
+                  connections with that candidate.
+                </Typography>
+              </Box>
+            )}
+          </Paper>
         </Grid>
       </Grid>
     </Container>

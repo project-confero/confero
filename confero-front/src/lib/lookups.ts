@@ -7,6 +7,7 @@ const offices: Record<string, string> = {
 const partyColors: Record<string, string> = {
   DEM: "blue",
   REP: "red",
+  IND: "yellow",
   DEFAULT: "gray"
 };
 
