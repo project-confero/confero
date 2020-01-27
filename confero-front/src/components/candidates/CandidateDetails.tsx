@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Paper,
-  List,
-  IconButton,
-  Button
-} from "@material-ui/core";
+import { Box, Typography, Paper, List, IconButton } from "@material-ui/core";
 
 import {
   Candidate,
