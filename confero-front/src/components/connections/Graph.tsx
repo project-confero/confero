@@ -1,17 +1,21 @@
 import React from "react";
 import * as d3 from "d3";
 import { SimulationNodeDatum, SimulationLinkDatum } from "d3-force";
-import { Box } from "@material-ui/core";
+import { orderBy } from "lodash";
 
 import candidates from "../../data/candidates.json";
 import connections from "../../data/connections.json";
 import { Candidate } from "../../lib/candidate";
 import { convertConnections, ConnectionEdge } from "../../lib/connection";
 
-type CandidateNode = Candidate & SimulationNodeDatum;
-type ConnectionLink = ConnectionEdge & SimulationLinkDatum<CandidateNode>;
+type OmitNodes<T> = Omit<Omit<T, "target">, "source">;
 
-const edges: ConnectionLink[] = convertConnections(connections);
+type CandidateNode = Candidate & SimulationNodeDatum & { connected?: boolean };
+type ConnectionLink = OmitNodes<ConnectionEdge> &
+  OmitNodes<SimulationLinkDatum<CandidateNode>> & {
+    source: CandidateNode;
+    target: CandidateNode;
+  };
 
 const PARTY_COLORS: Record<string, string> = {
   DEM: "blue",
@@ -32,65 +36,77 @@ const nodeSize = (candidate: CandidateNode) =>
   candidate.office === "P" ? 10 : 5;
 
 const nodeOpacity = (
-  selectedCandidate: string,
-  connectedCandidates: string[]
-) => (candidate: CandidateNode) => {
+  candidate: CandidateNode,
+  selectedCandidate: string | null
+) => {
   if (!selectedCandidate) return 1;
   if (candidate.id === selectedCandidate) return 1;
-  if (connectedCandidates.includes(candidate.id)) return 1;
+  if (candidate.connected) return 1;
   return 0.25;
 };
 
-const nodeBorder = (selectedCandidate: string) => (
-  candidate: CandidateNode
+const nodeBorder = (
+  candidate: CandidateNode,
+  selectedCandidate: string | null
 ) => {
   if (selectedCandidate && selectedCandidate === candidate.id) return "yellow";
   return "white";
 };
 
-const nodeBorderWidth = (selectedCandidate: string) => (
-  candidate: CandidateNode
+const nodeBorderWidth = (
+  candidate: CandidateNode,
+  selectedCandidate: string | null
 ) => {
   if (selectedCandidate && selectedCandidate === candidate.id) return 3;
   return 1.5;
 };
 
-const linkOpacity = (selectedCandidate: string) => (connection: any) => {
-  if (!selectedCandidate) return 1;
-  if (connection.source.id === selectedCandidate) return 1;
+const nodeZIndex = (
+  candidate: CandidateNode,
+  selectedCandidate: string | null
+) => {
+  if (!selectedCandidate) return 0;
+  if (selectedCandidate === candidate.id) return 1;
+  if (candidate.id === selectedCandidate) return 2;
   return 0;
 };
 
+const linkOpacity = (
+  link: ConnectionLink,
+  selectedCandidate: string | null
+) => {
+  if (!selectedCandidate) return 1;
+  if (link.source.id === selectedCandidate) return 1;
+  return 0;
+};
+
+const linkBorder = (link: ConnectionLink, selectedCandidate: string | null) => {
+  if (link.source.id === selectedCandidate) return "black";
+  return "gray";
+};
+
 const Graph = () => {
-  const ref = React.useRef<SVGSVGElement>(null);
+  const [selectedCandidate, setSelectedCandidate] = React.useState<
+    string | null
+  >(null);
 
-  const [
-    selectedCandidate,
-    setSelectedCandidate
-  ] = React.useState<CandidateNode | null>(null);
+  const [simCandidates, setSimCandidates] = React.useState<
+    CandidateNode[] | null
+  >(null);
 
-  const [node, setNode] = React.useState<d3.Selection<
-    SVGSVGElement,
-    CandidateNode,
-    SVGSVGElement,
-    CandidateNode
-  > | null>(null);
-
-  const [link, setLink] = React.useState<d3.Selection<
-    SVGSVGElement,
-    ConnectionLink,
-    SVGSVGElement,
-    ConnectionLink
-  > | null>(null);
+  const [simEdges, setSimEdges] = React.useState<ConnectionLink[] | null>(null);
 
   React.useEffect(() => {
-    const svg = d3.select(ref.current);
+    const nodes = [...candidates] as CandidateNode[];
+    const links = (convertConnections(
+      connections
+    ) as unknown) as ConnectionLink[];
 
     const simulation = d3
-      .forceSimulation(candidates as CandidateNode[])
+      .forceSimulation(nodes)
       .force(
         "link",
-        d3.forceLink(edges).id((node: any) => node.id)
+        d3.forceLink(links).id((node: any) => node.id)
       )
       .force(
         "charge",
@@ -98,95 +114,89 @@ const Graph = () => {
       )
       .force("center", d3.forceCenter(width / 2, height / 2));
 
-    /* SVG */
-    const link = svg
-      .append("g")
-      .attr("stroke", "#999")
-      .attr("stroke-opacity", 0.6)
-      .selectAll("line")
-      .data(edges)
-      .join("line")
-      .attr("stroke-width", d => Math.sqrt(d.score));
+    // Run the simulation
+    for (var i = 0; i < 100; ++i) simulation.tick();
+    simulation.stop();
 
-    const node = svg
-      .append("g")
-      .attr("stroke", "#fff")
-      .attr("stroke-width", 1.5)
-      .selectAll("circle")
-      .data(candidates as Candidate[])
-      .join("circle")
-      .attr("r", nodeSize)
-      .attr("fill", nodeColor);
+    // Render the graph
+    setSimCandidates(nodes);
+    setSimEdges(links);
 
-    link.append("title").text(connection => connection.score);
-
-    node
-      .append("title")
-      .text(
-        candidate =>
-          `${candidate.name} | ${candidate.office} | ${candidate.state}`
-      );
-
-    simulation.on("tick", () => {
-      link
-        .attr("x1", (d: any) => d.source.x)
-        .attr("y1", (d: any) => d.source.y)
-        .attr("x2", (d: any) => d.target.x)
-        .attr("y2", (d: any) => d.target.y);
-
-      node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y);
-    });
-
-    setNode(node as any);
-    setLink(link as any);
+    return () => {};
   }, []);
 
-  // React.useEffect(() => {
-  //   if (!node || !link) return;
+  const simCandidatesWithConnections = React.useMemo(() => {
+    if (!selectedCandidate || !simEdges || !simCandidates) return simCandidates;
 
-  //   const connectedCandidates = edges
-  //     .filter(({ source }) => source.id === selectedCandidate)
-  //     .map(({ target }) => target.id);
+    const connectedCandidates = simEdges
+      .filter(({ source }) => source.id === selectedCandidate)
+      .map(({ target }) => target.id);
 
-  //   const selectedNode = node.filter(({ id }) => id === selectedCandidate);
-  //   const connectedNodes = node.filter(({ id }) =>
-  //     connectedCandidates.includes(id)
-  //   );
+    const candidates = simCandidates.map(candidate =>
+      connectedCandidates.includes(candidate.id)
+        ? { ...candidate, connected: true }
+        : { ...candidate, connected: false }
+    );
 
-  //   const connectedLinks = link.filter(
-  //     ({ source }) => source.id === selectedCandidate
-  //   );
+    // Order: selected candidate, then connected, the rest.
+    return orderBy(candidates, candidate =>
+      candidate.id === selectedCandidate ? 2 : candidate.connected ? 1 : 0
+    );
+  }, [selectedCandidate, simEdges, simCandidates]);
 
-  //   // Raise above other nodes for selection
-  //   connectedLinks.raise();
-  //   connectedNodes.raise();
-  //   selectedNode.raise();
-
-  //   // Reset
-  //   node
-  //     .style("opacity", 0.25)
-  //     .attr("stroke", "white")
-  //     .attr("stroke-width", 1.5);
-  //   link.style("opacity", 0.1).attr("stroke", "#999");
-
-  //   // Set connected/selected styles
-  //   connectedNodes.style("opacity", 1);
-  //   selectedNode
-  //     .style("opacity", 1)
-  //     .attr("stroke", "yellow")
-  //     .attr("stroke-width", 3);
-  //   connectedLinks.style("opacity", 1).attr("stroke", "black");
-  // });
+  if (!(simCandidatesWithConnections && simEdges)) return null;
 
   return (
     <svg
       style={{ flexGrow: 1 }}
-      ref={ref}
       width="100%"
       height="100%"
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid meet"
-    />
+    >
+      {/* Edges */}
+      <g stroke="#999" strokeOpacity={0.6}>
+        {simEdges.map(edge => {
+          return (
+            <line
+              key={edge.index}
+              strokeWidth={1}
+              x1={edge.source.x}
+              y1={edge.source.y}
+              x2={edge.target.x}
+              y2={edge.target.y}
+              opacity={linkOpacity(edge, selectedCandidate)}
+              stroke={linkBorder(edge, selectedCandidate)}
+            />
+          );
+        })}
+      </g>
+
+      {/* Nodes */}
+      <g stroke="#fff" strokeWidth={1.5}>
+        {simCandidatesWithConnections.map((candidate: CandidateNode) => (
+          <circle
+            key={candidate.index}
+            r={nodeSize(candidate)}
+            fill={nodeColor(candidate)}
+            cx={candidate.x}
+            cy={candidate.y}
+            onClick={() =>
+              selectedCandidate === candidate.id
+                ? setSelectedCandidate(null)
+                : setSelectedCandidate(candidate.id)
+            }
+            opacity={nodeOpacity(candidate, selectedCandidate)}
+            stroke={nodeBorder(candidate, selectedCandidate)}
+            strokeWidth={nodeBorderWidth(candidate, selectedCandidate)}
+          >
+            <title>
+              {candidate.name} | {candidate.office} | {candidate.state}
+            </title>
+          </circle>
+        ))}
+      </g>
+    </svg>
   );
 };
 
