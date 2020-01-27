@@ -8,7 +8,8 @@ import {
   List,
   ListItem,
   ListItemText,
-  ListItemIcon
+  ListItemIcon,
+  Grid
 } from "@material-ui/core";
 
 import candidates from "data/candidates.json";
@@ -78,7 +79,7 @@ const Candidates = () => {
         variant="filled"
       />
 
-      <Box display="flex">
+      <Box display="flex" flexWrap="wrap">
         <FilterButtons
           value={officeFilters}
           options={officeOptions}
@@ -92,30 +93,32 @@ const Candidates = () => {
         />
       </Box>
 
-      <Box display="flex">
-        <Pagination size={10} items={shownCandidates}>
-          {candidates => (
-            <List>
-              {candidates.map((candidate: Candidate) => (
-                <ListItem
-                  key={candidate.id}
-                  button
-                  onClick={() => setSelectedCandidate(candidate)}
-                >
-                  <ListItemIcon>
-                    <CandidateAvatar candidate={candidate} />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={candidateName(candidate)}
-                    secondary={`Connection Score: ${candidate.score}`}
-                  />
-                </ListItem>
-              ))}
-            </List>
-          )}
-        </Pagination>
+      <Grid container spacing={2} wrap="wrap-reverse">
+        <Grid item xs={12} md={4}>
+          <Pagination size={10} items={shownCandidates}>
+            {candidates => (
+              <List>
+                {candidates.map((candidate: Candidate) => (
+                  <ListItem
+                    key={candidate.id}
+                    button
+                    onClick={() => setSelectedCandidate(candidate)}
+                  >
+                    <ListItemIcon>
+                      <CandidateAvatar candidate={candidate} />
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={candidateName(candidate)}
+                      secondary={`Connection Score: ${candidate.score}`}
+                    />
+                  </ListItem>
+                ))}
+              </List>
+            )}
+          </Pagination>
+        </Grid>
 
-        <Box flexGrow={1} pl={2}>
+        <Grid item xs={12} md={8}>
           {selectedCandidate && (
             <CandidateDetails
               candidate={selectedCandidate}
@@ -124,8 +127,8 @@ const Candidates = () => {
               onSelect={setSelectedCandidate}
             />
           )}
-        </Box>
-      </Box>
+        </Grid>
+      </Grid>
     </Container>
   );
 };
