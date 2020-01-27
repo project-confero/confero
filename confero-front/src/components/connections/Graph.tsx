@@ -1,21 +1,14 @@
 import React from "react";
-import * as d3 from "d3";
-import { SimulationNodeDatum, SimulationLinkDatum } from "d3-force";
 import { orderBy } from "lodash";
-
-import candidates from "../../data/candidates.json";
-import connections from "../../data/connections.json";
-import { Candidate } from "../../lib/candidate";
-import { convertConnections, ConnectionEdge } from "../../lib/connection";
-
-type OmitNodes<T> = Omit<Omit<T, "target">, "source">;
-
-type CandidateNode = Candidate & SimulationNodeDatum & { connected?: boolean };
-type ConnectionLink = OmitNodes<ConnectionEdge> &
-  OmitNodes<SimulationLinkDatum<CandidateNode>> & {
-    source: CandidateNode;
-    target: CandidateNode;
-  };
+import {
+  runSimulation,
+  CandidateNode,
+  ConnectionLink,
+  SIM_WIDTH,
+  SIM_HEIGHT
+} from "lib/simulation";
+import { Candidate } from "lib/candidate";
+import { Connection } from "lib/connection";
 
 const PARTY_COLORS: Record<string, string> = {
   DEM: "blue",
@@ -23,9 +16,6 @@ const PARTY_COLORS: Record<string, string> = {
   IND: "yellow",
   default: "black"
 };
-
-const width = 1000;
-const height = 1000;
 
 const nodeColor = (candidate: CandidateNode) =>
   candidate.party !== null
@@ -61,16 +51,6 @@ const nodeBorderWidth = (
   return 1.5;
 };
 
-const nodeZIndex = (
-  candidate: CandidateNode,
-  selectedCandidate: string | null
-) => {
-  if (!selectedCandidate) return 0;
-  if (selectedCandidate === candidate.id) return 1;
-  if (candidate.id === selectedCandidate) return 2;
-  return 0;
-};
-
 const linkOpacity = (
   link: ConnectionLink,
   selectedCandidate: string | null
@@ -85,7 +65,15 @@ const linkBorder = (link: ConnectionLink, selectedCandidate: string | null) => {
   return "gray";
 };
 
-const Graph = () => {
+interface GraphPropTypes {
+  candidates: Candidate[];
+  connections: Connection[];
+}
+
+const Graph: React.FunctionComponent<GraphPropTypes> = ({
+  candidates,
+  connections
+}) => {
   const [selectedCandidate, setSelectedCandidate] = React.useState<
     string | null
   >(null);
@@ -97,33 +85,14 @@ const Graph = () => {
   const [simEdges, setSimEdges] = React.useState<ConnectionLink[] | null>(null);
 
   React.useEffect(() => {
-    const nodes = [...candidates] as CandidateNode[];
-    const links = (convertConnections(
-      connections
-    ) as unknown) as ConnectionLink[];
-
-    const simulation = d3
-      .forceSimulation(nodes)
-      .force(
-        "link",
-        d3.forceLink(links).id((node: any) => node.id)
-      )
-      .force(
-        "charge",
-        d3.forceManyBody().strength(() => -4)
-      )
-      .force("center", d3.forceCenter(width / 2, height / 2));
-
-    // Run the simulation
-    for (var i = 0; i < 100; ++i) simulation.tick();
-    simulation.stop();
+    const { nodes, links } = runSimulation(candidates, connections);
 
     // Render the graph
     setSimCandidates(nodes);
     setSimEdges(links);
 
     return () => {};
-  }, []);
+  }, [candidates, connections]);
 
   const simCandidatesWithConnections = React.useMemo(() => {
     if (!selectedCandidate || !simEdges || !simCandidates) return simCandidates;
@@ -151,7 +120,7 @@ const Graph = () => {
       style={{ flexGrow: 1 }}
       width="100%"
       height="100%"
-      viewBox={`0 0 ${width} ${height}`}
+      viewBox={`0 0 ${SIM_WIDTH} ${SIM_HEIGHT}`}
       preserveAspectRatio="xMidYMid meet"
     >
       {/* Edges */}

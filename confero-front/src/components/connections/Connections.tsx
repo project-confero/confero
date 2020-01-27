@@ -2,6 +2,8 @@ import React from "react";
 import { Container, Typography, Box } from "@material-ui/core";
 
 import Graph from "./Graph";
+import candidates from "data/candidates.json";
+import connections from "data/connections.json";
 
 const Connections = () => {
   return (
@@ -14,7 +16,7 @@ const Connections = () => {
             shared contributors.
           </Typography>
         </Box>
-        <Graph />
+        <Graph candidates={candidates} connections={connections} />
       </Box>
     </Container>
   );
