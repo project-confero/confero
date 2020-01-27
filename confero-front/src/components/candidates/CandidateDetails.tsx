@@ -10,6 +10,7 @@ import {
 } from "lib/candidate";
 import { Connection } from "lib/connection";
 import ConnectedCandidate from "./ConnectedCandidate";
+import { fetchInfo } from "lib/wikipedia";
 
 export interface CandidateDetailsProps {
   candidate: Candidate;
@@ -24,6 +25,12 @@ const CandidateDetails: React.FunctionComponent<CandidateDetailsProps> = ({
   connections,
   onSelect
 }) => {
+  const [extract, setExtract] = React.useState("");
+
+  React.useEffect(() => {
+    fetchInfo(candidate.name).then(setExtract);
+  }, [candidate]);
+
   const connectedCandidates = findConnectedCandidates(
     candidate,
     candidates,
@@ -37,6 +44,8 @@ const CandidateDetails: React.FunctionComponent<CandidateDetailsProps> = ({
       <Typography>
         Direct Contribution Total: {contributionAmount(candidate)}
       </Typography>
+
+      <Typography>{extract}</Typography>
 
       <Typography variant="h5">Connected Campaigns:</Typography>
       <List>
