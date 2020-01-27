@@ -1,6 +1,7 @@
 import React from "react";
 import * as d3 from "d3";
 import { SimulationNodeDatum, SimulationLinkDatum } from "d3-force";
+import { Box } from "@material-ui/core";
 
 import candidates from "../../data/candidates.json";
 import connections from "../../data/connections.json";
@@ -19,8 +20,8 @@ const PARTY_COLORS: Record<string, string> = {
   default: "black"
 };
 
-const width = 960;
-const height = 600;
+const width = 1000;
+const height = 1000;
 
 const nodeColor = (candidate: CandidateNode) =>
   candidate.party !== null
@@ -136,14 +137,6 @@ const Graph = () => {
       node.attr("cx", (d: any) => d.x).attr("cy", (d: any) => d.y);
     });
 
-    /* Zoom */
-    function zoomed() {
-      node.attr("transform", d3.event.transform);
-      link.attr("transform", d3.event.transform);
-    }
-
-    svg.call(d3.zoom().on("zoom", zoomed) as any);
-
     setNode(node as any);
     setLink(link as any);
   }, []);
@@ -185,7 +178,16 @@ const Graph = () => {
   //   connectedLinks.style("opacity", 1).attr("stroke", "black");
   // });
 
-  return <svg ref={ref} width={width} height={height}></svg>;
+  return (
+    <svg
+      style={{ flexGrow: 1 }}
+      ref={ref}
+      width="100%"
+      height="100%"
+      viewBox={`0 0 ${width} ${height}`}
+      preserveAspectRatio="xMidYMid meet"
+    />
+  );
 };
 
 export default Graph;
