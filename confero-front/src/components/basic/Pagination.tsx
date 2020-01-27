@@ -15,7 +15,7 @@ function Pagination<T extends { id: unknown }>({
 }: PaginationProps<T>) {
   const [page, setPage] = React.useState(0);
 
-  const lastPage = Math.floor(items.length / size) - 1;
+  const lastPage = Math.ceil(items.length / size) - 1;
 
   const clampPage = (value: number) => {
     const validValue = clamp(value, 0, lastPage);

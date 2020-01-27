@@ -13,6 +13,16 @@ export interface Candidate {
   contribution_amount: number;
 }
 
+const numberFormatter = new Intl.NumberFormat("en-US", {
+  minimumFractionDigits: 0
+});
+
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 0
+});
+
 export const candidateName = ({
   name,
   office,
@@ -48,6 +58,12 @@ export const findConnectedCandidates = (
     })
     .filter(isDefined);
 };
+
+export const contributions = (candidate: Candidate): string =>
+  numberFormatter.format(candidate.contribution_count);
+
+export const contributionAmount = (candidate: Candidate): string =>
+  currencyFormatter.format(candidate.contribution_amount);
 
 function isDefined<T>(value: T | undefined | null): value is T {
   return !(value === undefined || value === null);
