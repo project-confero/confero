@@ -5,7 +5,8 @@ import {
   CandidateNode,
   ConnectionLink,
   SIM_WIDTH,
-  SIM_HEIGHT
+  SIM_HEIGHT,
+  NODE_SIZE
 } from "lib/simulation";
 import { Candidate } from "lib/candidate";
 import { Connection } from "lib/connection";
@@ -72,12 +73,13 @@ const Graph: React.FunctionComponent<GraphPropTypes> = ({
       preserveAspectRatio="xMidYMid meet"
     >
       {/* Edges */}
-      <g stroke="#999" strokeOpacity={0.6}>
+      <g stroke="#999" strokeOpacity={0.25}>
         {simEdges.map(edge => {
+          if (edge.score < 50) return null;
           return (
             <line
               key={edge.index}
-              strokeWidth={1}
+              strokeWidth={NODE_SIZE / 5}
               x1={edge.source.x}
               y1={edge.source.y}
               x2={edge.target.x}
@@ -91,27 +93,31 @@ const Graph: React.FunctionComponent<GraphPropTypes> = ({
 
       {/* Nodes */}
       <g stroke="#fff" strokeWidth={1.5}>
-        {simCandidatesWithConnections.map((candidate: CandidateNode) => (
-          <circle
-            key={candidate.index}
-            r={nodeSize(candidate)}
-            fill={nodeColor(candidate)}
-            cx={candidate.x}
-            cy={candidate.y}
-            onClick={() =>
-              selectedCandidateId === candidate.id
-                ? onSelect(null)
-                : onSelect(candidate)
-            }
-            opacity={nodeOpacity(candidate, selectedCandidateId)}
-            stroke={nodeBorder(candidate, selectedCandidateId)}
-            strokeWidth={nodeBorderWidth(candidate, selectedCandidateId)}
-          >
-            <title>
-              {candidate.name} | {candidate.office} | {candidate.state}
-            </title>
-          </circle>
-        ))}
+        {simCandidatesWithConnections.map((candidate: CandidateNode) => {
+          // if (candidate.office === "S") return null;
+          // if (candidate.office === "P") return null;
+          return (
+            <circle
+              key={candidate.index}
+              r={nodeSize(candidate)}
+              fill={nodeColor(candidate)}
+              cx={candidate.x}
+              cy={candidate.y}
+              onClick={() =>
+                selectedCandidateId === candidate.id
+                  ? onSelect(null)
+                  : onSelect(candidate)
+              }
+              opacity={nodeOpacity(candidate, selectedCandidateId)}
+              stroke={nodeBorder(candidate, selectedCandidateId)}
+              strokeWidth={nodeBorderWidth(candidate, selectedCandidateId)}
+            >
+              <title>
+                {candidate.name} | {candidate.office} | {candidate.state}
+              </title>
+            </circle>
+          );
+        })}
       </g>
     </svg>
   );
@@ -123,7 +129,7 @@ const nodeColor = (candidate: CandidateNode) =>
   lookupPartyColor(candidate.party);
 
 const nodeSize = (candidate: CandidateNode) =>
-  candidate.office === "P" ? 10 : 5;
+  candidate.office === "P" ? NODE_SIZE * 1.75 : NODE_SIZE;
 
 const nodeOpacity = (
   candidate: CandidateNode,
@@ -147,8 +153,9 @@ const nodeBorderWidth = (
   candidate: CandidateNode,
   selectedCandidate: string | null
 ) => {
-  if (selectedCandidate && selectedCandidate === candidate.id) return 3;
-  return 1.5;
+  if (selectedCandidate && selectedCandidate === candidate.id)
+    return NODE_SIZE / 2;
+  return NODE_SIZE / 4;
 };
 
 const linkOpacity = (

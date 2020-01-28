@@ -65,6 +65,13 @@ export const contributions = (candidate: Candidate): string =>
 export const contributionAmount = (candidate: Candidate): string =>
   currencyFormatter.format(candidate.contribution_amount);
 
+export const orderByOffice = (candidates: Candidate[]) =>
+  orderBy(
+    candidates,
+    ({ office }) => (office === "P" ? 0 : office === "S" ? 1 : 2),
+    "desc"
+  );
+
 function isDefined<T>(value: T | undefined | null): value is T {
   return !(value === undefined || value === null);
 }
