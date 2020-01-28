@@ -232,57 +232,57 @@ def connections_to_json():
 # %%
 if __name__ == '__main__':
     # %%
-    print("reading CSVs")
-    candidates = read_csv(CANDIDATE_CONFIG)
-    committees = read_csv(COMMITTEE_CONFIG)
-    contributions = read_csv(CONTRIBUTION_CONFIG)
+    # print("reading CSVs")
+    # candidates = read_csv(CANDIDATE_CONFIG)
+    # committees = read_csv(COMMITTEE_CONFIG)
+    # contributions = read_csv(CONTRIBUTION_CONFIG)
 
-    # %%
-    print("cleaning committees")
-    print("committees", len(committees))
-    # Primary committee only
-    committees = committees[committees['committee_designation'].isin(
-        ['P', 'A', 'D'])]
-    print("committees (primary)", len(committees))
-    # TODO: why so many?
-    committees = committees.drop_duplicates(subset="committee_id")
-    print("committees deduped", len(committees))
-    # Removes committees without candidates
-    committees = committees[committees['candidate_id'].isin(candidates.index)]
-    print("committees with candidates", len(committees))
+    # # %%
+    # print("cleaning committees")
+    # print("committees", len(committees))
+    # # Primary committee only
+    # committees = committees[committees['committee_designation'].isin(
+    #     ['P', 'A', 'D'])]
+    # print("committees (primary)", len(committees))
+    # # TODO: why so many?
+    # committees = committees.drop_duplicates(subset="committee_id")
+    # print("committees deduped", len(committees))
+    # # Removes committees without candidates
+    # committees = committees[committees['candidate_id'].isin(candidates.index)]
+    # print("committees with candidates", len(committees))
 
-    # %%
-    print("cleaning contributions")
+    # # %%
+    # print("cleaning contributions")
 
-    clean_field(contributions, "employer")
-    clean_field(contributions, "occupation")
+    # clean_field(contributions, "employer")
+    # clean_field(contributions, "occupation")
 
-    # FUTURE WORK: Other valid types?
-    # See: https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions
-    contributions = contributions[(contributions.transaction_type == "15")
-                                  | (contributions.transaction_type == "15E")]
+    # # FUTURE WORK: Other valid types?
+    # # See: https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions
+    # contributions = contributions[(contributions.transaction_type == "15")
+    #                               | (contributions.transaction_type == "15E")]
 
-    # FUTURE WORK: ActBlue earmarks
-    actblue = contributions[contributions['committee_id'] == 'C00401224']
-    actblue_clean = actblue[actblue['memo_text'].str.find('REFUND') == -1]
-    actblue_clean['committee_id'] = actblue_clean['memo_text'].str.extract(
-        r'(C[0-9]{8})')
+    # # FUTURE WORK: ActBlue earmarks
+    # actblue = contributions[contributions['committee_id'] == 'C00401224']
+    # actblue_clean = actblue[actblue['memo_text'].str.find('REFUND') == -1]
+    # actblue_clean['committee_id'] = actblue_clean['memo_text'].str.extract(
+    #     r'(C[0-9]{8})')
 
-    contributions = contributions[contributions['committee_id'] != 'C00401224']
-    contributions = contributions.append(actblue)
+    # contributions = contributions[contributions['committee_id'] != 'C00401224']
+    # contributions = contributions.append(actblue)
 
-    print("contributions", len(contributions))
-    contributions = contributions[contributions['committee_id'].isin(
-        committees.committee_id)]
-    print("contributions with committees", len(contributions))
+    # print("contributions", len(contributions))
+    # contributions = contributions[contributions['committee_id'].isin(
+    #     committees.committee_id)]
+    # print("contributions with committees", len(contributions))
 
-    # %%
-    print("sending to db")
-    send_to_db(candidates, CANDIDATE_CONFIG)
-    # %%
-    send_to_db(committees, COMMITTEE_CONFIG)
-    # %%
-    send_to_db(contributions, CONTRIBUTION_CONFIG)
+    # # %%
+    # print("sending to db")
+    # send_to_db(candidates, CANDIDATE_CONFIG)
+    # # %%
+    # send_to_db(committees, COMMITTEE_CONFIG)
+    # # %%
+    # send_to_db(contributions, CONTRIBUTION_CONFIG)
 
     print("making connections")
 
