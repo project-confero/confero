@@ -13,8 +13,8 @@ import {
   Paper
 } from "@material-ui/core";
 
-import candidates from "data/candidates.json";
-import connections from "data/connections.json";
+import candidates from "data/2000/candidates.json";
+import connections from "data/2000/connections.json";
 import { Candidate, candidateName } from "lib/candidate";
 import { officeOptions, partyOptions } from "lib/lookups";
 import Pagination from "../basic/Pagination";

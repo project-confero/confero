@@ -6,9 +6,12 @@ import os
 from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
+YEAR = 2000
+YR = str(YEAR)[-2:]
+
 TEMP_FILE = '/tmp/sql.csv'
 DIR = f'{os.getcwd()}/sandbox'
-JSON_DIR = f'{os.getcwd()}/confero-front/src/data'
+JSON_DIR = f'{os.getcwd()}/confero-front/src/data/{YEAR}'
 
 CONFIG = {
     "candidates": {
@@ -70,7 +73,7 @@ CONFIG = {
             "transaction_amount": "int",
             "other_id": "str",
             "transaction_id": "str",
-            "file_number": "int",
+            "file_number": "str",
             "memo_code": "str",
             "memo_text": "str",
             "id": "int"
@@ -105,7 +108,7 @@ def read_csv(config, skiprows=None, nrows=None):
     data_types = config["csv_types"]
 
     return pd.read_csv(
-        f"{DIR}/data/{filename}",
+        f"{DIR}/data/{YEAR}/{filename}",
         header=None,
         sep="|",
         names=headers,
@@ -254,22 +257,26 @@ if __name__ == '__main__':
     # # %%
     # print("cleaning contributions")
 
+    # print("cleaning employer")
     # clean_field(contributions, "employer")
+    # print("cleaning occupation")
     # clean_field(contributions, "occupation")
 
+    # print("validating transation types")
     # # FUTURE WORK: Other valid types?
     # # See: https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions
     # contributions = contributions[(contributions.transaction_type == "15")
     #                               | (contributions.transaction_type == "15E")]
 
+    # print("parsing act blue donations")
     # # FUTURE WORK: ActBlue earmarks
-    # actblue = contributions[contributions['committee_id'] == 'C00401224']
-    # actblue_clean = actblue[actblue['memo_text'].str.find('REFUND') == -1]
-    # actblue_clean['committee_id'] = actblue_clean['memo_text'].str.extract(
-    #     r'(C[0-9]{8})')
+    # # actblue = contributions[contributions['committee_id'] == 'C00401224']
+    # # actblue_clean = actblue[actblue['memo_text'].str.find('REFUND') == -1]
+    # # actblue_clean['committee_id'] = actblue_clean['memo_text'].str.extract(
+    # #     r'(C[0-9]{8})')
 
-    # contributions = contributions[contributions['committee_id'] != 'C00401224']
-    # contributions = contributions.append(actblue)
+    # # contributions = contributions[contributions['committee_id'] != 'C00401224']
+    # # contributions = contributions.append(actblue)
 
     # print("contributions", len(contributions))
     # contributions = contributions[contributions['committee_id'].isin(
@@ -284,13 +291,13 @@ if __name__ == '__main__':
     # # %%
     # send_to_db(contributions, CONTRIBUTION_CONFIG)
 
-    print("making connections")
+    # print("making connections")
 
-    # %%
-    clear_table("fec_connection")
-    run_sql_file("make_connections.sql")
+    # # %%
+    # clear_table("fec_connection")
+    # run_sql_file("make_connections.sql")
 
-    print("writing JSON")
+    # print("writing JSON")
 
     # Output connections for frontent
     connections_to_json()

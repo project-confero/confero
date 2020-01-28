@@ -12,12 +12,16 @@ FROM (
       source.committee_id AS source_committee_id,
       target.committee_id AS target_committee_id
     FROM fec_contribution AS source
-    LEFT JOIN fec_contribution AS target
+    INNER JOIN fec_contribution AS target
     ON (
       source.name = target.name
       AND source.zip = target.zip
       AND source.employer = target.employer
-      AND source.occupation = target.occupation
+      AND (
+        source.occupation = target.occupation 
+        OR (source.occupation IS NULL 
+        AND target.occupation IS NULL)
+      )
     )
     WHERE source.committee_id != target.committee_id
     AND source.committee_id != 'C00401224'
