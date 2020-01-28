@@ -44,7 +44,7 @@ CONFIG = {
         "table":
         "fec_contribution",
         "filename":
-        "by_date/itcont_2020_20190629_20191030.txt",
+        "itcont.txt",
         "csv_columns": [
             "committee_id", "amendment_indicator", "report_type",
             "primary_general_indicator", "image_number", "transaction_type",
