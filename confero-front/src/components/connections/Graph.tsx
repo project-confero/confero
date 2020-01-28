@@ -75,7 +75,8 @@ const Graph: React.FunctionComponent<GraphPropTypes> = ({
       {/* Edges */}
       <g stroke="#999" strokeOpacity={0.25}>
         {simEdges.map(edge => {
-          if (edge.score < 50) return null;
+          if (!renderLink(edge, selectedCandidateId)) return null;
+
           return (
             <line
               key={edge.index}
@@ -111,11 +112,7 @@ const Graph: React.FunctionComponent<GraphPropTypes> = ({
               opacity={nodeOpacity(candidate, selectedCandidateId)}
               stroke={nodeBorder(candidate, selectedCandidateId)}
               strokeWidth={nodeBorderWidth(candidate, selectedCandidateId)}
-            >
-              <title>
-                {candidate.name} | {candidate.office} | {candidate.state}
-              </title>
-            </circle>
+            />
           );
         })}
       </g>
@@ -156,6 +153,13 @@ const nodeBorderWidth = (
   if (selectedCandidate && selectedCandidate === candidate.id)
     return NODE_SIZE / 2;
   return NODE_SIZE / 4;
+};
+
+const renderLink = (link: ConnectionLink, selectedCandidate: string | null) => {
+  if (link.score < 50) return false;
+  if (!selectedCandidate) return true;
+  if (link.source.id === selectedCandidate) return true;
+  return false;
 };
 
 const linkOpacity = (
