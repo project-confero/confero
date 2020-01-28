@@ -8,7 +8,7 @@ export interface PaginationProps<T> {
   children: (items: T[]) => React.ReactNode;
 }
 
-function Pagination<T extends { id: unknown }>({
+function Pagination<T>({
   items,
   size = 10,
   children: renderItems
