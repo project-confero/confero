@@ -21,7 +21,10 @@ psycopg2-binary = "*"
 python-dotenv = "*"
 whitenoise = "*"
 gunicorn = "*"
-django-heroku = "*"
+pandas-gbq = "*"
+nameparser = "*"
+tqdm = {editable = true,git = "https://github.com/tqdm/tqdm.git",ref = "master"}
+dj-database-url = "*"
 
 [requires]
 python_version = "3.7"

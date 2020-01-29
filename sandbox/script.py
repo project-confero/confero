@@ -1,9 +1,15 @@
 # %%
-import pandas as pd
-import psycopg2
+from functools import partial
 import os
+import pkg_resources
 
 from dotenv import load_dotenv, find_dotenv
+from nameparser import HumanName
+import pandas as pd
+import pandas_gbq
+import psycopg2
+from tqdm.auto import tqdm
+
 load_dotenv(find_dotenv())
 
 TEMP_FILE = '/tmp/sql.csv'
@@ -14,7 +20,7 @@ CONFIG = {
         "table":
         "fec_candidate",
         "filename":
-        "cn.txt",
+        "sql/candidates.sql",
         "csv_columns": [
             "id", "name", "party", "election_year", "state", "office",
             "district", "incumbent_challenger_status", "status",
@@ -25,63 +31,100 @@ CONFIG = {
             "district": "str"
         },
         "table_columns":
-        ["id", "name", "party", "office", "state", "district"]
+        ["id", "name", "party", "office", "state", "district"],
+        "index":
+        "id"
     },
     "committees": {
         "table":
         "fec_committee",
         "filename":
-        "ccl.txt",
+        "sql/committees.sql",
         "csv_columns": [
-            "candidate_id", "candidate_election_year", "fec_election_year",
-            "committee_id", "committee_type", "committee_designation", "id"
+            "id", "candidate_id", "committee_id", "committee_type",
+            "committee_designation"
         ],
         "csv_types": {},
-        "table_columns": ["candidate_id", "committee_id"]
+        "table_columns": ["candidate_id", "committee_id"],
+        "index":
+        "id"
     },
     "contributions": {
-        "table":
-        "fec_contribution",
-        "filename":
-        "by_date/itcont_2020_20190629_20191030.txt",
-        "csv_columns": [
-            "committee_id", "amendment_indicator", "report_type",
-            "primary_general_indicator", "image_number", "transaction_type",
-            "entity_type", "name", "city", "state", "zip", "employer",
-            "occupation", "transaction_date", "transaction_amount", "other_id",
-            "transaction_id", "file_number", "memo_code", "memo_text", "id"
-        ],
+        "table": "fec_contribution",
+        "filename": "sql/contributions.sql",
+        "csv_columns":
+        ["committee_id", "name", "zip_code", "transaction_amount"],
         "csv_types": {
             "committee_id": "str",
-            "amendment_indicator": "str",
-            "report_type": "str",
-            "primary_general_indicator": "str",
-            "image_number": "str",
-            "transaction_type": "str",
-            "entity_type": "str",
             "name": "str",
-            "city": "str",
-            "state": "str",
-            "zip": "str",
-            "employer": "str",
-            "occupation": "str",
-            # "transaction_date": "datetime64",
+            "zip_code": "str",
             "transaction_amount": "float",
-            "other_id": "str",
-            "transaction_id": "str",
-            "file_number": "int",
-            "memo_code": "str",
-            "memo_text": "str",
-            "id": "int"
         },
-        "table_columns":
-        ["id", "committee_id", "name", "zip", "employer", "occupation"]
+        "table_columns": ["committee_id", "name", "zip", "transaction_amount"],
+        "index": None
     },
 }
 
 CANDIDATE_CONFIG = CONFIG["candidates"]
 COMMITTEE_CONFIG = CONFIG["committees"]
 CONTRIBUTION_CONFIG = CONFIG["contributions"]
+
+
+def get_names_data():
+    resource_package = __name__
+    resource_path = '/'.join(('data', 'names.txt'))
+    path_to_names = pkg_resources.resource_filename(resource_package,
+                                                    resource_path)
+
+    lines = []
+    names = []
+
+    with open(path_to_names) as file:
+        for index, line in enumerate(file.readlines()):
+            lines.append(line.strip('\n').split(','))
+            for name in line.split(','):
+                names.append([name.strip('\n'), index])
+        names.sort()
+
+    return names, lines
+
+
+def get_nicknames(name, names, lines):
+    # Search for all names that match first_name
+    all_names = nickname_search(name, names)
+
+    names = [name] + [
+        lines[all_names[index][1]][0] for index, _ in enumerate(all_names)
+    ] if all_names is not None else [name]
+
+    return names
+
+
+def nickname_search(first_name, names):
+    """ Find and return the index of key in sequence names  for first_name"""
+    lb = 0
+    ub = len(names)
+
+    while True:
+        if lb == ub:  # If region of interest (ROI) becomes empty
+            return None
+        # Next probe should be in the middle of the ROI
+        mid_index = (lb + ub) // 2
+        # Fetch the item at that position
+        item_at_mid = names[mid_index][0]
+        # How does the probed item compare to the target?
+        if item_at_mid == first_name:
+            upper_mid_index = mid_index
+            lower_mid_index = mid_index
+            while names[upper_mid_index + 1][0] == first_name:
+                upper_mid_index = upper_mid_index + 1
+            while names[lower_mid_index - 1][0] == first_name:
+                lower_mid_index = lower_mid_index - 1
+            return names[lower_mid_index:upper_mid_index + 1]  # Found it!
+        if item_at_mid < first_name:
+            lb = mid_index + 1  # Use upper half of ROI next time
+        else:
+            ub = mid_index  # Use lower half of ROI next time
 
 
 def get_conn():
@@ -96,25 +139,14 @@ def get_conn():
     )
 
 
-def read_csv(config, skiprows=None, nrows=None):
+def read_csv(config):
     filename = config["filename"]
-    headers = config["csv_columns"]
     data_types = config["csv_types"]
-
-    return pd.read_csv(
-        f"{DIR}/data/{filename}",
-        header=None,
-        sep="|",
-        names=headers,
-        dtype=data_types,
-        index_col="id",
-        skiprows=skiprows,
-        nrows=nrows,
-        error_bad_lines=False,
-        warn_bad_lines=True,
-        # No quoting, to avoid an issue with an unclosed quote
-        quoting=3,
-    ).drop_duplicates()
+    with open(f"{DIR}/{filename}") as file:
+        return pandas_gbq.read_gbq(
+            file.read(),
+            index_col=config["index"],
+        ).drop_duplicates().astype(data_types)
 
 
 def without_id(columns):
@@ -197,56 +229,48 @@ def download_sql_query(sql_file, save_file):
             )
 
 
-def clean_field(data, field):
-    data[field] = data[field].str.replace('[^a-zA-Z0-9]', '')
-    return data
+def clean_field(field):
+    sc = set("~!@#$%^&*()_+/?,<>.'`~\"")
+    return ''.join([c for c in field if c not in sc])
 
 
-# %%
+def find_matches(df, names, lines, row):
+
+    nick_names = get_nicknames(row['first'], names, lines)
+
+    index = pd.MultiIndex.from_tuples(
+        [(f, row.middle, row.last, row.zip_code) for f in nick_names],
+        names=['first', 'middle', 'last', 'zip_code'])
+
+    all_possible_matches = pd.Series(
+        [row.index for _ in range(len(nick_names))], index=index, name='id')
+
+    df_join = df.join(all_possible_matches, how='inner')
+
+    return ''.join(df_join.id.to_list())
+
+
 if __name__ == '__main__':
-    # %%
+
     candidates = read_csv(CANDIDATE_CONFIG)
-    # %%
     committees = read_csv(COMMITTEE_CONFIG)
-    committees = committees.drop_duplicates(subset="committee_id")
-    # %%
     contributions = read_csv(CONTRIBUTION_CONFIG)
-    clean_field(contributions, "employer")
-    clean_field(contributions, "occupation")
 
-    # FUTURE WORK: Other valid types?
-    # See: https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions
-    contributions = contributions[(contributions.transaction_type == "15")
-                                  | (contributions.transaction_type == "15E")]
+    tqdm.pandas('rows processed: ')
+    contributions['parsed_name'] = contributions['name'].progress_apply(
+        lambda x: HumanName(x).as_dict())
+    for col in ['first', 'middle', 'last']:
+        contributions[col] = contributions['parsed_name'].progress_apply(
+            lambda x: clean_field(x[col]))  # noqa
+        contributions[col] = contributions[col].str.upper()
 
-    # FUTURE WORK: ActBlue earmarks
-    actblue = contributions[contributions['committee_id'] == 'C00401224']
-    actblue_clean = actblue[actblue['memo_text'].str.find('REFUND') == -1]
-    actblue_clean['committee_id'] = actblue_clean['memo_text'].str.extract(
-        r'(C[0-9]{8})')
+    GROUPBY_COLS = ['first', 'middle', 'last', 'zip_code', 'committee_id']
+    contributions = contributions.\
+        groupby(GROUPBY_COLS).sum().\
+        reset_index()
 
-    contributions = contributions[contributions['committee_id'] != 'C00401224']
-    contributions = contributions.append(actblue)
+    names, lines = get_names_data()
+    matches = partial(find_matches, contributions, names, lines)
+    contributions['match_id'] = contributions.progress_apply(matches, axis=1)
 
-    # %%
-    send_to_db(candidates, CANDIDATE_CONFIG)
-    # %%
-    send_to_db(committees, COMMITTEE_CONFIG)
-    # %%
-    send_to_db(contributions, CONTRIBUTION_CONFIG)
-
-    # %%
-    clear_table("fec_connection")
-    run_sql_file("make_connections.sql")
-
-    # %%
-    # Clean up unused data
-    run_sql_file("delete_solo_candidates.sql")
-
-    # %%
-    clear_table("fec_committee")
-    clear_table("fec_contribution")
-
-    # %%
-    # Check that the data loaded
-    run_sql_query("strong_connections.sql")
+    print(contributions.groupby(['match_id']).count().shape)

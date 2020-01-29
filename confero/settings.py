@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 # flake8: noqa
 
 import os
-import django_heroku
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,13 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'gk0w5ry91hkl@d+79@v9i^74f3tg3z9_qn6n@2@&ras-#mu@hy'
-
+SECRET_KEY = os.getenv('SECRET_KEY')
+PRODUCTION = bool(os.getenv('PRODUCTION'))
 # SECURITY WARNING: don't run with debug turned on in production!
-if 'RDS_DB_NAME' in os.environ:
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = not PRODUCTION
 
 ALLOWED_HOSTS = [
     '0.0.0.0', 'localhost', "127.0.0.1",
@@ -90,7 +87,7 @@ DATABASES = {
         'PASSWORD': os.getenv(db_prefix + 'PASSWORD', 'postgres'),
         'HOST': os.getenv(db_prefix + 'HOSTNAME', 'localhost'),
         'PORT': os.getenv(db_prefix + 'PORT', '5429'),
-    }
+    } if not PRODUCTION else dj_database_url.config()
 }
 
 # Password validation
@@ -134,6 +131,3 @@ USE_TZ = True
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # STATIC_URL = '/static/'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Activate Django-Heroku.
-django_heroku.settings(locals())
