@@ -28,9 +28,9 @@ jobs:
       - run: yarn test
 
       - deploy:
-          name: Deploy to Elastic Beanstalk Environment
+          name: Deploy to Surge
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
               yarn build
               yarn deploy
             fi
