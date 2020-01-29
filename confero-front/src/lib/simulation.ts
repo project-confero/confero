@@ -40,7 +40,10 @@ export const runSimulation = memoize(
           .id((node: any) => node.id)
           .distance(link => link.score)
       )
-      .force("charge", d3.forceManyBody().strength(() => CHARGE))
+      .force(
+        "charge",
+        d3.forceManyBody().strength(() => CHARGE)
+      )
       .force("center", d3.forceCenter(SIM_WIDTH / 3, SIM_HEIGHT / 2));
 
     // Run the simulation

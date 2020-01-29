@@ -2,5 +2,7 @@
 
 set -euxo pipefail
 
-prettier --write **/*.{json,js,css,html,md,yml}
+prettier --write **/*.{json,js,ts,tsx,css,html,md,yml}
 yapf -ri .
+cd confero-front
+yarn format

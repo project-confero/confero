@@ -1,38 +1,36 @@
-version: 2
+version: 2.1
 
 jobs:
   build:
     docker:
-      - image: circleci/python:3.7
-      - image: circleci/postgres
-        environment:
-          DB_DB_NAME: confero
-          DB_USERNAME: postgres
-          DB_PASSWORD: postgres
-          DB_HOSTNAME: localhost
-          DB_PORT: 5439
+      - image: circleci/node:12
+
+    working_directory: ~/confero/confero-front
+
     steps:
-      - checkout
+      - checkout:
+          path: ~/confero
 
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - restore_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
-
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
-          command: |
-            sudo pip install pipenv
-            pipenv install --dev --system
-
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
       - save_cache:
-          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ".venv"
-            - "/usr/local/bin"
-            - "/usr/local/lib/python3.7/site-packages"
+            - ~/.cache/yarn
 
-      - run: bash ./bin/lint
-      - run: bash ./bin/coverage
-      - store_artifacts:
-          path: ./htmlcov
-          destination: coverage
+      - run: yarn lint
+      - run: yarn test
+
+      - deploy:
+          name: Deploy to Elastic Beanstalk Environment
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              yarn build
+              yarn deploy
+            fi
