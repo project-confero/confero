@@ -1,16 +1,10 @@
 # %%
-from functools import partial
 import os
+from functools import partial
 import pkg_resources
 
-from dotenv import load_dotenv, find_dotenv
-from nameparser import HumanName
-import pandas as pd
 import pandas_gbq
-import psycopg2
 from tqdm.auto import tqdm
-
-load_dotenv(find_dotenv())
 
 TEMP_FILE = '/tmp/sql.csv'
 DIR = f'{os.getcwd()}/sandbox'
@@ -56,7 +50,9 @@ CONFIG = {
         ["committee_id", "name", "zip_code", "transaction_amount"],
         "csv_types": {
             "committee_id": "str",
-            "name": "str",
+            "first": "str",
+            "middle": "str",
+            "last": "str",
             "zip_code": "str",
             "transaction_amount": "float",
         },
@@ -70,16 +66,12 @@ COMMITTEE_CONFIG = CONFIG["committees"]
 CONTRIBUTION_CONFIG = CONFIG["contributions"]
 
 
-def get_names_data():
-    resource_package = __name__
-    resource_path = '/'.join(('data', 'names.txt'))
-    path_to_names = pkg_resources.resource_filename(resource_package,
-                                                    resource_path)
+def get_names_data(file_path):
 
     lines = []
     names = []
 
-    with open(path_to_names) as file:
+    with open(file_path) as file:
         for index, line in enumerate(file.readlines()):
             lines.append(line.strip('\n').split(','))
             for name in line.split(','):
@@ -89,11 +81,11 @@ def get_names_data():
     return names, lines
 
 
-def get_nicknames(name, names, lines):
+def get_nicknames(names, lines, name):
     # Search for all names that match first_name
     all_names = nickname_search(name, names)
 
-    names = [name] + [
+    names = [
         lines[all_names[index][1]][0] for index, _ in enumerate(all_names)
     ] if all_names is not None else [name]
 
@@ -127,18 +119,6 @@ def nickname_search(first_name, names):
             ub = mid_index  # Use lower half of ROI next time
 
 
-def get_conn():
-    db_prefix = 'RDS_' if 'RDS_DB_NAME' in os.environ else 'DB_'
-
-    return psycopg2.connect(
-        dbname=os.getenv(db_prefix + 'DB_DB_NAME', 'confero'),
-        user=os.getenv(db_prefix + 'USERNAME', 'postgres'),
-        password=os.getenv(db_prefix + 'PASSWORD', 'postgres'),
-        host=os.getenv(db_prefix + 'HOSTNAME', 'localhost'),
-        port=os.getenv(db_prefix + 'PORT', '5432'),
-    )
-
-
 def read_csv(config):
     filename = config["filename"]
     data_types = config["csv_types"]
@@ -149,128 +129,62 @@ def read_csv(config):
         ).drop_duplicates().astype(data_types)
 
 
-def without_id(columns):
-    copy = columns[:]
-
-    if "id" in copy:
-        copy.remove("id")
-
-    return copy
-
-
-def pluck_csv(csv, config):
-    columns = config["table_columns"]
-    return csv[without_id(columns)]
-
-
-def save_csv_to_load(csv, config):
-    columns = config["table_columns"]
-    index = "id" in columns
-
-    csv.to_csv(TEMP_FILE, header=False, index=index)
-
-
-def clear_table(table):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            cursor.execute(f"TRUNCATE {table} CASCADE;")
-
-
-def load_csv_to_table(config):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            table = config["table"]
-            columns = config["table_columns"]
-
-            file = open(TEMP_FILE, "r")
-            # Clear table
-            cursor.execute(f"TRUNCATE {table} CASCADE;")
-            # Load new data
-            column_string = ",".join(columns)
-            cursor.copy_expert(
-                f"copy {table} ({column_string}) from STDIN CSV QUOTE '\"'",
-                file)
-
-
-def send_to_db(csv, config):
-    data = pluck_csv(csv, config)
-    save_csv_to_load(data, config)
-    load_csv_to_table(config)
-
-
-def run_sql_file(filename):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            sql = open(f"{DIR}/sql/{filename}", "r").read()
-            cursor.execute(sql)
-
-
-def run_sql_query(filename):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            sql = open(f"{DIR}/sql/{filename}", "r").read()
-            cursor.execute(sql)
-
-            print(f"===records from {filename}===")
-
-            for record in cursor:
-                print(record)
-
-
-def download_sql_query(sql_file, save_file):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            sql = open(f"{DIR}/sql/{sql_file}", "r").read()
-            file = open(f"{DIR}/data/{save_file}", "w")
-
-            cursor.copy_expert(
-                f"copy ({sql}) TO STDOUT WITH CSV HEADER",
-                file,
-            )
-
-
 def clean_field(field):
-    sc = set("~!@#$%^&*()_+/?,<>.'`~\"")
+    sc = set("~!@#$%^&*()_-={}[]|+/?,<>.'`~\"1234567890")
     return ''.join([c for c in field if c not in sc])
 
 
 def find_matches(df, names, lines, row):
+    last_name = row['last']
+    df_match = df.query("(last == @last_name")
+    if df_match.shape[0] == 1:
+        return None
 
-    nick_names = get_nicknames(row['first'], names, lines)
+    df_match = df_match[df_match['zip_code'] == row['zip_code']]
+    if df_match.shape[0] == 1:
+        return None
 
-    index = pd.MultiIndex.from_tuples(
-        [(f, row.middle, row.last, row.zip_code) for f in nick_names],
-        names=['first', 'middle', 'last', 'zip_code'])
+    nick_names = get_nicknames(names, lines, row['first'])
+    df_match = df_match[[x in nick_names for x in df_match['first']]]
+    if df_match.shape[0] == 1:
+        return None
 
-    all_possible_matches = pd.Series(
-        [row.index for _ in range(len(nick_names))], index=index, name='id')
+    if row['middle']:
+        middle_names = [row['middle'], None]
+    if len(row['middle']) > 1:
+        middle_names += [row['middle'][0]]
+    else:
+        middle_names = [None]
+    df_match = df_match[[x in middle_names for x in df_match['middle']]]
+    if df_match.shape[0] == 1:
+        return None
 
-    df_join = df.join(all_possible_matches, how='inner')
-
-    return ''.join(df_join.id.to_list())
+    return ''.join([str(x) for x in df_match.index])
 
 
 if __name__ == '__main__':
+    path_to_names = pkg_resources.resource_filename(
+        __name__, '/'.join(('data', 'names.txt')))
 
-    candidates = read_csv(CANDIDATE_CONFIG)
-    committees = read_csv(COMMITTEE_CONFIG)
+    # Extract
+    # candidates = read_csv(CANDIDATE_CONFIG)
+    # committees = read_csv(COMMITTEE_CONFIG)
     contributions = read_csv(CONTRIBUTION_CONFIG)
 
-    tqdm.pandas('rows processed: ')
-    contributions['parsed_name'] = contributions['name'].progress_apply(
-        lambda x: HumanName(x).as_dict())
+    # Clean
+    tqdm.pandas('rows processed')
     for col in ['first', 'middle', 'last']:
-        contributions[col] = contributions['parsed_name'].progress_apply(
-            lambda x: clean_field(x[col]))  # noqa
-        contributions[col] = contributions[col].str.upper()
+        contributions[col] = contributions[col].progress_apply(clean_field)
 
     GROUPBY_COLS = ['first', 'middle', 'last', 'zip_code', 'committee_id']
     contributions = contributions.\
         groupby(GROUPBY_COLS).sum().\
         reset_index()
 
-    names, lines = get_names_data()
-    matches = partial(find_matches, contributions, names, lines)
-    contributions['match_id'] = contributions.progress_apply(matches, axis=1)
+    # Transform
+    names, lines = get_names_data(path_to_names)
+    nick_names = partial(find_matches, contributions, names, lines)
+    contributions['match_id'] = contributions.progress_apply(
+        nick_names, axis=1)
 
-    print(contributions.groupby(['match_id']).count().shape)
+    # print(contributions.groupby(['match_id']).count().shape)
