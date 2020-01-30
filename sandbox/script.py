@@ -137,16 +137,16 @@ def clean_field(field):
 def find_matches(df, names, lines, row):
     last_name = row['last']
     df_match = df.query("(last == @last_name")
-    if df_match.shape[0] == 1:
+    if len(df_match.index) == 1:
         return None
 
     df_match = df_match[df_match['zip_code'] == row['zip_code']]
-    if df_match.shape[0] == 1:
+    if len(df_match.index) == 1:
         return None
 
     nick_names = get_nicknames(names, lines, row['first'])
     df_match = df_match[[x in nick_names for x in df_match['first']]]
-    if df_match.shape[0] == 1:
+    if len(df_match.index) == 1:
         return None
 
     if row['middle']:
@@ -156,7 +156,7 @@ def find_matches(df, names, lines, row):
     else:
         middle_names = [None]
     df_match = df_match[[x in middle_names for x in df_match['middle']]]
-    if df_match.shape[0] == 1:
+    if len(df_match.index) == 1:
         return None
 
     return ''.join([str(x) for x in df_match.index])
