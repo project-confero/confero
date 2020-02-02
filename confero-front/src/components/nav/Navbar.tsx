@@ -17,9 +17,6 @@ const Navbar = () => {
         <Link to="/candidates" color="inherit">
           <Button color="inherit">Candidates</Button>
         </Link>
-        <Link to="/connections" color="inherit">
-          <Button color="inherit">Connections</Button>
-        </Link>
       </Toolbar>
     </AppBar>
   );

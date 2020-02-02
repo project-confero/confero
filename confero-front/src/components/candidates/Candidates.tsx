@@ -10,11 +10,15 @@ import {
   ListItemText,
   ListItemIcon,
   Grid,
-  Paper
+  Paper,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormHelperText
 } from "@material-ui/core";
+import axios from "axios";
 
-import candidates from "data/candidates.json";
-import connections from "data/connections.json";
 import { Candidate, candidateName } from "lib/candidate";
 import { officeOptions, partyOptions } from "lib/lookups";
 import Pagination from "../basic/Pagination";
@@ -22,6 +26,19 @@ import CandidateDetails from "./CandidateDetails";
 import CandidateAvatar from "./CandidateAvatar";
 import FilterButtons from "./FilterButtons";
 import Graph from "components/connections/Graph";
+import { Connection } from "lib/connection";
+
+const YEARS = [2020, 2008, 2004, 2000];
+
+const getCandidates = async (year: number): Promise<Candidate[]> => {
+  const { data } = await axios.get(`./data/${year}/candidates.json`);
+  return data;
+};
+
+const getConnections = async (year: number): Promise<Connection[]> => {
+  const { data } = await axios.get(`./data/${year}/connections.json`);
+  return data;
+};
 
 const filterCandidates = (
   candidates: Candidate[],
@@ -46,6 +63,7 @@ const filterCandidates = (
 };
 
 const Candidates = () => {
+  const [year, setYear] = React.useState(2020);
   const [filter, setFilter] = React.useState("");
   const [officeFilters, setOfficeFilters] = React.useState<string[]>([]);
   const [partyFilters, setPartyFilters] = React.useState<string[]>([]);
@@ -54,21 +72,54 @@ const Candidates = () => {
     setSelectedCandidate
   ] = React.useState<Candidate | null>(null);
 
+  const [candidates, setCandidates] = React.useState<Candidate[]>([]);
+  const [connections, setConnections] = React.useState<Connection[]>([]);
+
+  React.useEffect(() => {
+    setCandidates([]);
+    setConnections([]);
+    getCandidates(year).then(setCandidates);
+    getConnections(year).then(setConnections);
+  }, [year]);
+
+  const isLoaded = candidates.length > 0 && connections.length > 0;
+
   const shownCandidates = React.useMemo(
     () => filterCandidates(candidates, filter, officeFilters, partyFilters),
-    [filter, officeFilters, partyFilters]
+    [candidates, filter, officeFilters, partyFilters]
   );
 
   return (
     <Container>
-      <Box my={2}>
-        <Typography>
-          Looking to see how specific candidates are connected? Trying to figure
-          out who to support?
-        </Typography>
-        <Typography>
-          Search for candidates by name, or filter by office, party, and more.
-        </Typography>
+      <Box my={2} display="flex">
+        <Box flexGrow={1}>
+          <Typography>
+            Looking to see how specific candidates are connected? Trying to
+            figure out who to support?
+          </Typography>
+          <Typography>
+            Search for candidates by name, or filter by office, party, and more.
+          </Typography>
+        </Box>
+
+        <Box>
+          <FormControl>
+            <InputLabel>Election Year</InputLabel>
+            <Select
+              value={year}
+              onChange={event =>
+                setYear(parseInt(event.target.value as string))
+              }
+            >
+              {YEARS.map(year => (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              ))}
+            </Select>
+            <FormHelperText>Select an election year to view</FormHelperText>
+          </FormControl>
+        </Box>
       </Box>
 
       <Divider />
@@ -95,81 +146,83 @@ const Candidates = () => {
         />
       </Box>
 
-      {/* Candidates */}
-      <Grid container spacing={2} wrap="wrap-reverse">
-        <Grid item xs={12} md={4}>
-          <Pagination size={10} items={shownCandidates}>
-            {candidates => (
-              <List>
-                {candidates.map((candidate: Candidate) => {
-                  const isSelected = candidate.id === selectedCandidate?.id;
-                  return (
-                    <ListItem
-                      key={candidate.id}
-                      button
-                      selected={isSelected}
-                      onClick={() =>
-                        setSelectedCandidate(isSelected ? null : candidate)
-                      }
-                    >
-                      <ListItemIcon>
-                        <CandidateAvatar candidate={candidate} />
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={candidateName(candidate)}
-                        secondary={`Connection Score: ${candidate.score}`}
-                      />
-                    </ListItem>
-                  );
-                })}
-              </List>
-            )}
-          </Pagination>
-        </Grid>
+      {isLoaded ? (
+        <Grid container spacing={2} wrap="wrap-reverse">
+          {/* Candidates */}
+          <Grid item xs={12} md={4}>
+            <Pagination size={10} items={shownCandidates}>
+              {candidates => (
+                <List>
+                  {candidates.map((candidate: Candidate) => {
+                    const isSelected = candidate.id === selectedCandidate?.id;
+                    return (
+                      <ListItem
+                        key={candidate.id}
+                        button
+                        selected={isSelected}
+                        onClick={() =>
+                          setSelectedCandidate(isSelected ? null : candidate)
+                        }
+                      >
+                        <ListItemIcon>
+                          <CandidateAvatar candidate={candidate} />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={candidateName(candidate)}
+                          secondary={`Connection Score: ${candidate.score}`}
+                        />
+                      </ListItem>
+                    );
+                  })}
+                </List>
+              )}
+            </Pagination>
+          </Grid>
 
-        {/* Connections */}
-        <Grid item xs={12} md={8}>
-          <Paper>
-            <Box width="100%" paddingBottom="60%" position="relative" m={2}>
-              <Box
-                position="absolute"
-                left="0"
-                right="0"
-                width="100%"
-                height="100%"
-              >
-                <Graph
-                  selectedCandidate={selectedCandidate}
+          {/* Connections */}
+          <Grid item xs={12} md={8}>
+            <Paper>
+              <Box width="100%" paddingBottom="60%" position="relative" m={2}>
+                <Box
+                  position="absolute"
+                  left="0"
+                  right="0"
+                  width="100%"
+                  height="100%"
+                >
+                  <Graph
+                    selectedCandidate={selectedCandidate}
+                    candidates={candidates}
+                    connections={connections}
+                    onSelect={setSelectedCandidate}
+                  ></Graph>
+                </Box>
+              </Box>
+
+              {selectedCandidate ? (
+                <CandidateDetails
+                  candidate={selectedCandidate}
                   candidates={candidates}
                   connections={connections}
                   onSelect={setSelectedCandidate}
-                ></Graph>
-              </Box>
-            </Box>
-
-            {selectedCandidate ? (
-              <CandidateDetails
-                candidate={selectedCandidate}
-                candidates={candidates}
-                connections={connections}
-                onSelect={setSelectedCandidate}
-              />
-            ) : (
-              <Box p={2}>
-                <Typography>
-                  This is a graph of every Federal Candidate that had at least
-                  two shared contributors with another candidate in 2019. Large
-                  circles represent Presidential candidates.
-                </Typography>
-                <Typography>
-                  You can click on a circle, or a name on the left, to highlight
-                  connections with that candidate.
-                </Typography>
-              </Box>
-            )}
-          </Paper>
+                />
+              ) : (
+                <Box p={2}>
+                  <Typography>
+                    This is a graph of every Federal Candidate that had at least
+                    two shared contributors with another candidate in 2019.
+                    Large circles represent Presidential candidates.
+                  </Typography>
+                  <Typography>
+                    You can click on a circle, or a name on the left, to
+                    highlight connections with that candidate.
+                  </Typography>
+                </Box>
+              )}
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      ) : null}
     </Container>
   );
 };

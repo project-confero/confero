@@ -24,6 +24,9 @@ const ITERATIONS = 300;
 
 export const runSimulation = memoize(
   (candidates: Candidate[], connections: Connection[]) => {
+    if (!(candidates.length > 0 && connections.length > 0)) {
+      return { nodes: [], links: [] };
+    }
     const nodes = orderByOffice(candidates) as CandidateNode[];
 
     const links = (convertConnections(

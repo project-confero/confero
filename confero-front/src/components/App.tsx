@@ -5,7 +5,6 @@ import { ThemeProvider } from "@material-ui/core/styles";
 
 import theme from "./theme";
 import Candidates from "./candidates/Candidates";
-import Connections from "./connections/Connections";
 import Home from "./Home";
 import Navbar from "./nav/Navbar";
 
@@ -19,10 +18,6 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/candidates">
             <Candidates />
-          </Route>
-
-          <Route path="/connections">
-            <Connections />
           </Route>
 
           <Route path="/">
