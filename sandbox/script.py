@@ -237,6 +237,15 @@ def connections_to_json():
                                       "score, source_id, target_id")
         connections.to_json(file, "records")
 
+def parties_to_json(candidates):
+    parties = query_to_pandas("partisionship_score.sql")
+    parties["candidates"] = candidates[party].count()
+
+
+    filename = f"{JSON_DIR}/parties.json"
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+
+
 
 # %%
 if __name__ == '__main__':
