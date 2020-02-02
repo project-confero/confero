@@ -28,7 +28,7 @@ import FilterButtons from "./FilterButtons";
 import Graph from "components/connections/Graph";
 import { Connection } from "lib/connection";
 
-const YEARS = [2020, 2008, 2004, 2000];
+const YEARS = [2020, 2016, 2012, 2008, 2004, 2000];
 
 const getCandidates = async (year: number): Promise<Candidate[]> => {
   const { data } = await axios.get(`./data/${year}/candidates.json`);
@@ -210,8 +210,10 @@ const Candidates = () => {
                 <Box p={2}>
                   <Typography>
                     This is a graph of every Federal Candidate that had at least
-                    two shared contributors with another candidate in 2019.
-                    Large circles represent Presidential candidates.
+                    two shared contributors with another candidate in in the{" "}
+                    {year} election. Large circles represent Presidential
+                    candidates, and gray lines represent particularly strong
+                    connections.
                   </Typography>
                   <Typography>
                     You can click on a circle, or a name on the left, to
