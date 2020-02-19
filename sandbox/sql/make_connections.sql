@@ -17,7 +17,13 @@ FROM (
       source.name = target.name
       AND source.zip = target.zip
       AND source.employer = target.employer
-      AND source.occupation = target.occupation
+      AND (
+        source.occupation = target.occupation
+        OR (
+          source.occupation IS NULL
+          AND target.occupation IS NULL
+        )
+      )
     )
     WHERE source.committee_id != target.committee_id
     AND source.committee_id != 'C00401224'
@@ -31,5 +37,5 @@ INNER JOIN fec_committee AS s_com ON con.source_committee_id = s_com.committee_i
 INNER JOIN fec_committee AS t_com ON con.target_committee_id = t_com.committee_id
 WHERE s_com.candidate_id IS NOT NULL AND t_com.candidate_id IS NOT NULL
 GROUP BY (s_com.candidate_id, t_com.candidate_id)
-HAVING SUM(con.score) > 1
+HAVING SUM(con.score) > 2
 ORDER BY score DESC;
