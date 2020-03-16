@@ -1,26 +1,24 @@
-# %%
-import pandas as pd
-import psycopg2
 import os
-import sys
+from functools import partial
+import pkg_resources
 
-from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+import pandas_gbq
+import pandas as pd
+import numpy as np
 
-YEAR = sys.argv[1]
-
-print(f'Generating data for {YEAR}')
+import recordlinkage as rl
+from recordlinkage.base import BaseIndexAlgorithm
+from recordlinkage.preprocessing import clean
 
 TEMP_FILE = '/tmp/sql.csv'
 DIR = f'{os.getcwd()}/sandbox'
-JSON_DIR = f'{os.getcwd()}/confero-front/public/data/{YEAR}'
 
 CONFIG = {
     "candidates": {
         "table":
         "fec_candidate",
         "filename":
-        "cn.txt",
+        "sql/candidates.sql",
         "csv_columns": [
             "id", "name", "party", "election_year", "state", "office",
             "district", "incumbent_challenger_status", "status",
@@ -31,59 +29,39 @@ CONFIG = {
             "district": "str"
         },
         "table_columns":
-        ["id", "name", "party", "office", "state", "district"]
+        ["id", "name", "party", "office", "state", "district"],
+        "index":
+        "id"
     },
     "committees": {
         "table":
         "fec_committee",
         "filename":
-        "ccl.txt",
+        "sql/committees.sql",
         "csv_columns": [
-            "candidate_id", "candidate_election_year", "fec_election_year",
-            "committee_id", "committee_type", "committee_designation", "id"
+            "id", "candidate_id", "committee_id", "committee_type",
+            "committee_designation"
         ],
         "csv_types": {},
-        "table_columns": ["candidate_id", "committee_id"]
+        "table_columns": ["candidate_id", "committee_id"],
+        "index":
+        "id"
     },
     "contributions": {
-        "table":
-        "fec_contribution",
-        "filename":
-        "itcont.txt",
-        "csv_columns": [
-            "committee_id", "amendment_indicator", "report_type",
-            "primary_general_indicator", "image_number", "transaction_type",
-            "entity_type", "name", "city", "state", "zip", "employer",
-            "occupation", "transaction_date", "transaction_amount", "other_id",
-            "transaction_id", "file_number", "memo_code", "memo_text", "id"
-        ],
+        "table": "fec_contribution",
+        "filename": "sql/contributions.sql",
+        "csv_columns":
+        ["committee_id", "name", "zip_code", "transaction_amount"],
         "csv_types": {
             "committee_id": "str",
-            "amendment_indicator": "str",
-            "report_type": "str",
-            "primary_general_indicator": "str",
-            "image_number": "str",
-            "transaction_type": "str",
-            "entity_type": "str",
-            "name": "str",
-            "city": "str",
-            "state": "str",
-            "zip": "str",
-            "employer": "str",
-            "occupation": "str",
-            # "transaction_date": "datetime64",
-            "transaction_amount": "int",
-            "other_id": "str",
-            "transaction_id": "str",
-            "file_number": "str",
-            "memo_code": "str",
-            "memo_text": "str",
-            "id": "int"
+            "first": "str",
+            "middle": "str",
+            "last": "str",
+            "zip_code": "str",
+            "transaction_amount": "float",
         },
-        "table_columns": [
-            "id", "committee_id", "name", "zip", "employer", "occupation",
-            "transaction_amount"
-        ]
+        "table_columns": ["committee_id", "name", "zip", "transaction_amount"],
+        "index": None
     },
 }
 
@@ -92,218 +70,177 @@ COMMITTEE_CONFIG = CONFIG["committees"]
 CONTRIBUTION_CONFIG = CONFIG["contributions"]
 
 
-def get_conn():
-    db_prefix = 'RDS_' if 'RDS_DB_NAME' in os.environ else 'DB_'
+def listify(x, none_value=[]):
+    """Make a list of the argument if it is not a list."""
 
-    return psycopg2.connect(
-        dbname=os.getenv(db_prefix + 'DB_DB_NAME', 'sandbox'),
-        user=os.getenv(db_prefix + 'USERNAME', 'postgres'),
-        password=os.getenv(db_prefix + 'PASSWORD', 'postgres'),
-        host=os.getenv(db_prefix + 'HOSTNAME', 'localhost'),
-        port=os.getenv(db_prefix + 'PORT', '5432'),
-    )
+    if isinstance(x, list):
+        return x
+    elif isinstance(x, tuple):
+        return list(x)
+    elif x is None:
+        return none_value
+    else:
+        return [x]
 
 
-def read_csv(config, skiprows=None, nrows=None):
+def nickname_search(first_name, names):
+    """ Find and return the index of key in sequence names  for first_name"""
+    first_name = first_name
+    lb = 0
+    ub = len(names)
+
+    while True:
+        if lb == ub:  # If region of interest (ROI) becomes empty
+            return None
+        # Next probe should be in the middle of the ROI
+        mid_index = (lb + ub) // 2
+        # Fetch the item at that position
+        item_at_mid = names[mid_index][0]
+        # How does the probed item compare to the target?
+        if item_at_mid == first_name:
+            upper_mid_index = mid_index
+            lower_mid_index = mid_index
+            while names[upper_mid_index + 1][0] == first_name:
+                upper_mid_index = upper_mid_index + 1
+            while names[lower_mid_index - 1][0] == first_name:
+                lower_mid_index = lower_mid_index - 1
+            return names[lower_mid_index:upper_mid_index + 1]  # Found it!
+        if item_at_mid < first_name:
+            lb = mid_index + 1  # Use upper half of ROI next time
+        else:
+            ub = mid_index  # Use lower half of ROI next time
+
+
+def get_names_data(file_path):
+
+    lines = []
+    names = []
+
+    with open(file_path) as file:
+        for index, line in enumerate(file.readlines()):
+            lines.append(line.strip('\n').split(','))
+            for name in line.split(','):
+                names.append([name.strip('\n'), index])
+        names.sort()
+
+    return names, lines
+
+
+def get_nicknames(names, lines, name):
+    # Search for all names that match first_name
+    all_names = nickname_search(name, names)
+
+    names = [
+        lines[all_names[index][1]][0] for index, _ in enumerate(all_names)
+    ] if all_names is not None else [name]
+
+    return set(names)
+
+
+def validate_name(name):
+    return name if type(name) == str and pd.notna(name) else ''
+
+
+class NickNameIndex(BaseIndexAlgorithm):
+    """Custom class for indexing"""
+
+    def __init__(self, left_on=None, right_on=None, missing_value=True):
+        super(NickNameIndex, self).__init__()
+        self.missing_value = missing_value
+        self.left_on = left_on
+        self.right_on = right_on
+
+    def _get_left_and_right_on(self):
+        if self.right_on is None:
+            return (self.left_on, self.left_on)
+        else:
+            return (self.left_on, self.right_on)
+
+    def _link_index(self, df_a, df_b):
+        left_on, right_on = self._get_left_and_right_on()
+
+        left_on = listify(left_on)
+        right_on = listify(right_on)
+
+        blocking_keys = ["blocking_key_%d" % i for i, v in enumerate(left_on)]
+
+        names, lines = get_names_data('sandbox/data/names.txt')
+        nicknames = partial(get_nicknames, names, lines)
+
+        # make a dataset for the data on the left
+        data_left = pd.DataFrame(df_a[left_on], copy=False)
+        data_left.columns = blocking_keys
+        data_left['index_x'] = np.arange(len(df_a))
+        # add rows for each nickname
+        nicknames_left = pd.DataFrame.from_records(
+            data_left[blocking_keys[0]].apply(validate_name).apply(nicknames).tolist()
+        ).stack().reset_index(level=1, drop=True).rename(blocking_keys[0])
+        data_left = data_left.drop(blocking_keys[0], axis=1).\
+            join(nicknames_left).reset_index(drop=True)
+
+        # make a dataset for the data on the right
+        data_right = pd.DataFrame(df_b[right_on], copy=False)
+        data_right.columns = blocking_keys
+        data_right['index_y'] = np.arange(len(df_b))
+
+        # merge the dataframes
+        pairs_df = data_left.merge(data_right, how='inner', on=blocking_keys)
+        if not self.missing_value:
+            pairs_df.dropna(subset=blocking_keys, inplace=True)
+        return pd.MultiIndex(
+            levels=[df_a.index.values, df_b.index.values],
+            codes=[pairs_df['index_x'].values, pairs_df['index_y'].values],
+            verify_integrity=False)
+
+
+def get_matches(df, first_name, middle_name, last_name, zip_code):
+    indexer = rl.Index()
+    indexer.add([
+        NickNameIndex(
+            left_on=[
+                first_name,
+                middle_name,
+                last_name,
+                zip_code
+            ],
+            missing_value=False),
+    ])
+    links = indexer.index(df)
+
+    # transform
+    cl = rl.Compare()
+    cl.exact(zip_code, zip_code,  label='zip_code')
+    features = cl.compute(links, df)
+
+    return features
+
+
+def read_csv(config):
     filename = config["filename"]
-    headers = config["csv_columns"]
     data_types = config["csv_types"]
-
-    return pd.read_csv(
-        f"{DIR}/data/{YEAR}/{filename}",
-        header=None,
-        sep="|",
-        names=headers,
-        dtype=data_types,
-        index_col="id",
-        skiprows=skiprows,
-        nrows=nrows,
-        error_bad_lines=False,
-        warn_bad_lines=True,
-        # No quoting, to avoid an issue with an unclosed quote
-        quoting=3,
-    ).drop_duplicates()
+    with open(f"{DIR}/{filename}") as file:
+        return pandas_gbq.read_gbq(
+            file.read(),
+            index_col=config["index"],
+        ).drop_duplicates().astype(data_types)
 
 
-def without_id(columns):
-    copy = columns[:]
-
-    if "id" in copy:
-        copy.remove("id")
-
-    return copy
-
-
-def pluck_csv(csv, config):
-    columns = config["table_columns"]
-    return csv[without_id(columns)]
-
-
-def save_csv_to_load(csv, config):
-    columns = config["table_columns"]
-    index = "id" in columns
-
-    csv.to_csv(TEMP_FILE, header=False, index=index)
-
-
-def table_to_pandas(table, select="*"):
-    with get_conn() as conn:
-        return pd.read_sql_query(f'select {select} from {table}', con=conn)
-
-
-def query_to_pandas(filename):
-    with get_conn() as conn:
-        sql = open(f"{DIR}/sql/{filename}", "r").read()
-        return pd.read_sql_query(sql, con=conn)
-
-
-def clear_table(table):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            cursor.execute(f"TRUNCATE {table} CASCADE;")
-
-
-def load_csv_to_table(config):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            table = config["table"]
-            columns = config["table_columns"]
-
-            file = open(TEMP_FILE, "r")
-            # Clear table
-            cursor.execute(f"TRUNCATE {table} CASCADE;")
-            # Load new data
-            column_string = ",".join(columns)
-            cursor.copy_expert(
-                f"copy {table} ({column_string}) from STDIN CSV QUOTE '\"'",
-                file)
-
-
-def send_to_db(csv, config):
-    data = pluck_csv(csv, config)
-    save_csv_to_load(data, config)
-    load_csv_to_table(config)
-
-
-def run_sql_file(filename):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            sql = open(f"{DIR}/sql/{filename}", "r").read()
-            cursor.execute(sql)
-
-
-def run_sql_query(filename):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            sql = open(f"{DIR}/sql/{filename}", "r").read()
-            cursor.execute(sql)
-
-            print(f"===records from {filename}===")
-
-            for record in cursor:
-                print(record)
-
-
-def download_sql_query(sql_file, save_file):
-    with get_conn() as conn:
-        with conn.cursor() as cursor:
-            sql = open(f"{DIR}/sql/{sql_file}", "r").read()
-            file = open(f"{DIR}/data/{save_file}", "w")
-
-            cursor.copy_expert(
-                f"copy ({sql}) TO STDOUT WITH CSV HEADER",
-                file,
-            )
-
-
-def clean_field(data, field):
-    data[field] = data[field].str.replace('[^a-zA-Z0-9]', '')
-    return data
-
-
-def candidates_to_json():
-    filename = f"{JSON_DIR}/candidates.json"
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
-    with open(filename, "w+") as file:
-        candidates = query_to_pandas("connected_candidates.sql")
-        candidates.to_json(file, "records")
-
-
-def connections_to_json():
-    filename = f"{JSON_DIR}/connections.json"
-    os.makedirs(os.path.dirname(filename), exist_ok=True)
-    with open(filename, "w+") as file:
-        connections = table_to_pandas("fec_connection",
-                                      "score, source_id, target_id")
-        connections.to_json(file, "records")
-
-
-# %%
 if __name__ == '__main__':
-    # %%
-    print("reading CSVs")
+    path_to_names = pkg_resources.resource_filename(
+        __name__, '/'.join(('data', 'names.txt')))
+
+    # Extract
     candidates = read_csv(CANDIDATE_CONFIG)
     committees = read_csv(COMMITTEE_CONFIG)
     contributions = read_csv(CONTRIBUTION_CONFIG)
 
-    # %%
-    print("cleaning committees")
-    print("committees", len(committees))
-    # Primary committee only
-    committees = committees[committees['committee_designation'].isin(
-        ['P', 'A', 'D'])]
-    print("committees (primary)", len(committees))
-    # Future work: why so many?
-    committees = committees.drop_duplicates(subset="committee_id")
-    print("committees deduped", len(committees))
-    # Removes committees without candidates
-    committees = committees[committees['candidate_id'].isin(candidates.index)]
-    print("committees with candidates", len(committees))
+    # Clean
+    for col in ['first', 'last', 'middle']:
+        contributions[col] = clean(contributions[col])
 
-    # %%
-    print("cleaning contributions")
+    GROUPBY_COLS = ['first', 'middle', 'last', 'zip_code', 'committee_id']
+    contributions = contributions.\
+        groupby(GROUPBY_COLS).sum().\
+        reset_index()
 
-    clean_field(contributions, "employer")
-    clean_field(contributions, "occupation")
-
-    # FUTURE WORK: Other valid types?
-    # See: https://www.fec.gov/campaign-finance-data/transaction-type-code-descriptions
-    contributions = contributions[(contributions.transaction_type == "15")
-                                  | (contributions.transaction_type == "15E")]
-
-    # FUTURE WORK: ActBlue earmarks
-    actblue = contributions[contributions['committee_id'] == 'C00401224']
-    actblue_clean = actblue[actblue['memo_text'].str.find('REFUND') == -1]
-    if len(actblue_clean) > 0:
-        actblue_clean['committee_id'] = actblue_clean['memo_text'].str.extract(
-            r'(C[0-9]{8})')
-        contributions = contributions.append(actblue_clean)
-
-    contributions = contributions[contributions['committee_id'] != 'C00401224']
-
-    print("contributions", len(contributions))
-    contributions = contributions[contributions['committee_id'].isin(
-        committees.committee_id)]
-    print("contributions with committees", len(contributions))
-
-    # %%
-    print("sending to db")
-    send_to_db(candidates, CANDIDATE_CONFIG)
-    # %%
-    send_to_db(committees, COMMITTEE_CONFIG)
-    # %%
-    send_to_db(contributions, CONTRIBUTION_CONFIG)
-
-    print("making connections")
-
-    # %%
-    clear_table("fec_connection")
-    run_sql_file("make_connections.sql")
-
-    print("writing JSON")
-
-    # Output connections for frontent
-    connections_to_json()
-    candidates_to_json()
-
-    print("done")
+    features = get_matches(contributions, *['first', 'middle', 'last', 'zip_code'])

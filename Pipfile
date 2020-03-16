@@ -17,6 +17,9 @@ jupyter = "*"
 [packages]
 psycopg2-binary = "*"
 python-dotenv = "*"
+pandas-gbq = "*"
+tqdm = "*"
+recordlinkage = "*"
 
 [requires]
 python_version = "3.7"
