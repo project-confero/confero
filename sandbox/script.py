@@ -1,7 +1,7 @@
 import os
 from functools import partial
 import pkg_resources
-
+import sys
 import pandas_gbq
 import pandas as pd
 import numpy as np
@@ -12,6 +12,7 @@ from recordlinkage.preprocessing import clean
 
 TEMP_FILE = '/tmp/sql.csv'
 DIR = f'{os.getcwd()}/sandbox'
+YEAR = sys.argv[1]
 
 CONFIG = {
     "candidates": {
@@ -215,12 +216,12 @@ def get_matches(df, first_name, middle_name, last_name, zip_code):
     return features
 
 
-def read_csv(config):
+def read_csv(config, year):
     filename = config["filename"]
     data_types = config["csv_types"]
     with open(f"{DIR}/{filename}") as file:
         return pandas_gbq.read_gbq(
-            file.read(),
+            file.read().format(year=year),
             index_col=config["index"],
         ).drop_duplicates().astype(data_types)
 
@@ -230,17 +231,49 @@ if __name__ == '__main__':
         __name__, '/'.join(('data', 'names.txt')))
 
     # Extract
-    candidates = read_csv(CANDIDATE_CONFIG)
-    committees = read_csv(COMMITTEE_CONFIG)
-    contributions = read_csv(CONTRIBUTION_CONFIG)
+    candidates = read_csv(CANDIDATE_CONFIG, YEAR)
+    committees = read_csv(COMMITTEE_CONFIG, YEAR)
+    contributions = read_csv(CONTRIBUTION_CONFIG, YEAR)
 
     # Clean
     for col in ['first', 'last', 'middle']:
         contributions[col] = clean(contributions[col])
-
     GROUPBY_COLS = ['first', 'middle', 'last', 'zip_code', 'committee_id']
     contributions = contributions.\
         groupby(GROUPBY_COLS).sum().\
         reset_index()
 
+    # match records
     features = get_matches(contributions, *['first', 'middle', 'last', 'zip_code'])
+    contributions['new_index'] = contributions.index
+    dupes = features.index.get_level_values(0).values
+    matches = features.index.get_level_values(1).values
+    contributions.loc[matches, 'new_index'] = dupes
+    contributions.reset_index(inplace=True)
+    contributions.set_index('new_index', inplace=True)
+
+    multi_contr = contributions[
+        contributions.index.duplicated()
+    ][['committee_id', 'transaction_amount']]
+    multi_contr_j = multi_contr.join(
+        multi_contr,
+        lsuffix='_source',
+        rsuffix='_target')
+    multi_contr_j = multi_contr_j[
+        multi_contr_j['committee_id_source'] != multi_contr_j['committee_id_target']
+    ]
+
+    connections = multi_contr_j.pivot_table(
+        index=['committee_id_target', 'committee_id_source'], aggfunc='count')
+    connections.reset_index(inplace=True)
+    connections.rename(
+        columns={
+            'committee_id_target': 'target_id',
+            'committee_id_source': 'source_id',
+            'transaction_amount_source': 'score'
+        }, inplace=True)
+    connections[['source_id', 'target_id', 'score']].\
+        to_json(
+            f'confero-front/public/data/20{YEAR}/connections.json',
+            orient='records'
+    )

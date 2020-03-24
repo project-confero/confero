@@ -4,4 +4,5 @@ SELECT
     cand_id as candidate_id,
     cmte_tp as committee_type,
     cmte_dsgn as committee_designation
-FROM `bigquery-public-data.fec.cm20`;
+FROM `bigquery-public-data.fec.cm{year}`
+WHERE cand_id IS NOT NULL;

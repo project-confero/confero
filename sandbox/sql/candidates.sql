@@ -14,4 +14,5 @@ SELECT
   cand_city as address_city,
   cand_st as address_state,
   cand_zip address_zip
-FROM `bigquery-public-data.fec.cn20`;
+FROM `bigquery-public-data.fec.cn{year}`
+WHERE cand_id IS NOT NULL;
