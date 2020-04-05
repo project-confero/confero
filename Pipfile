@@ -9,8 +9,6 @@ prospector = "*"
 pre-commit = "*"
 coverage = "*"
 ipython = "*"
-faker = "*"
-factory-boy = "*"
 pandas = "*"
 jupyter = "*"
 

@@ -13,21 +13,13 @@ from recordlinkage.preprocessing import clean
 TEMP_FILE = '/tmp/sql.csv'
 DIR = f'{os.getcwd()}/sandbox'
 YEAR = sys.argv[1]
-NAMES_PATH = pkg_resources.resource_filename(
-    __name__, '/'.join(('data', 'names.txt'))
-)
+NAMES_PATH = pkg_resources.resource_filename(__name__, '/'.join(('data',
+                                                                 'names.txt')))
 GROUPBY_COLS = ['first', 'middle', 'last', 'zip_code', 'id']
 MATCH_COLS = ['first', 'middle', 'last', 'zip_code']
 CANDIDATE_COLUMNS = [
-    "id",
-    "name",
-    "office",
-    "party",
-    "state",
-    "district",
-    "score",
-    "contribution_count",
-    "contribution_amount"
+    "id", "name", "office", "party", "state", "district", "score",
+    "contribution_count", "contribution_amount"
 ]
 CONTRIBUTION_CONFIG = {
     "filename": "sql/contributions.sql",
@@ -42,22 +34,24 @@ CONTRIBUTION_CONFIG = {
     "index": None
 }
 
-def listify(x, none_value=[]):
+
+def listify(x):
     """Make a list of the argument if it is not a list."""
 
     if isinstance(x, list):
         return x
-    elif isinstance(x, tuple):
+
+    if isinstance(x, tuple):
         return list(x)
-    elif x is None:
-        return none_value
-    else:
-        return [x]
+
+    if x is None:
+        return []
+
+    return [x]
 
 
 def nickname_search(first_name, names):
     """ Find and return the index of key in sequence names  for first_name"""
-    first_name = first_name
     lb = 0
     ub = len(names)
 
@@ -110,7 +104,7 @@ def get_nicknames(names, lines, name):
 
 
 def validate_name(name):
-    return name if type(name) == str and pd.notna(name) else ''
+    return name if isistance(name, str) and pd.notna(name) else ''
 
 
 class NickNameIndex(BaseIndexAlgorithm):
@@ -125,8 +119,8 @@ class NickNameIndex(BaseIndexAlgorithm):
     def _get_left_and_right_on(self):
         if self.right_on is None:
             return (self.left_on, self.left_on)
-        else:
-            return (self.left_on, self.right_on)
+
+        return (self.left_on, self.right_on)
 
     def _link_index(self, df_a, df_b):
         left_on, right_on = self._get_left_and_right_on()
@@ -145,8 +139,9 @@ class NickNameIndex(BaseIndexAlgorithm):
         data_left['index_x'] = np.arange(len(df_a))
         # add rows for each nickname
         nicknames_left = pd.DataFrame.from_records(
-            data_left[blocking_keys[0]].apply(validate_name).apply(nicknames).tolist()
-        ).stack().reset_index(level=1, drop=True).rename(blocking_keys[0])
+            data_left[blocking_keys[0]].apply(validate_name).apply(
+                nicknames).tolist()).stack().reset_index(
+                    level=1, drop=True).rename(blocking_keys[0])
         data_left = data_left.drop(blocking_keys[0], axis=1).\
             join(nicknames_left).reset_index(drop=True)
 
@@ -169,19 +164,14 @@ def get_matches(df, first_name, middle_name, last_name, zip_code):
     indexer = rl.Index()
     indexer.add([
         NickNameIndex(
-            left_on=[
-                first_name,
-                middle_name,
-                last_name,
-                zip_code
-            ],
+            left_on=[first_name, middle_name, last_name, zip_code],
             missing_value=False),
     ])
     links = indexer.index(df)
 
     # transform
     cl = rl.Compare()
-    cl.exact(zip_code, zip_code,  label='zip_code')
+    cl.exact(zip_code, zip_code, label='zip_code')
     features = cl.compute(links, df)
 
     return features
@@ -206,7 +196,8 @@ if __name__ == '__main__':
     contributions = contr.groupby(GROUPBY_COLS).sum().reset_index()
 
     # match records
-    features = get_matches(contributions, *['first', 'middle', 'last', 'zip_code'])
+    features = get_matches(contributions,
+                           *['first', 'middle', 'last', 'zip_code'])
 
     contributions['new_index'] = contributions.index
     dupes = features.index.get_level_values(0).values
@@ -215,16 +206,13 @@ if __name__ == '__main__':
     contributions.reset_index(inplace=True)
     contributions.set_index('new_index', inplace=True)
 
-    multi_contr = contributions[
-        contributions.index.duplicated()
-    ][['id', 'transaction_amount']]
+    multi_contr = contributions[contributions.index.duplicated()][[
+        'id', 'transaction_amount'
+    ]]
     multi_contr_j = multi_contr.join(
-        multi_contr,
-        lsuffix='_source',
-        rsuffix='_target')
+        multi_contr, lsuffix='_source', rsuffix='_target')
     multi_contr_j = multi_contr_j[
-        multi_contr_j['id_source'] != multi_contr_j['id_target']
-    ]
+        multi_contr_j['id_source'] != multi_contr_j['id_target']]
 
     connections = multi_contr_j.pivot_table(
         index=['id_target', 'id_source'], aggfunc='count')
@@ -235,7 +223,8 @@ if __name__ == '__main__':
             'id_target': 'target_id',
             'id_source': 'source_id',
             'transaction_amount_source': 'score'
-        }, inplace=True)
+        },
+        inplace=True)
     connections[['source_id', 'target_id', 'score']].\
         to_json(
             f'confero-front/public/data/20{YEAR}/connections.json',
@@ -248,10 +237,10 @@ if __name__ == '__main__':
         "party",
         "state",
         "district"]
-        ).sum()[
+    ).sum()[
             ['transaction_amount', "contribution_count"]
         ].reset_index().set_index('id').\
-        join(
+    join(
             connections.groupby('source_id').sum()[['score']],
             how='inner'
         ).\
