@@ -13,63 +13,34 @@ from recordlinkage.preprocessing import clean
 TEMP_FILE = '/tmp/sql.csv'
 DIR = f'{os.getcwd()}/sandbox'
 YEAR = sys.argv[1]
-
-CONFIG = {
-    "candidates": {
-        "table":
-        "fec_candidate",
-        "filename":
-        "sql/candidates.sql",
-        "csv_columns": [
-            "id", "name", "party", "election_year", "state", "office",
-            "district", "incumbent_challenger_status", "status",
-            "principal_committee_id", "address_state_1", "address_state_2",
-            "address_city", "address_state", "address_zip"
-        ],
-        "csv_types": {
-            "district": "str"
-        },
-        "table_columns":
-        ["id", "name", "party", "office", "state", "district"],
-        "index":
-        "id"
+NAMES_PATH = pkg_resources.resource_filename(
+    __name__, '/'.join(('data', 'names.txt'))
+)
+GROUPBY_COLS = ['first', 'middle', 'last', 'zip_code', 'id']
+MATCH_COLS = ['first', 'middle', 'last', 'zip_code']
+CANDIDATE_COLUMNS = [
+    "id",
+    "name",
+    "office",
+    "party",
+    "state",
+    "district",
+    "score",
+    "contribution_count",
+    "contribution_amount"
+]
+CONTRIBUTION_CONFIG = {
+    "filename": "sql/contributions.sql",
+    "csv_types": {
+        "id": "str",
+        "first": "str",
+        "middle": "str",
+        "last": "str",
+        "zip_code": "str",
+        "transaction_amount": "float",
     },
-    "committees": {
-        "table":
-        "fec_committee",
-        "filename":
-        "sql/committees.sql",
-        "csv_columns": [
-            "id", "candidate_id", "committee_id", "committee_type",
-            "committee_designation"
-        ],
-        "csv_types": {},
-        "table_columns": ["candidate_id", "committee_id"],
-        "index":
-        "id"
-    },
-    "contributions": {
-        "table": "fec_contribution",
-        "filename": "sql/contributions.sql",
-        "csv_columns":
-        ["committee_id", "name", "zip_code", "transaction_amount"],
-        "csv_types": {
-            "committee_id": "str",
-            "first": "str",
-            "middle": "str",
-            "last": "str",
-            "zip_code": "str",
-            "transaction_amount": "float",
-        },
-        "table_columns": ["committee_id", "name", "zip", "transaction_amount"],
-        "index": None
-    },
+    "index": None
 }
-
-CANDIDATE_CONFIG = CONFIG["candidates"]
-COMMITTEE_CONFIG = CONFIG["committees"]
-CONTRIBUTION_CONFIG = CONFIG["contributions"]
-
 
 def listify(x, none_value=[]):
     """Make a list of the argument if it is not a list."""
@@ -227,24 +198,16 @@ def read_csv(config, year):
 
 
 if __name__ == '__main__':
-    path_to_names = pkg_resources.resource_filename(
-        __name__, '/'.join(('data', 'names.txt')))
-
-    # Extract
-    candidates = read_csv(CANDIDATE_CONFIG, YEAR)
-    committees = read_csv(COMMITTEE_CONFIG, YEAR)
-    contributions = read_csv(CONTRIBUTION_CONFIG, YEAR)
-
+    contr = read_csv(CONTRIBUTION_CONFIG, YEAR)
+    contr['contribution_count'] = 1
     # Clean
     for col in ['first', 'last', 'middle']:
-        contributions[col] = clean(contributions[col])
-    GROUPBY_COLS = ['first', 'middle', 'last', 'zip_code', 'committee_id']
-    contributions = contributions.\
-        groupby(GROUPBY_COLS).sum().\
-        reset_index()
+        contr[col] = clean(contr[col])
+    contributions = contr.groupby(GROUPBY_COLS).sum().reset_index()
 
     # match records
     features = get_matches(contributions, *['first', 'middle', 'last', 'zip_code'])
+
     contributions['new_index'] = contributions.index
     dupes = features.index.get_level_values(0).values
     matches = features.index.get_level_values(1).values
@@ -254,22 +217,23 @@ if __name__ == '__main__':
 
     multi_contr = contributions[
         contributions.index.duplicated()
-    ][['committee_id', 'transaction_amount']]
+    ][['id', 'transaction_amount']]
     multi_contr_j = multi_contr.join(
         multi_contr,
         lsuffix='_source',
         rsuffix='_target')
     multi_contr_j = multi_contr_j[
-        multi_contr_j['committee_id_source'] != multi_contr_j['committee_id_target']
+        multi_contr_j['id_source'] != multi_contr_j['id_target']
     ]
 
     connections = multi_contr_j.pivot_table(
-        index=['committee_id_target', 'committee_id_source'], aggfunc='count')
+        index=['id_target', 'id_source'], aggfunc='count')
+    connections = connections[connections['transaction_amount_source'] > 2]
     connections.reset_index(inplace=True)
     connections.rename(
         columns={
-            'committee_id_target': 'target_id',
-            'committee_id_source': 'source_id',
+            'id_target': 'target_id',
+            'id_source': 'source_id',
             'transaction_amount_source': 'score'
         }, inplace=True)
     connections[['source_id', 'target_id', 'score']].\
@@ -277,3 +241,25 @@ if __name__ == '__main__':
             f'confero-front/public/data/20{YEAR}/connections.json',
             orient='records'
     )
+    contr.groupby([
+        "id",
+        "name",
+        "office",
+        "party",
+        "state",
+        "district"]
+        ).sum()[
+            ['transaction_amount', "contribution_count"]
+        ].reset_index().set_index('id').\
+        join(
+            connections.groupby('source_id').sum()[['score']],
+            how='inner'
+        ).\
+        rename(
+            columns={'transaction_amount': 'contribution_amount'}
+        ).\
+        sort_values('score', ascending=False).\
+        to_json(
+            f'confero-front/public/data/20{YEAR}/candidates.json',
+            orient='records'
+        )
