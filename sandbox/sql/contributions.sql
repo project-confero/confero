@@ -1,7 +1,7 @@
 DECLARE year STRING DEFAULT '20';
 
 -- create temp clean fec table
-CREATE OR REPLACE TEMP TABLE fec AS
+CREATE OR REPLACE TABLE commons.fec AS
   WITH contributions AS (
     SELECT
       CASE
@@ -57,28 +57,40 @@ CREATE OR REPLACE TEMP TABLE fec AS
   WHERE cnd.id IS NOT NULL
 ;
 
-WITH matches as (
-  SELECT 
-    p.id as source_id,
-    l.id as target_id,
-    ROW_NUMBER() OVER(PARTITION BY p.id, l.id, p.first_name, p.last_name) as p_id,
-  FROM fec as p
-  LEFT JOIN `confero-271219.commons.names` as n on p.first_name = n.full_name
-  JOIN fec as l 
-    ON (
-      TRIM(UPPER(l.first_name)) = TRIM(UPPER(p.first_name))
-      OR TRIM(UPPER(nick_name)) = TRIM(UPPER(l.first_name))
-      OR TRIM(UPPER(full_name)) = TRIM(UPPER(l.first_name))
-    )
-    AND TRIM(UPPER(p.last_name)) = TRIM(UPPER(l.last_name))
-    AND (
-      TRIM(UPPER(p.middle_name)) = TRIM(UPPER(l.middle_name) )
-      OR STARTS_WITH(TRIM(UPPER(l.middle_name)), SUBSTR(TRIM(UPPER(p.middle_name)), 0, 1))
-      OR l.middle_name is null
-      OR p.middle_name is null
-    )
-    AND l.zip_code = p.zip_code
-    WHERE 
-      p.id != l.id
-    ORDER BY 1, 3, 2
-)
+CREATE OR REPLACE TABLE commons.matches AS
+SELECT 
+  p.id as source_id,
+  l.id as target_id,
+  ROW_NUMBER() OVER(PARTITION BY p.id, l.id, p.first_name, p.last_name) as p_id,
+FROM commons.fec as p
+LEFT JOIN `confero-271219.commons.names` as n on p.first_name = n.full_name
+JOIN commons.fec as l 
+  ON (
+    TRIM(UPPER(l.first_name)) = TRIM(UPPER(p.first_name))
+    OR TRIM(UPPER(nick_name)) = TRIM(UPPER(l.first_name))
+    OR TRIM(UPPER(full_name)) = TRIM(UPPER(l.first_name))
+  )
+  AND TRIM(UPPER(p.last_name)) = TRIM(UPPER(l.last_name))
+  AND (
+    TRIM(UPPER(p.middle_name)) = TRIM(UPPER(l.middle_name) )
+    OR STARTS_WITH(TRIM(UPPER(l.middle_name)), SUBSTR(TRIM(UPPER(p.middle_name)), 0, 1))
+    OR l.middle_name is null
+    OR p.middle_name is null
+  )
+  AND l.zip_code = p.zip_code
+  WHERE 
+    p.id != l.id
+  ORDER BY 1, 3, 2
+;
+
+CREATE OR REPLACE TABLE commons.connections AS
+SELECT
+  a.source_id,
+  a.target_id,
+  count(*) as score
+FROM commons.matches as a
+WHERE 
+  a.p_id = 1
+GROUP BY 1, 2
+HAVING score >= 3
+ORDER BY 3;
