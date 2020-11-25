@@ -1,8 +1,5 @@
-DECLARE year STRING DEFAULT '20';
-
--- create temp clean fec table
-CREATE OR REPLACE TABLE commons.fec AS
-  WITH contributions AS (
+WITH
+  contributions AS (
     SELECT
       CASE
         WHEN cmte_id = 'C00401224'
@@ -20,8 +17,8 @@ CREATE OR REPLACE TABLE commons.fec AS
       SUBSTR(zip_code,0,5) as zip_code,
       SUM(transaction_amt) as transaction_amount,
     FROM `bigquery-public-data.fec.indiv*`
-    WHERE 
-        _TABLE_SUFFIX = year
+    WHERE
+        _TABLE_SUFFIX = '{year}'
         AND entity_tp = 'IND'
         AND transaction_tp IN ('15', '15E')
         AND NOT (
@@ -46,51 +43,54 @@ CREATE OR REPLACE TABLE commons.fec AS
       cand_office_district as district,
     FROM `bigquery-public-data.fec.cn*` as cn
     JOIN `bigquery-public-data.fec.cm*` as cm USING(cand_id)
-    WHERE 
-      cm._TABLE_SUFFIX = year
-      AND cn._TABLE_SUFFIX = year
+    WHERE
+      cm._TABLE_SUFFIX = '{year}'
+      AND cn._TABLE_SUFFIX = '{year}'
+  ),
+
+  fec AS (
+    SELECT * EXCEPT (cmte_id)
+    FROM contributions AS ctr
+    LEFT JOIN candidates AS cnd USING(cmte_id)
+    WHERE cnd.id IS NOT NULL
+  ),
+
+-- match individuals using name and zipcode
+  matches AS (
+    SELECT
+      p.id as source_id,
+      l.id as target_id,
+      ROW_NUMBER() OVER(PARTITION BY p.id, l.id, p.first_name, p.last_name) as p_id,
+    FROM fec as p
+    LEFT JOIN commons.names as n on p.first_name = n.full_name
+    JOIN fec as l
+      ON (
+        TRIM(UPPER(l.first_name)) = TRIM(UPPER(p.first_name))
+        OR TRIM(UPPER(nick_name)) = TRIM(UPPER(l.first_name))
+        OR TRIM(UPPER(full_name)) = TRIM(UPPER(l.first_name))
+      )
+      AND TRIM(UPPER(p.last_name)) = TRIM(UPPER(l.last_name))
+      AND (
+        TRIM(UPPER(p.middle_name)) = TRIM(UPPER(l.middle_name) )
+        OR STARTS_WITH(TRIM(UPPER(l.middle_name)), SUBSTR(TRIM(UPPER(p.middle_name)), 0, 1))
+        OR l.middle_name is null
+        OR p.middle_name is null
+      )
+      AND l.zip_code = p.zip_code
+    WHERE
+      p.id != l.id
+    ORDER BY 1, 3, 2
   )
 
-  SELECT * EXCEPT (cmte_id)
-  FROM contributions AS ctr
-  LEFT JOIN candidates AS cnd USING(cmte_id)
-  WHERE cnd.id IS NOT NULL
-;
-
-CREATE OR REPLACE TABLE commons.matches AS
-SELECT 
-  p.id as source_id,
-  l.id as target_id,
-  ROW_NUMBER() OVER(PARTITION BY p.id, l.id, p.first_name, p.last_name) as p_id,
-FROM commons.fec as p
-LEFT JOIN `confero-271219.commons.names` as n on p.first_name = n.full_name
-JOIN commons.fec as l 
-  ON (
-    TRIM(UPPER(l.first_name)) = TRIM(UPPER(p.first_name))
-    OR TRIM(UPPER(nick_name)) = TRIM(UPPER(l.first_name))
-    OR TRIM(UPPER(full_name)) = TRIM(UPPER(l.first_name))
-  )
-  AND TRIM(UPPER(p.last_name)) = TRIM(UPPER(l.last_name))
-  AND (
-    TRIM(UPPER(p.middle_name)) = TRIM(UPPER(l.middle_name) )
-    OR STARTS_WITH(TRIM(UPPER(l.middle_name)), SUBSTR(TRIM(UPPER(p.middle_name)), 0, 1))
-    OR l.middle_name is null
-    OR p.middle_name is null
-  )
-  AND l.zip_code = p.zip_code
-  WHERE 
-    p.id != l.id
-  ORDER BY 1, 3, 2
-;
-
-CREATE OR REPLACE TABLE commons.connections AS
+-- create connections
 SELECT
   a.source_id,
   a.target_id,
   count(*) as score
-FROM commons.matches as a
-WHERE 
+FROM matches as a
+WHERE
   a.p_id = 1
 GROUP BY 1, 2
 HAVING score >= 3
-ORDER BY 3;
+ORDER BY 3
+;

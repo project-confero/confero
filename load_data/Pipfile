@@ -9,15 +9,14 @@ prospector = "*"
 pre-commit = "*"
 coverage = "*"
 ipython = "*"
-pandas = "*"
-jupyter = "*"
 
 [packages]
-psycopg2-binary = "*"
 python-dotenv = "*"
-pandas-gbq = "*"
-tqdm = "*"
 recordlinkage = "*"
+google-cloud-bigquery = "*"
+pandas = "*"
+nameparser = "*"
+apache-beam = {extras = ["gcp"], version = "*"}
 
 [requires]
 python_version = "3.7"
