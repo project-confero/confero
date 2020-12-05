@@ -17,6 +17,8 @@ google-cloud-bigquery = "*"
 pandas = "*"
 nameparser = "*"
 apache-beam = {extras = ["gcp"], version = "*"}
+google-cloud-bigquery-datatransfer = "*"
+click = "*"
 
 [requires]
 python_version = "3.7"
